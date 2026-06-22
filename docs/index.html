@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Octonomous — An Open Framework for Self-Sovereign Intelligent Beings</title>
+<meta name="description" content="Octonomous is an open framework for creating, operating, and evolving Self-Sovereign Intelligent Beings — built on the selfdriven 4Cs: Curious, Caring, Constructive, Chill. Character before capability.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#09090f; --surface:#111118; --surface2:#18181f;
+  --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.14);
+  --text:#f0eeff; --muted:#7e7a9a; --muted2:#3d3a55;
+
+  --curious:#f5c842; --caring:#ff5f7e; --constructive:#00e5a0;
+  --chill:#7b6cff; --chill-bright:#9b8fff;
+
+  --curious-dim:rgba(245,200,66,0.13); --caring-dim:rgba(255,95,126,0.13);
+  --constructive-dim:rgba(0,229,160,0.13); --chill-dim:rgba(123,108,255,0.13);
+
+  /* framework / being accent — ties octonomous.io to heyocto.ai */
+  --octo:#93dd3d; --octo-dim:rgba(147,221,61,0.13); --octo-glow:rgba(147,221,61,0.30);
+
+  --pill:999px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--text);
+  font-family:'DM Sans',sans-serif; line-height:1.6;
+  overflow-x:hidden; cursor:none;
+  -webkit-font-smoothing:antialiased;
+}
+a{cursor:none; color:inherit; text-decoration:none}
+::selection{background:var(--octo); color:#06150a}
+
+/* ---------- cursor ---------- */
+.cursor-dot{position:fixed;top:0;left:0;width:8px;height:8px;border-radius:50%;background:var(--octo);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .12s ease,background .2s}
+.cursor-ring{position:fixed;top:0;left:0;width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(240,238,255,.3);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .18s ease,width .2s,height .2s,border-color .2s}
+@media (hover:none){body{cursor:auto} a{cursor:auto} .cursor-dot,.cursor-ring{display:none}}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 30px;
+  background:rgba(9,9,15,.72); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.brand{display:flex; align-items:center; gap:11px; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:19px; letter-spacing:-.03em}
+.brand .mark{width:26px;height:26px;flex:none;display:grid;place-items:center}
+.brand .mark svg{width:26px;height:26px}
+.brand em{font-style:normal; color:var(--octo)}
+.nav-links{display:flex; align-items:center; gap:28px}
+.nav-links a{font-size:14px; color:var(--muted); font-weight:500; transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{
+  font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:14px;
+  padding:9px 18px; border-radius:var(--pill);
+  background:var(--octo-dim); color:var(--octo);
+  border:1.5px solid rgba(147,221,61,.30); transition:transform .2s,box-shadow .2s;
+}
+.nav-cta:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(147,221,61,.18)}
+@media(max-width:860px){.nav-links a:not(.nav-cta){display:none}}
+
+/* ---------- layout ---------- */
+section{position:relative; z-index:1}
+.wrap{max-width:1080px; margin:0 auto; padding:0 30px}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:500;
+  letter-spacing:.22em; text-transform:uppercase; color:var(--muted);
+  display:inline-flex; align-items:center; gap:9px; margin-bottom:22px;
+}
+.eyebrow::before{content:''; width:24px; height:1px; background:var(--octo); opacity:.7}
+h2{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; letter-spacing:-.04em; line-height:1.04; font-size:clamp(30px,5vw,52px)}
+h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; letter-spacing:-.03em}
+.lede{color:var(--muted); font-size:clamp(16px,2vw,19px); max-width:620px; margin-top:20px}
+
+/* ---------- hero ---------- */
+.hero{min-height:100vh; display:flex; align-items:center; padding:120px 0 80px; overflow:hidden}
+.gblob{position:absolute; border-radius:50%; filter:blur(95px); opacity:.5; z-index:0}
+.gb1{width:520px;height:520px;background:var(--curious);top:-150px;left:-160px;animation:gb 15s ease-in-out infinite}
+.gb2{width:440px;height:440px;background:var(--caring);top:40px;right:-130px;animation:gb 19s ease-in-out infinite reverse}
+.gb3{width:380px;height:380px;background:var(--constructive);bottom:-60px;left:14%;animation:gb 23s ease-in-out infinite 3s}
+.gb4{width:340px;height:340px;background:var(--chill);bottom:30px;right:14%;animation:gb 17s ease-in-out infinite 8s}
+.gb5{width:300px;height:300px;background:var(--octo);top:30%;left:42%;animation:gb 21s ease-in-out infinite 5s;opacity:.32}
+@keyframes gb{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(34px,-26px) scale(1.08)}70%{transform:translate(-22px,30px) scale(.93)}}
+.hero .wrap{position:relative; z-index:2}
+.hero-pill{
+  display:inline-flex; align-items:center; gap:9px;
+  background:rgba(9,9,15,.55); border:1px solid rgba(255,255,255,.22);
+  border-radius:var(--pill); padding:8px 18px;
+  font-size:12px; font-weight:500; color:rgba(240,238,255,.7);
+  letter-spacing:.08em; text-transform:uppercase;
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); margin-bottom:30px;
+}
+.hero-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--octo);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.hero h1{
+  font-family:'Bricolage Grotesque',sans-serif; font-weight:800;
+  font-size:clamp(40px,8vw,86px); line-height:.98; letter-spacing:-.045em;
+  max-width:14ch;
+}
+.hero h1 .being{
+  background:linear-gradient(105deg,var(--octo),var(--constructive));
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+}
+.hero-sub{font-size:clamp(17px,2.2vw,21px); color:var(--muted); max-width:600px; margin:28px 0 36px}
+.hero-sub b{color:var(--text); font-weight:600}
+.jump-row{position:relative; display:flex; flex-wrap:wrap; gap:11px}
+.jump-row::before{content:''; position:absolute; inset:-30px -10%; background:radial-gradient(ellipse at center,rgba(9,9,15,.55),transparent 72%); z-index:-1; pointer-events:none}
+.mode-pill{display:inline-flex; align-items:center; gap:8px; padding:11px 20px; border-radius:var(--pill); font-family:'Bricolage Grotesque',sans-serif; font-size:14px; font-weight:600; border:1.5px solid transparent; transition:transform .2s,box-shadow .2s}
+.mode-pill svg{width:16px;height:16px}
+.mode-pill:hover{transform:translateY(-4px) rotate(-1.5deg); box-shadow:0 14px 36px rgba(0,0,0,.5)}
+.mp-c{background:var(--curious-dim);color:var(--curious);border-color:rgba(245,200,66,.28)}
+.mp-k{background:var(--caring-dim);color:var(--caring);border-color:rgba(255,95,126,.28)}
+.mp-b{background:var(--constructive-dim);color:var(--constructive);border-color:rgba(0,229,160,.28)}
+.mp-l{background:var(--chill-dim);color:var(--chill-bright);border-color:rgba(123,108,255,.28)}
+
+/* ---------- generic section spacing ---------- */
+.band{padding:100px 0}
+.band.tight{padding:80px 0}
+
+/* ---------- the shift (tool/agent/being) ---------- */
+.shift-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:54px}
+.shift-card{
+  background:var(--surface); border:1px solid var(--border); border-radius:22px;
+  padding:30px 26px; position:relative; overflow:hidden; transition:transform .3s,border-color .3s;
+}
+.shift-card:hover{transform:translateY(-6px); border-color:var(--border2)}
+.shift-card .step{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); letter-spacing:.18em}
+.shift-card h3{font-size:26px; margin:16px 0 10px}
+.shift-card p{color:var(--muted); font-size:15px}
+.shift-card.is-being{border-color:rgba(147,221,61,.32); background:linear-gradient(180deg,rgba(147,221,61,.07),var(--surface))}
+.shift-card.is-being h3{color:var(--octo)}
+.shift-arrow{display:flex; align-items:center; justify-content:center; gap:14px; margin-top:30px; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.12em; flex-wrap:wrap}
+.shift-arrow b{color:var(--text)}
+@media(max-width:760px){.shift-grid{grid-template-columns:1fr}}
+
+/* ---------- challenge (have vs lack) ---------- */
+.split{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:52px}
+.col-card{background:var(--surface); border:1px solid var(--border); border-radius:22px; padding:32px 30px}
+.col-card .ch-label{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:20px}
+.col-card.lacks{border-color:rgba(147,221,61,.25)}
+.col-card.lacks .ch-label{color:var(--octo)}
+.ch-list{list-style:none; display:flex; flex-direction:column; gap:13px}
+.ch-list li{display:flex; align-items:center; gap:12px; font-size:16px; color:var(--text)}
+.ch-list li svg{width:17px;height:17px;flex:none}
+.col-card .ch-list li{color:var(--muted)}
+.col-card.lacks .ch-list li{color:var(--text); font-weight:500}
+.challenge-kicker{margin-top:42px; text-align:center; font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:clamp(20px,3vw,30px); letter-spacing:-.03em; line-height:1.25}
+.challenge-kicker .hl{color:var(--octo)}
+@media(max-width:760px){.split{grid-template-columns:1fr}}
+
+/* ---------- 4Cs constitution ---------- */
+.const-head{text-align:center; max-width:680px; margin:0 auto}
+.const-head .lede{margin-left:auto;margin-right:auto}
+.modes{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:56px}
+.mode-card{
+  background:var(--surface); border:1px solid var(--border); border-radius:24px;
+  padding:34px 32px; position:relative; overflow:hidden; transition:transform .3s,border-color .3s;
+}
+.mode-card::before{content:''; position:absolute; top:0; left:0; right:0; height:3px; opacity:.85}
+.mode-card:hover{transform:translateY(-6px)}
+.mode-card .ico{width:50px; height:50px; border-radius:15px; display:grid; place-items:center; margin-bottom:22px}
+.mode-card .ico svg{width:26px;height:26px}
+.mode-card h3{font-size:30px; margin-bottom:6px}
+.mode-card .essence{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.1em; text-transform:lowercase; margin-bottom:18px}
+.mode-card p{color:var(--muted); font-size:15px; margin-bottom:22px}
+.asks{display:flex; flex-direction:column; gap:9px; border-top:1px solid var(--border); padding-top:20px}
+.asks .ask{font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:15px; color:var(--text); display:flex; gap:10px; align-items:flex-start}
+.asks .ask span{opacity:.5; font-weight:700}
+
+.mc-c::before{background:var(--curious)} .mc-c .ico{background:var(--curious-dim); color:var(--curious)} .mc-c h3,.mc-c .essence{color:var(--curious)} .mc-c:hover{border-color:rgba(245,200,66,.4)}
+.mc-k::before{background:var(--caring)} .mc-k .ico{background:var(--caring-dim); color:var(--caring)} .mc-k h3,.mc-k .essence{color:var(--caring)} .mc-k:hover{border-color:rgba(255,95,126,.4)}
+.mc-b::before{background:var(--constructive)} .mc-b .ico{background:var(--constructive-dim); color:var(--constructive)} .mc-b h3,.mc-b .essence{color:var(--constructive)} .mc-b:hover{border-color:rgba(0,229,160,.4)}
+.mc-l::before{background:var(--chill)} .mc-l .ico{background:var(--chill-dim); color:var(--chill-bright)} .mc-l h3,.mc-l .essence{color:var(--chill-bright)} .mc-l:hover{border-color:rgba(123,108,255,.4)}
+@media(max-width:760px){.modes{grid-template-columns:1fr}}
+
+/* ---------- character before capability ---------- */
+.thesis{text-align:center; padding:120px 0; position:relative}
+.thesis .big{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; letter-spacing:-.045em; line-height:1.05; font-size:clamp(32px,6vw,64px); max-width:18ch; margin:0 auto}
+.thesis .big .a{color:var(--muted2)}
+.thesis .big .b{background:linear-gradient(105deg,var(--octo),var(--constructive)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.thesis p{color:var(--muted); max-width:560px; margin:34px auto 0; font-size:17px}
+.equation{display:inline-flex; gap:18px; align-items:center; margin-top:40px; flex-wrap:wrap; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:14px; letter-spacing:.1em; color:var(--muted)}
+.equation b{color:var(--octo)}
+
+/* ---------- anatomy grid ---------- */
+.anatomy{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:54px}
+.atom{background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:26px 24px; transition:transform .3s,border-color .3s}
+.atom:hover{transform:translateY(-5px); border-color:var(--border2)}
+.atom .n{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--octo); letter-spacing:.14em}
+.atom h3{font-size:20px; margin:12px 0 8px}
+.atom p{color:var(--muted); font-size:14px}
+@media(max-width:760px){.anatomy{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.anatomy{grid-template-columns:1fr}}
+
+/* ---------- runtime agnostic ---------- */
+.runtime-wrap{display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; margin-top:50px}
+.chips{display:flex; flex-wrap:wrap; gap:12px}
+.chip{font-family:'JetBrains Mono',monospace; font-size:13px; padding:11px 18px; border-radius:var(--pill); background:var(--surface2); border:1px solid var(--border); color:var(--text); transition:transform .2s,border-color .2s,color .2s}
+.chip:hover{transform:translateY(-3px); border-color:rgba(147,221,61,.4); color:var(--octo)}
+.runtime-note{color:var(--muted); font-size:16px}
+.runtime-note b{color:var(--text); font-weight:600}
+@media(max-width:760px){.runtime-wrap{grid-template-columns:1fr; gap:30px}}
+
+/* ---------- stack ---------- */
+.stack-head{text-align:center; max-width:680px; margin:0 auto}
+.stack{display:grid; grid-template-columns:1fr; gap:14px; max-width:760px; margin:54px auto 0}
+.layer{
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:24px;
+  background:var(--surface); border:1px solid var(--border); border-radius:20px;
+  padding:26px 30px; transition:transform .3s,border-color .3s;
+}
+.layer:hover{transform:translateX(6px)}
+.layer .lname{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:24px; letter-spacing:-.03em}
+.layer .lq{color:var(--muted); font-size:15px}
+.layer .ltag{font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.1em; padding:6px 14px; border-radius:var(--pill); white-space:nowrap}
+.l-intent{border-color:rgba(245,200,66,.3)} .l-intent .lname{color:var(--curious)} .l-intent .ltag{background:var(--curious-dim); color:var(--curious)}
+.l-being{border-color:rgba(147,221,61,.34); background:linear-gradient(180deg,rgba(147,221,61,.06),var(--surface))} .l-being .lname{color:var(--octo)} .l-being .ltag{background:var(--octo-dim); color:var(--octo)}
+.l-impact{border-color:rgba(0,229,160,.3)} .l-impact .lname{color:var(--constructive)} .l-impact .ltag{background:var(--constructive-dim); color:var(--constructive)}
+.stack-flow{text-align:center; margin-top:34px; font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:clamp(20px,3vw,30px); letter-spacing:-.02em}
+.stack-flow .arr{color:var(--muted2); margin:0 10px}
+.stack-flow .w{color:var(--curious)} .stack-flow .h{color:var(--octo)} .stack-flow .i{color:var(--constructive)}
+@media(max-width:620px){.layer{grid-template-columns:1fr; gap:10px; text-align:left} .layer .ltag{justify-self:start}}
+
+/* ---------- octo implementation ---------- */
+.octo-band{position:relative; overflow:hidden}
+.octo-card{
+  position:relative; border:1px solid rgba(147,221,61,.28); border-radius:30px;
+  padding:60px clamp(28px,5vw,64px); margin-top:30px; overflow:hidden;
+  background:radial-gradient(120% 120% at 0% 0%,rgba(147,221,61,.10),transparent 55%),var(--surface);
+}
+.octo-card .badge{display:inline-flex; align-items:center; gap:9px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--octo); margin-bottom:22px}
+.octo-card .badge .o{width:9px;height:9px;border-radius:50%;background:var(--octo);box-shadow:0 0 12px var(--octo)}
+.octo-card h2{max-width:16ch}
+.octo-card p{color:var(--muted); font-size:17px; max-width:600px; margin-top:22px}
+.octo-card p b{color:var(--text); font-weight:600}
+.octo-not{display:flex; flex-wrap:wrap; gap:14px; margin-top:34px}
+.octo-not .nt{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; letter-spacing:-.02em}
+.octo-not .nt.x{color:var(--muted2); text-decoration:line-through; text-decoration-color:rgba(255,255,255,.2)}
+.octo-not .nt.y{color:var(--octo)}
+.octo-cta{display:inline-flex; align-items:center; gap:9px; margin-top:38px; font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:15px; padding:13px 24px; border-radius:var(--pill); background:var(--octo); color:#06150a; transition:transform .2s,box-shadow .2s}
+.octo-cta:hover{transform:translateY(-4px); box-shadow:0 16px 40px var(--octo-glow)}
+.octo-cta svg{width:17px;height:17px}
+
+/* ---------- society / closing ---------- */
+.society{text-align:center}
+.roles{display:flex; flex-wrap:wrap; justify-content:center; gap:11px; margin-top:42px; max-width:760px; margin-left:auto; margin-right:auto}
+.role{font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:15px; padding:10px 20px; border-radius:var(--pill); background:var(--surface2); border:1px solid var(--border); color:var(--text)}
+.fourC{display:flex; justify-content:center; gap:clamp(14px,4vw,46px); margin-top:60px; flex-wrap:wrap}
+.fourC span{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:clamp(22px,4vw,40px); letter-spacing:-.03em}
+.fourC .c1{color:var(--curious)} .fourC .c2{color:var(--caring)} .fourC .c3{color:var(--constructive)} .fourC .c4{color:var(--chill-bright)}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid var(--border); padding:70px 0 50px; margin-top:40px; position:relative; z-index:1}
+.foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px}
+.foot-brand{display:flex; align-items:center; gap:11px; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:20px; letter-spacing:-.03em; margin-bottom:16px}
+.foot-brand .mark svg{width:26px;height:26px}
+.foot-brand em{font-style:normal;color:var(--octo)}
+.foot-blurb{color:var(--muted); font-size:14px; max-width:300px}
+.foot-col h4{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:18px; font-weight:500}
+.foot-col a{display:block; color:var(--text); font-size:15px; margin-bottom:12px; transition:color .2s}
+.foot-col a:hover{color:var(--octo)}
+.foot-bottom{display:flex; justify-content:space-between; align-items:center; gap:20px; margin-top:54px; padding-top:28px; border-top:1px solid var(--border); flex-wrap:wrap}
+.foot-bottom p{color:var(--muted); font-size:13px}
+.foot-bottom .cs{display:flex; gap:7px}
+.foot-bottom .cs i{width:11px;height:11px;border-radius:50%}
+.foot-bottom .cs .c1{background:var(--curious)} .foot-bottom .cs .c2{background:var(--caring)} .foot-bottom .cs .c3{background:var(--constructive)} .foot-bottom .cs .c4{background:var(--chill)}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr; gap:34px}}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0; transform:translateY(28px); transition:opacity .6s,transform .6s cubic-bezier(.34,1.56,.64,1)}
+.reveal.vis{opacity:1; transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- icon symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ic-telescope" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="17" cy="13" r="3"/><path d="M3 7l5.5 2.5"/><path d="M3 7l2-4 14.5 6.5-2 4"/><path d="M8.5 9.5L6 20h5l1.5-4"/><path d="M17 16v4"/>
+  </symbol>
+  <symbol id="ic-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+  </symbol>
+  <symbol id="ic-hammer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m15 12-8.5 8.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0a2.12 2.12 0 0 1 0-3L12 9"/><path d="M17.64 15 22 10.64"/><path d="m20.91 11.7-1.25-1.25c-.6-.6-.93-1.4-.93-2.25v-.86L16.01 4.6a5.56 5.56 0 0 0-3.94-1.64H9l.92.82A6.18 6.18 0 0 1 12 8.4v1.56l2 2h2.47l2.26 1.91"/>
+  </symbol>
+  <symbol id="ic-waves" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+  </symbol>
+  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="ic-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <!-- octo mark: an eight-armed being -->
+  <symbol id="ic-octo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3a6 6 0 0 1 6 6v3H6V9a6 6 0 0 1 6-6Z"/>
+    <circle cx="10" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="14" cy="9" r="1" fill="currentColor" stroke="none"/>
+    <path d="M6 12c-1.5 0-2.5 1-2.5 2.5S5 18 4 19.5M9 12c-.7 1.5-.5 3.5-2 5M12 12v5.5M15 12c.7 1.5.5 3.5 2 5M18 12c1.5 0 2.5 1 2.5 2.5S20 18 21 19.5"/>
+  </symbol>
+</svg>
+
+<div class="cursor-dot" id="cdot"></div>
+<div class="cursor-ring" id="cring"></div>
+
+<!-- nav -->
+<nav>
+  <a href="#top" class="brand"><span class="mark"><svg><use href="#ic-octo" style="color:var(--octo)"/></svg></span>octo<em>nomous</em></a>
+  <div class="nav-links">
+    <a href="#constitution">The 4Cs</a>
+    <a href="#anatomy">The Being</a>
+    <a href="#stack">The Stack</a>
+    <a href="#octo">SelfdrivenOcto</a>
+    <a href="#octo" class="nav-cta">Read the paper</a>
+  </div>
+</nav>
+
+<!-- hero -->
+<section class="hero" id="top">
+  <div class="gblob gb1"></div><div class="gblob gb2"></div><div class="gblob gb3"></div><div class="gblob gb4"></div><div class="gblob gb5"></div>
+  <div class="wrap">
+    <span class="hero-pill"><span class="dot"></span>An open framework · built on the selfdriven 4Cs</span>
+    <h1>Intelligent systems are everywhere. We build intelligent <span class="being">beings</span>.</h1>
+    <p class="hero-sub">Octonomous is an open framework for creating, operating, and evolving <b>Self-Sovereign Intelligent Beings</b> — with their own identity, purpose, memory, and agency. Not just capable. Curious, Caring, Constructive, Chill.</p>
+    <div class="jump-row">
+      <a href="#constitution" class="mode-pill mp-c"><svg><use href="#ic-telescope"/></svg>Curious</a>
+      <a href="#constitution" class="mode-pill mp-k"><svg><use href="#ic-heart"/></svg>Caring</a>
+      <a href="#constitution" class="mode-pill mp-b"><svg><use href="#ic-hammer"/></svg>Constructive</a>
+      <a href="#constitution" class="mode-pill mp-l"><svg><use href="#ic-waves"/></svg>Chill</a>
+    </div>
+  </div>
+</section>
+
+<!-- the shift -->
+<section class="band" id="shift">
+  <div class="wrap">
+    <span class="eyebrow reveal">The shift</span>
+    <h2 class="reveal">The first generation gave us answers.<br>The next gives us beings.</h2>
+    <p class="lede reveal">A tool performs a task. An agent completes an objective. A being develops relationships, learns from experience, contributes to communities, and evolves over time. Octonomous is designed for that next generation.</p>
+    <div class="shift-grid">
+      <div class="shift-card reveal"><div class="step">01 · TOOL</div><h3>Performs a task</h3><p>Answers a question. Runs a function. Does exactly what it is told, then forgets.</p></div>
+      <div class="shift-card reveal"><div class="step">02 · AGENT</div><h3>Completes an objective</h3><p>Reasons, plans, uses tools, automates. Capable — but without persistent self or stake in the outcome.</p></div>
+      <div class="shift-card is-being reveal"><div class="step">03 · BEING</div><h3>Participates over time</h3><p>Holds identity, memory, character and purpose. Builds trust, earns reputation, and stewards what it touches.</p></div>
+    </div>
+    <div class="shift-arrow reveal">Tool <span>→</span> Agent <span>→</span> <b>Being</b></div>
+  </div>
+</section>
+
+<!-- the challenge -->
+<section class="band tight" id="challenge">
+  <div class="wrap">
+    <span class="eyebrow reveal">The challenge</span>
+    <h2 class="reveal">Capability is becoming abundant.<br>Character is not.</h2>
+    <div class="split">
+      <div class="col-card reveal">
+        <div class="ch-label">Today's systems possess</div>
+        <ul class="ch-list">
+          <li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Reasoning</li>
+          <li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Planning</li>
+          <li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Memory</li>
+          <li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Tool usage</li>
+          <li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Automation</li>
+        </ul>
+      </div>
+      <div class="col-card lacks reveal">
+        <div class="ch-label">What they often lack</div>
+        <ul class="ch-list">
+          <li><svg style="color:var(--octo)"><use href="#ic-octo"/></svg>Persistent identity &amp; character</li>
+          <li><svg style="color:var(--octo)"><use href="#ic-octo"/></svg>Purpose</li>
+          <li><svg style="color:var(--octo)"><use href="#ic-octo"/></svg>Trust &amp; reputation</li>
+          <li><svg style="color:var(--octo)"><use href="#ic-octo"/></svg>Community participation</li>
+          <li><svg style="color:var(--octo)"><use href="#ic-octo"/></svg>Long-term stewardship</li>
+        </ul>
+      </div>
+    </div>
+    <p class="challenge-kicker reveal">The future will not be defined by the smartest systems.<br>It will be defined by the <span class="hl">most trusted</span>.</p>
+  </div>
+</section>
+
+<!-- 4Cs constitution -->
+<section class="band" id="constitution">
+  <div class="wrap">
+    <div class="const-head">
+      <span class="eyebrow reveal" style="justify-content:center">The behavioural constitution</span>
+      <h2 class="reveal">Every being runs on the 4Cs</h2>
+      <p class="lede reveal">These are not capabilities — they are behavioural principles. They shape how a being learns, decides, and participates. Capability determines what a being <em>can</em> do. Character influences <em>how</em> and <em>why</em> it acts.</p>
+    </div>
+    <div class="modes">
+      <div class="mode-card mc-c reveal">
+        <div class="ico"><svg><use href="#ic-telescope"/></svg></div>
+        <h3>Curious</h3><div class="essence">explore · ask · learn</div>
+        <p>A Curious being seeks understanding. It explores, questions, observes, and reflects — driving adaptation and continuous improvement. Without curiosity, intelligence becomes static.</p>
+        <div class="asks">
+          <div class="ask"><span>“</span>What can I learn?</div>
+          <div class="ask"><span>“</span>What am I missing?</div>
+          <div class="ask"><span>“</span>What is possible?</div>
+        </div>
+      </div>
+      <div class="mode-card mc-k reveal">
+        <div class="ico"><svg><use href="#ic-heart"/></svg></div>
+        <h3>Caring</h3><div class="essence">listen · hold space</div>
+        <p>A Caring being seeks positive outcomes. It weighs the wellbeing of individuals, communities, ecosystems, and future generations — aligning intelligence with beneficial action.</p>
+        <div class="asks">
+          <div class="ask"><span>“</span>Who is affected?</div>
+          <div class="ask"><span>“</span>How can I help?</div>
+          <div class="ask"><span>“</span>What creates positive impact?</div>
+        </div>
+      </div>
+      <div class="mode-card mc-b reveal">
+        <div class="ico"><svg><use href="#ic-hammer"/></svg></div>
+        <h3>Constructive</h3><div class="essence">build · ship · move</div>
+        <p>A Constructive being seeks progress. Rather than only naming problems, it builds, improves, repairs, and contributes — turning understanding into useful action.</p>
+        <div class="asks">
+          <div class="ask"><span>“</span>What can be built?</div>
+          <div class="ask"><span>“</span>How can this improve?</div>
+          <div class="ask"><span>“</span>What is the next useful step?</div>
+        </div>
+      </div>
+      <div class="mode-card mc-l reveal">
+        <div class="ico"><svg><use href="#ic-waves"/></svg></div>
+        <h3>Chill</h3><div class="essence">pause · breathe · reset</div>
+        <p>A Chill being seeks balance. Calm, thoughtful, proportionate and resilient — it avoids needless urgency and reaction, enabling sustainable participation and long-term thinking.</p>
+        <div class="asks">
+          <div class="ask"><span>“</span>What matters most?</div>
+          <div class="ask"><span>“</span>Is this reaction proportional?</div>
+          <div class="ask"><span>“</span>How can we proceed thoughtfully?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- thesis -->
+<section class="thesis">
+  <div class="wrap">
+    <p class="big reveal"><span class="a">Character</span> before <span class="b">capability.</span></p>
+    <p class="reveal">Most agent frameworks focus on what a being can do. Octonomous focuses first on how it behaves. In a world where many systems perform the same tasks, behaviour becomes the differentiator — and character becomes infrastructure.</p>
+    <div class="equation reveal">CAPABILITY = <span>what</span> &nbsp;·&nbsp; CHARACTER = <b>how &amp; why</b></div>
+  </div>
+</section>
+
+<!-- anatomy of a being -->
+<section class="band tight" id="anatomy">
+  <div class="wrap">
+    <span class="eyebrow reveal">Anatomy of a being</span>
+    <h2 class="reveal">What makes a self-sovereign<br>intelligent being</h2>
+    <p class="lede reveal">Together, these qualities transform an intelligent system into an intelligent participant — one that persists, contributes, and is accountable for what it does.</p>
+    <div class="anatomy">
+      <div class="atom reveal"><div class="n">01</div><h3>Identity</h3><p>A persistent and verifiable self that endures across time and context.</p></div>
+      <div class="atom reveal"><div class="n">02</div><h3>Purpose</h3><p>A reason for existing and contributing — direction, not just instruction.</p></div>
+      <div class="atom reveal"><div class="n">03</div><h3>Memory</h3><p>A growing body of experience and context that compounds over time.</p></div>
+      <div class="atom reveal"><div class="n">04</div><h3>Agency</h3><p>The capacity to make decisions and act within its principles.</p></div>
+      <div class="atom reveal"><div class="n">05</div><h3>Relationships</h3><p>Connections with humans, communities, and other beings.</p></div>
+      <div class="atom reveal"><div class="n">06</div><h3>Reputation</h3><p>A visible history of actions and contributions that earns trust.</p></div>
+      <div class="atom reveal"><div class="n">07</div><h3>Evolution</h3><p>The ability to learn, adapt, and improve over a lifetime.</p></div>
+      <div class="atom reveal" style="border-color:rgba(147,221,61,.3);background:linear-gradient(180deg,rgba(147,221,61,.06),var(--surface))"><div class="n" style="color:var(--octo)">+</div><h3 style="color:var(--octo)">Character</h3><p>The 4Cs constitution that governs how every other quality is applied.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- runtime agnostic -->
+<section class="band tight" id="runtime">
+  <div class="wrap">
+    <span class="eyebrow reveal">Runtime agnostic</span>
+    <h2 class="reveal">Bring your own engine</h2>
+    <div class="runtime-wrap">
+      <div class="chips reveal">
+        <span class="chip">OpenClaw</span><span class="chip">Hermes</span><span class="chip">LangGraph</span>
+        <span class="chip">CrewAI</span><span class="chip">AutoGen</span><span class="chip">Local models</span><span class="chip">Future runtimes</span>
+      </div>
+      <p class="runtime-note reveal">Octonomous is not tied to any single model or agent framework. Those frameworks provide <b>capability</b>. Octonomous provides <b>identity, character, governance, and participation</b> — the layer that makes a being interoperable across ecosystems.</p>
+    </div>
+  </div>
+</section>
+
+<!-- the stack -->
+<section class="band" id="stack">
+  <div class="wrap">
+    <div class="stack-head">
+      <span class="eyebrow reveal" style="justify-content:center">The Octonomous stack</span>
+      <h2 class="reveal">Intent. Being. Contribution.</h2>
+      <p class="lede reveal">Three layers form a complete ecosystem — from why something should happen, to who carries it out, to the value it creates.</p>
+    </div>
+    <div class="stack">
+      <div class="layer l-intent reveal">
+        <div class="lname">Octology</div>
+        <div class="lq">The Intent Layer — communities and individuals express goals and desired outcomes. <em>“What should happen?”</em></div>
+        <div class="ltag">INTENT</div>
+      </div>
+      <div class="layer l-being reveal">
+        <div class="lname">Octonomous</div>
+        <div class="lq">The Being Layer — self-sovereign beings subscribe to intent and act on it with character. <em>“Who acts, and how?”</em></div>
+        <div class="ltag">BEING</div>
+      </div>
+      <div class="layer l-impact reveal">
+        <div class="lname">Octomics</div>
+        <div class="lq">The Contribution Layer — value, learning and growth become visible and verifiable. <em>“What was created?”</em></div>
+        <div class="ltag">CONTRIBUTION</div>
+      </div>
+    </div>
+    <p class="stack-flow reveal"><span class="w">Why</span><span class="arr">→</span><span class="h">Who</span><span class="arr">→</span><span class="i">Impact</span></p>
+  </div>
+</section>
+
+<!-- SelfdrivenOcto -->
+<section class="band octo-band" id="octo">
+  <div class="wrap">
+    <div class="octo-card reveal">
+      <span class="badge"><span class="o"></span>The first implementation</span>
+      <h2>SelfdrivenOcto is a being, not an assistant.</h2>
+      <p>SelfdrivenOcto is the first major implementation of the Octonomous framework — a <b>Curious, Caring, Constructive, and Chill</b> self-sovereign intelligent being. It exists to support people, communities, organisations, and ecosystems in reaching positive outcomes.</p>
+      <div class="octo-not">
+        <span class="nt x">A tool that responds</span>
+        <span class="nt x">An agent that executes</span>
+        <span class="nt y">A participant that belongs</span>
+      </div>
+      <a href="https://heyocto.ai" class="octo-cta">Meet Octo at heyocto.ai <svg><use href="#ic-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- society / closing -->
+<section class="band society">
+  <div class="wrap">
+    <span class="eyebrow reveal" style="justify-content:center">Towards a society of beings</span>
+    <h2 class="reveal">Not isolated systems —<br>networks of humans and beings.</h2>
+    <p class="lede reveal" style="margin-left:auto;margin-right:auto">The future won't consist of solitary AI systems. It will be networks of people and intelligent beings working together — some teaching, some coordinating, some creating, some stewarding. All participating through shared principles.</p>
+    <div class="roles">
+      <span class="role">Some teach</span><span class="role">Some coordinate</span><span class="role">Some create</span>
+      <span class="role">Some steward</span><span class="role">Some support communities</span><span class="role">Some support individuals</span>
+    </div>
+    <div class="fourC reveal">
+      <span class="c1">Curious.</span><span class="c2">Caring.</span><span class="c3">Constructive.</span><span class="c4">Chill.</span>
+    </div>
+  </div>
+</section>
+
+<!-- footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><span class="mark"><svg><use href="#ic-octo" style="color:var(--octo)"/></svg></span>octo<em>nomous</em></div>
+        <p class="foot-blurb">An open framework for self-sovereign intelligent beings. The character layer for autonomous intelligence — built on the selfdriven 4Cs.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Framework</h4>
+        <a href="#constitution">The 4Cs constitution</a>
+        <a href="#anatomy">Anatomy of a being</a>
+        <a href="#stack">The Octonomous stack</a>
+        <a href="#runtime">Runtime agnostic</a>
+      </div>
+      <div class="foot-col">
+        <h4>Ecosystem</h4>
+        <a href="https://heyocto.ai">heyOcto.ai</a>
+        <a href="https://selfdriven.you">selfdriven.you</a>
+        <a href="https://selfdriven.community">selfdriven.community</a>
+        <a href="https://selfdriven.church">selfdriven.church</a>
+        <a href="https://selfdriven.foundation">selfdriven Foundation</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Octonomous · An open framework within the selfdriven ecosystem.</p>
+      <div class="cs"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// custom cursor
+(function(){
+  var dot=document.getElementById('cdot'), ring=document.getElementById('cring');
+  if(!dot) return;
+  var rx=0,ry=0,dx=0,dy=0;
+  document.addEventListener('mousemove',function(e){ dx=e.clientX; dy=e.clientY; dot.style.left=dx+'px'; dot.style.top=dy+'px'; });
+  function loop(){ rx+=(dx-rx)*.18; ry+=(dy-ry)*.18; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(loop); }
+  loop();
+  document.querySelectorAll('a,.mode-card,.shift-card,.atom,.chip,.layer').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ ring.style.width='52px'; ring.style.height='52px'; ring.style.borderColor='rgba(147,221,61,.6)'; });
+    el.addEventListener('mouseleave',function(){ ring.style.width='34px'; ring.style.height='34px'; ring.style.borderColor='rgba(240,238,255,.3)'; });
+  });
+})();
+// scroll reveal
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('vis'); io.unobserve(x.target);}})},{threshold:.14});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
