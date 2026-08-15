@@ -282,6 +282,29 @@ footer{border-top:1px solid var(--border); padding:70px 0 50px; margin-top:40px;
 @media(max-width:760px){.foot-grid{grid-template-columns:1fr; gap:34px}}
 
 /* ---------- reveal ---------- */
+/* resources: podcasts + pdfs + repo */
+.pods{display:grid; gap:14px; margin:44px 0 16px}
+.pod{background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:22px 24px}
+.pod-top{display:flex; align-items:center; gap:14px; margin-bottom:16px}
+.pod-ic{width:46px; height:46px; border-radius:13px; flex:none; display:grid; place-items:center; background:var(--octo-dim); color:var(--octo)}
+.pod-ic svg{width:23px; height:23px}
+.pod-top h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:19px; letter-spacing:-.02em; margin:0}
+.pod-meta{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.pod audio{width:100%; height:42px}
+.docs{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0 26px}
+.doc-card{display:flex; align-items:center; gap:14px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 20px; transition:transform .2s,border-color .2s}
+.doc-card:hover{transform:translateY(-4px); border-color:rgba(147,221,61,.32)}
+.doc-ic{width:42px;height:42px;border-radius:12px;flex:none;display:grid;place-items:center;background:var(--octo-dim);color:var(--octo)}
+.doc-ic svg{width:21px;height:21px}
+.doc-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:16px;letter-spacing:-.01em;margin:0 0 2px}
+.doc-card .sub{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc-card .ar{margin-left:auto;color:var(--muted);flex:none}
+.doc-card .ar svg{width:17px;height:17px}
+.doc-card:hover .ar{color:var(--octo)}
+.repo-link{display:inline-flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:15px;padding:13px 22px;border-radius:var(--pill);background:var(--surface2);border:1px solid var(--border2);color:var(--text);transition:transform .2s,border-color .2s,color .2s}
+.repo-link:hover{transform:translateY(-3px);border-color:var(--octo);color:var(--octo)}
+.repo-link svg{width:19px;height:19px}
+@media(max-width:560px){.docs{grid-template-columns:1fr}}
 .reveal{opacity:0; transform:translateY(28px); transition:opacity .6s,transform .6s cubic-bezier(.34,1.56,.64,1)}
 .reveal.vis{opacity:1; transform:translateY(0)}
 </style>
@@ -311,6 +334,9 @@ footer{border-top:1px solid var(--border); padding:70px 0 50px; margin-top:40px;
     <circle cx="10" cy="9" r="1" fill="currentColor" stroke="none"/><circle cx="14" cy="9" r="1" fill="currentColor" stroke="none"/>
     <path d="M6 12c-1.5 0-2.5 1-2.5 2.5S5 18 4 19.5M9 12c-.7 1.5-.5 3.5-2 5M12 12v5.5M15 12c.7 1.5.5 3.5 2 5M18 12c1.5 0 2.5 1 2.5 2.5S20 18 21 19.5"/>
   </symbol>
+  <symbol id="ic-github" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.575.106.785-.25.785-.556 0-.274-.01-1-.015-1.964-3.196.695-3.87-1.54-3.87-1.54-.523-1.33-1.278-1.684-1.278-1.684-1.044-.714.08-.7.08-.7 1.154.082 1.76 1.185 1.76 1.185 1.027 1.76 2.695 1.252 3.35.957.104-.744.402-1.252.73-1.54-2.552-.29-5.236-1.276-5.236-5.68 0-1.254.448-2.28 1.183-3.084-.118-.29-.513-1.46.113-3.043 0 0 .966-.31 3.166 1.178a11 11 0 0 1 2.882-.388c.978.004 1.963.132 2.883.388 2.198-1.489 3.163-1.178 3.163-1.178.627 1.583.232 2.753.114 3.043.737.804 1.182 1.83 1.182 3.084 0 4.415-2.688 5.387-5.248 5.671.413.356.78 1.057.78 2.13 0 1.538-.014 2.778-.014 3.157 0 .308.207.668.79.554A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></symbol>
+  <symbol id="ic-headphones" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
+  <symbol id="ic-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8M16 17H8M10 9H8"/></symbol>
   <symbol id="sd-mark" viewBox="0 0 736 728"><circle cx="368" cy="366" r="363" fill="currentColor"/><polygon points="184,295 317,162 317,295 184,428" fill="#efefe5"/><polygon points="185,528 453,260 453,395 320,527" fill="#efefe5"/><polygon points="424,527 555,397 555,527" fill="#efefe5"/></symbol>
 </svg>
 
@@ -322,10 +348,10 @@ footer{border-top:1px solid var(--border); padding:70px 0 50px; margin-top:40px;
   <a href="#top" class="brand"><span class="mark"><svg style="color:var(--octo)"><use href="#sd-mark"/></svg></span><span class="wm">octo<em>nomous</em></span></a>
   <div class="nav-links">
     <a href="#constitution">The 4Cs</a>
-    <a href="#anatomy">The Being</a>
     <a href="#stack">The Stack</a>
-    <a href="#octo">SelfdrivenOcto</a>
-    <a href="/paper" class="nav-cta">Read the paper</a>
+    <a href="#resources">Listen &amp; read</a>
+    <a href="https://github.com/selfdriven-octo/octonomous">GitHub</a>
+    <a href="paper.html" class="nav-cta">Read the paper</a>
   </div>
 </nav>
 
@@ -516,13 +542,13 @@ footer{border-top:1px solid var(--border); padding:70px 0 50px; margin-top:40px;
   </div>
 </section>
 
-<!-- SelfdrivenOcto -->
+<!-- selfdrivenOcto -->
 <section class="band octo-band" id="octo">
   <div class="wrap">
     <div class="octo-card reveal">
       <span class="badge"><span class="o"></span>The first implementation</span>
-      <h2>SelfdrivenOcto is a being, not an assistant.</h2>
-      <p>SelfdrivenOcto is the first major implementation of the Octonomous framework — a <b>Curious, Caring, Constructive, and Chill</b> self-sovereign intelligent being. It exists to support people, communities, organisations, and ecosystems in reaching positive outcomes.</p>
+      <h2>selfdrivenOcto is a being, not an assistant.</h2>
+      <p>selfdrivenOcto is the first major implementation of the Octonomous framework — a <b>Curious, Caring, Constructive, and Chill</b> self-sovereign intelligent being. It exists to support people, communities, organisations, and ecosystems in reaching positive outcomes.</p>
       <div class="octo-not">
         <span class="nt x">A tool that responds</span>
         <span class="nt x">An agent that executes</span>
@@ -549,6 +575,47 @@ footer{border-top:1px solid var(--border); padding:70px 0 50px; margin-top:40px;
   </div>
 </section>
 
+<!-- resources: listen & read -->
+<section class="band tight" id="resources">
+  <div class="wrap">
+    <span class="eyebrow reveal">Listen &amp; read</span>
+    <h2 class="reveal">Take the ideas with you</h2>
+    <p class="lede reveal">Two podcast conversations on the shift from agents to beings, two companion papers that go deeper, and the full framework in the open.</p>
+
+    <div class="pods">
+      <div class="pod reveal">
+        <div class="pod-top">
+          <span class="pod-ic"><svg><use href="#ic-headphones"/></svg></span>
+          <div><h3>Beyond AI Agents: To Self-Sovereign Beings</h3><span class="pod-meta">Podcast · audio</span></div>
+        </div>
+        <audio controls preload="none" src="assets/audio/Beyond_AI_Agents_To_Self_Sovereign_Beings.m4a"></audio>
+      </div>
+      <div class="pod reveal">
+        <div class="pod-top">
+          <span class="pod-ic"><svg><use href="#ic-headphones"/></svg></span>
+          <div><h3>From AI Agents to Silicon Beings</h3><span class="pod-meta">Podcast · audio</span></div>
+        </div>
+        <audio controls preload="none" src="assets/audio/From_AI_Agents_to_Silicon_Beings.m4a"></audio>
+      </div>
+    </div>
+
+    <div class="docs">
+      <a class="doc-card reveal" href="assets/pdf/Intelligence_as_Participation.pdf">
+        <span class="doc-ic"><svg><use href="#ic-file"/></svg></span>
+        <div><h3>Intelligence as Participation</h3><span class="sub">PDF</span></div>
+        <span class="ar"><svg><use href="#ic-arrow"/></svg></span>
+      </a>
+      <a class="doc-card reveal" href="assets/pdf/The_Blueprint_of_Being.pdf">
+        <span class="doc-ic"><svg><use href="#ic-file"/></svg></span>
+        <div><h3>The Blueprint of Being</h3><span class="sub">PDF</span></div>
+        <span class="ar"><svg><use href="#ic-arrow"/></svg></span>
+      </a>
+    </div>
+
+    <a class="repo-link reveal" href="https://github.com/selfdriven-octo/octonomous"><svg><use href="#ic-github"/></svg> View the source on GitHub</a>
+  </div>
+</section>
+
 <!-- footer -->
 <footer>
   <div class="wrap">
@@ -560,9 +627,10 @@ footer{border-top:1px solid var(--border); padding:70px 0 50px; margin-top:40px;
       <div class="foot-col">
         <h4>Framework</h4>
         <a href="#constitution">The 4Cs constitution</a>
-        <a href="#anatomy">Anatomy of a being</a>
         <a href="#stack">The Octonomous stack</a>
-        <a href="#runtime">Runtime agnostic</a>
+        <a href="paper.html">Read the paper</a>
+        <a href="#resources">Listen &amp; read</a>
+        <a href="https://github.com/selfdriven-octo/octonomous">Source on GitHub</a>
       </div>
       <div class="foot-col">
         <h4>Ecosystem</h4>
