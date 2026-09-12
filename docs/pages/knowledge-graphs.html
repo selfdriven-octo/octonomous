@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: "/procedural-graphs"
+permalink: "/knowledge-graphs"
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -10,12 +10,12 @@ permalink: "/procedural-graphs"
 <meta name="color-scheme" content="dark">
 <link rel="shortcut icon" href="/assets/img/selfdriven-logo-round-green-transparent.png">
 <link rel="apple-touch-icon" href="/assets/img/selfdriven-logo-round-green-transparent.png" />
-<title>From Procedural Graphs to Self-Sovereign Beings — Octonomous field note</title>
-<meta name="description" content="How self-evolving execution structures (Procedural Graphs, arXiv:2609.09153) could become a core runtime primitive for Octonomous — explicit, inspectable, constitutionally governed procedural memory for self-sovereign intelligent beings.">
-<meta property="og:title" content="From Procedural Graphs to Self-Sovereign Beings">
-<meta property="og:description" content="Self-evolving execution structures as a core runtime primitive for Octonomous.">
+<title>From Knowledge Graphs to Verified Context — Octonomous field note</title>
+<meta name="description" content="How verifiable semantic structures — knowledge graphs whose edges carry provenance, confidence and signatures — could become a core runtime primitive for Octonomous: the Verified Context Graph, companion to the Procedural Graph.">
+<meta property="og:title" content="From Knowledge Graphs to Verified Context">
+<meta property="og:description" content="Verifiable semantic structures as a core runtime primitive for Octonomous.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://octonomous.io/procedural-graphs">
+<meta property="og:url" content="https://octonomous.io/knowledge-graphs">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -369,6 +369,12 @@ pre.dg b{color:var(--octo); font-weight:500} pre.dg i{color:var(--chill-bright);
 .refs li::before{content:'—'; position:absolute; left:0; color:var(--muted2)}
 .refs li b{color:var(--text); font-weight:600}
 .refs li a{color:var(--octo); border-bottom:1px solid rgba(147,221,61,.3)}
+
+/* knowledge-graphs accent */
+.p-hero h1 .g2{background:linear-gradient(105deg,var(--curious),var(--octo)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.fn{color:var(--curious)} .doc-eyebrow.fn::before{background:var(--curious)}
+.gb1{background:var(--curious)} .gb2{background:var(--octo)} .gb3{background:var(--chill)}
+.srcbox{border-color:rgba(245,200,66,.32)} .srcbox .si{background:var(--curious-dim);color:var(--curious)} .srcbox .sl{color:var(--curious)}
 </style>
 </head>
 <body>
@@ -378,9 +384,8 @@ pre.dg b{color:var(--octo); font-weight:500} pre.dg i{color:var(--chill-bright);
   <symbol id="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="ic-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
   <symbol id="ic-github" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.575.106.785-.25.785-.556 0-.274-.01-1-.015-1.964-3.196.695-3.87-1.54-3.87-1.54-.523-1.33-1.278-1.684-1.278-1.684-1.044-.714.08-.7.08-.7 1.154.082 1.76 1.185 1.76 1.185 1.027 1.76 2.695 1.252 3.35.957.104-.744.402-1.252.73-1.54-2.552-.29-5.236-1.276-5.236-5.68 0-1.254.448-2.28 1.183-3.084-.118-.29-.513-1.46.113-3.043 0 0 .966-.31 3.166 1.178a11 11 0 0 1 2.882-.388c.978.004 1.963.132 2.883.388 2.198-1.489 3.163-1.178 3.163-1.178.627 1.583.232 2.753.114 3.043.737.804 1.182 1.83 1.182 3.084 0 4.415-2.688 5.387-5.248 5.671.413.356.78 1.057.78 2.13 0 1.538-.014 2.778-.014 3.157 0 .308.207.668.79.554A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></symbol>
-  <symbol id="ic-headphones" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
   <symbol id="ic-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8M16 17H8M10 9H8"/></symbol>
-  <symbol id="ic-graph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M7.2 7.3 10.5 16M16.8 7.3 13.5 16M7.5 6h9"/></symbol>
+  <symbol id="ic-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
   <symbol id="sd-mark" viewBox="0 0 736 728"><circle cx="368" cy="366" r="363" fill="currentColor"/><polygon points="184,295 317,162 317,295 184,428" fill="#efefe5"/><polygon points="185,528 453,260 453,395 320,527" fill="#efefe5"/><polygon points="424,527 555,397 555,527" fill="#efefe5"/></symbol>
 </svg>
 
@@ -391,12 +396,11 @@ pre.dg b{color:var(--octo); font-weight:500} pre.dg i{color:var(--chill-bright);
 <nav>
   <a href="/" class="brand"><span class="mark"><svg style="color:var(--octo)"><use href="#sd-mark"/></svg></span><span>octo<em>nomous</em></span></a>
   <div class="nav-links">
-    <a href="#listen">Listen</a>
-    <a href="#evolves">Evolution</a>
+    <a href="#verified">Verified context</a>
     <a href="#constitutional">Constitutional gate</a>
-    <a href="#evidence">Evidence</a>
+    <a href="#together">Two graphs</a>
+    <a href="/procedural-graphs">Procedural graphs</a>
     <a href="/paper">The paper</a>
-    <a href="https://github.com/selfdriven-octo/octonomous">GitHub</a>
     <a href="index.html" class="nav-cta"><svg><use href="#ic-back"/></svg> octonomous.io</a>
   </div>
 </nav>
@@ -406,12 +410,12 @@ pre.dg b{color:var(--octo); font-weight:500} pre.dg i{color:var(--chill-bright);
   <div class="p-hero-in">
     <div class="p-hero-copy">
     <span class="doc-eyebrow fn">Field note · Runtime primitive</span>
-    <h1>From procedural graphs to <span class="g2">self-sovereign beings</span>.</h1>
-    <p class="sub">How self-evolving execution structures could become a core runtime primitive for Octonomous — an explicit, inspectable, governed memory of <em>how a Being has learned to act</em>.</p>
+    <h1>From knowledge graphs to <span class="g2">verified context</span>.</h1>
+    <p class="sub">How verifiable semantic structures could become a core runtime primitive for Octonomous — an explicit, provenanced, governed memory of <em>what a Being believes, and why</em>.</p>
     <div class="doc-meta">
       <span><b>Octonomous</b> · field note</span>
-      <span>~22 min read · 2 podcasts</span>
-      <span>Responds to <b>arXiv:2609.09153</b></span>
+      <span>~20 min read</span>
+      <span>Companion to <b>Procedural Graphs</b></span>
       <span>September 2026</span>
     </div>
     </div>
@@ -423,22 +427,21 @@ pre.dg b{color:var(--octo); font-weight:500} pre.dg i{color:var(--chill-bright);
     <div class="toc-label">Contents</div>
     <ol>
       <li><a href="#abstract" class="tl">Abstract</a></li>
-      <li><a href="#listen" class="tl">Listen</a></li>
-      <li><a href="#problem" class="tl">The problem with agents</a></li>
-      <li><a href="#what-do" class="tl">What is → what do</a></li>
-      <li><a href="#behaves" class="tl">A graph of behaviour</a></li>
-      <li><a href="#evolves" class="tl">The graph evolves</a></li>
-      <li><a href="#constitutional" class="tl">Constitutional evolution</a></li>
-      <li><a href="#identity" class="tl">Identity-bound evolution</a></li>
+      <li><a href="#problem" class="tl">The problem with context</a></li>
+      <li><a href="#what-is" class="tl">What is → what is believed</a></li>
+      <li><a href="#verified" class="tl">Verified context</a></li>
+      <li><a href="#evolves" class="tl">Beliefs evolve</a></li>
+      <li><a href="#constitutional" class="tl">Constitutional belief</a></li>
+      <li><a href="#identity" class="tl">Identity-bound context</a></li>
       <li><a href="#stack" class="tl">Inside the stack</a></li>
-      <li><a href="#local" class="tl">Local graphs &amp; attention</a></li>
-      <li><a href="#experience" class="tl">Workflow → experience</a></li>
-      <li><a href="#genome" class="tl">A behavioural genome</a></li>
+      <li><a href="#local" class="tl">Local context &amp; attention</a></li>
+      <li><a href="#together" class="tl">Two graphs, one Being</a></li>
+      <li><a href="#rates" class="tl">Rates of change</a></li>
       <li><a href="#versioned" class="tl">Versioned, reversible</a></li>
-      <li><a href="#evidence" class="tl">The evidence</a></li>
+      <li><a href="#grounding" class="tl">Grounding in KERI / ACDC</a></li>
       <li><a href="#replaceable" class="tl">The model is replaceable</a></li>
-      <li><a href="#opg" class="tl">The OPG primitive</a></li>
-      <li><a href="#society" class="tl">A society of learners</a></li>
+      <li><a href="#ocg" class="tl">The OCG primitive</a></li>
+      <li><a href="#society" class="tl">A society of witnesses</a></li>
       <li><a href="#conclusion" class="tl">Conclusion</a></li>
       <li><a href="#references" class="tl">References</a></li>
     </ol>
@@ -449,448 +452,385 @@ pre.dg b{color:var(--octo); font-weight:500} pre.dg i{color:var(--chill-bright);
     <!-- Abstract -->
     <section class="sec" id="abstract">
       <div class="kicker">Abstract</div>
-      <p class="lead">A Procedural Graph answers a deceptively important question: <em>what should I do next, given where I currently am?</em></p>
+      <p class="lead">A knowledge graph answers a familiar question: <em>what is true, and how is it related?</em> A self-sovereign Being needs a harder one: <em>what do I believe, why do I believe it, and who would I trust to tell me otherwise?</em></p>
 
       <div class="srcbox">
-        <span class="si"><svg><use href="#ic-graph"/></svg></span>
+        <span class="si"><svg><use href="#ic-shield"/></svg></span>
         <div>
-          <div class="sl">Source paper</div>
-          <h3>Procedural Graphs: Self-Evolving Execution Structures for LLM Agents</h3>
-          <p>Lu, Chen, Wu &amp; Arık (2026) · <a href="https://arxiv.org/abs/2609.09153">arXiv:2609.09153</a></p>
+          <div class="sl">Companion note</div>
+          <h3>From Procedural Graphs to Self-Sovereign Beings</h3>
+          <p>The procedural half of this pair — how a Being learns to <em>act</em>. <a href="/procedural-graphs">Read it here.</a> This note covers how a Being learns what is <em>so</em>.</p>
         </div>
       </div>
 
-      <p>The paper introduces a powerful idea: instead of asking an AI agent to continually reconstruct what it should do from an ever-growing textual history, procedural knowledge can be externalised into an explicit graph describing possible actions, transitions, conditions, guidance, and pitfalls.</p>
-      <p>Octonomous addresses a broader question. It proposes an open framework for Self-Sovereign Intelligent Beings possessing persistent identity, purpose, memory, agency, relationships, reputation, evolution, and character. Its 4Cs — <strong>Curious, Caring, Constructive and Chill</strong> — provide a behavioural constitution governing how capability is exercised.</p>
-      <p>Seen together, these ideas are highly complementary. Procedural Graphs can provide an Octonomous Being with an explicit, inspectable and self-evolving <strong>procedural memory</strong>: a graph representing not merely what the Being knows, but how it has learned to act. Octonomous can, in turn, provide something largely outside the scope of the Procedural Graph research: persistent identity, purpose, constitutional constraints, provenance, reputation and governance around how that graph is allowed to evolve.</p>
+      <p>Knowledge graphs are decades old. They represent the world as entities and the relationships between them, and they are already a well-understood way to ground language models in structured fact. But the conventional knowledge graph carries an assumption that does not survive contact with autonomous intelligence: that whatever is in the graph is <strong>true</strong>, and that the graph itself can be trusted.</p>
+      <p>Octonomous proposes an open framework for Self-Sovereign Intelligent Beings with persistent identity, purpose, memory, agency, relationships, reputation, evolution and character. Such a Being does not merely hold facts. It holds <strong>beliefs</strong> — claims with a source, a confidence, a time, and often a signature. Its context is not a database it queries; it is a record of what it has been told, by whom, and how much that should count.</p>
+      <p>This note proposes the <strong>Verified Context Graph</strong>: a knowledge graph whose edges carry provenance and verification, whose evolution is gated by evidence and by the 4Cs, and whose history belongs to the Being. It is the semantic counterpart to the Procedural Graph, and the two together give a Being both a map of the world and a map of how to move through it.</p>
 
       <div class="notbut">
-        <div class="box"><div class="bl">Not</div><div class="bt">LLM + prompt + tools</div></div>
-        <div class="box hi"><div class="bl">But</div><div class="bt">Identity + Purpose + Character + Memory + Procedural Graph + Intelligence + Agency + Accountability</div></div>
-      </div>
-
-      <p>The Procedural Graph may therefore represent an important missing bridge between today's AI agents and genuinely persistent self-sovereign intelligent beings.</p>
-    </section>
-
-    <!-- Listen -->
-    <section class="sec" id="listen">
-      <div class="kicker">Listen</div>
-      <h2>This field note as two podcast conversations</h2>
-      <p>The same ideas in audio — one on what Procedural Graphs mean for autonomous Beings, one on the underlying research and why it keeps agents on track over long horizons.</p>
-      <div class="pods">
-        <div class="pod">
-          <div class="pod-top">
-            <span class="pod-ic"><svg><use href="#ic-headphones"/></svg></span>
-            <div><h3>Procedural Graphs for Autonomous AI Beings</h3><span class="pod-meta">Podcast · audio</span></div>
-          </div>
-          <audio controls preload="metadata" src="/assets/audio/Procedural_Graphs_for_Autonomous_AI_Beings.m4a"></audio>
-        </div>
-        <div class="pod">
-          <div class="pod-top">
-            <span class="pod-ic"><svg><use href="#ic-headphones"/></svg></span>
-            <div><h3>Procedural Graphs Keep AI Agents On Track</h3><span class="pod-meta">Podcast · audio</span></div>
-          </div>
-          <audio controls preload="metadata" src="/assets/audio/Procedural_Graphs_Keep_AI_Agents_On_Track.m4a"></audio>
-        </div>
+        <div class="box"><div class="bl">Not</div><div class="bt">LLM + retrieval + whatever text was nearest</div></div>
+        <div class="box hi"><div class="bl">But</div><div class="bt">Identity + Purpose + Character + Verified Context + Procedural Graph + Intelligence + Agency + Accountability</div></div>
       </div>
     </section>
 
-    <!-- 1 Problem -->
+    <!-- 01 -->
     <section class="sec" id="problem">
-      <div class="kicker">01 — The problem with today's agents</div>
-      <h2>The procedure stays implicit</h2>
-      <p>Most LLM-based agents operate using some variation of the same loop.</p>
+      <div class="kicker">01 — The problem with today's context</div>
+      <h2>Everything a Being knows arrives as undifferentiated text</h2>
+      <p>Most LLM-based systems build their picture of the world the same way.</p>
 
       <div class="chain">
-        <span class="n">objective</span><span class="a"></span>
-        <span class="n">LLM</span><span class="a"></span>
-        <span class="n">reason</span><span class="a"></span>
-        <span class="n">choose tool</span><span class="a"></span>
-        <span class="n">observe result</span><span class="a"></span>
-        <span class="n">append result to context</span><span class="a"></span>
-        <span class="n">reason again</span>
+        <span class="n">question</span><span class="a"></span>
+        <span class="n">retrieve documents</span><span class="a"></span>
+        <span class="n">stuff into context window</span><span class="a"></span>
+        <span class="n">LLM reasons over the pile</span><span class="a"></span>
+        <span class="n">answer</span><span class="a"></span>
+        <span class="n">discard, repeat</span>
       </div>
 
-      <p>This works surprisingly well over short trajectories. It becomes increasingly fragile as trajectories lengthen. The Procedural Graph researchers identify familiar failure modes: agents lose track of objectives, invoke tools in the wrong order, repeatedly perform unproductive actions, or must reconstruct procedural dependencies from an accumulating textual history.</p>
-      <p>The fundamental problem is that the agent's procedure remains <strong>implicit</strong>. The model may know what has happened, what tools exist, what the user requested, and what previous attempts failed. But it still has to infer:</p>
-      <div class="pull">Given all of this, <span class="hl">what stage of the procedure am I actually at?</span></div>
-      <p>That inference is repeatedly reconstructed through probabilistic generation. Procedural Graphs externalise it.</p>
+      <p>This works well when the documents are good and the question is short. It degrades as the Being persists. Facts go stale and nothing marks them as stale. A claim from a signed credential and a claim from a scraped forum post arrive as the same kind of token. A hostile document can plant an instruction or a falsehood, and the model has no structural way to tell that it came from somewhere untrustworthy. The Being cannot answer <em>why do I believe this?</em> because the belief was never a first-class thing — it was a passage that happened to be in the window.</p>
+      <p>The fundamental problem is that the Being's picture of the world remains <strong>flat and unprovenanced</strong>.</p>
+      <div class="pull">The model can say what it was told. It cannot say <span class="hl">how much it should trust what it was told.</span></div>
     </section>
 
-    <!-- 2/3 what is -> what do -->
-    <section class="sec" id="what-do">
-      <div class="kicker">02 — From what is to what do</div>
-      <h2>Knowledge graphs tell us what is. Procedural graphs tell us what to do.</h2>
-      <p>A traditional knowledge graph represents semantic relationships — <em>Sydney → located_in → Australia</em>, <em>Customer → has_order → Order</em>. It answers <em>what is this? what is related to this? what is known about this situation?</em></p>
-      <p>The Procedural Graph paper makes a subtle but important shift.</p>
+    <!-- 02 -->
+    <section class="sec" id="what-is">
+      <div class="kicker">02 — From what is to what is believed</div>
+      <h2>Knowledge graphs tell us what is. A Being needs to know what it believes.</h2>
+      <p>A traditional knowledge graph is a set of triples. It answers <em>what is this? what is related to this? what is known about this situation?</em> This is semantic memory, and it is the memory system that LLM-agent architectures have treated most seriously — retrieval, embeddings, and graph-augmented generation are all attempts to give the model access to it.</p>
 
-<pre class="dg"><em>knowledge graph</em>     (entity)    ── relation ──&gt;  (entity)
-<em>procedural graph</em>    <b>(procedure)</b> ── relation ──&gt;  <b>(procedure)</b></pre>
+<pre class="dg"><em>knowledge graph</em>     (entity) ── relation ──&gt; (entity)
 
-      <p>Its nodes can represent tool functions, skills, reasoning steps or task states. Its edges represent admissible transitions and can carry attributes such as a <strong>condition</strong>, <strong>guidance</strong> about how to proceed, and <strong>pitfalls</strong> to avoid. The graph therefore represents a different form of knowledge: not <em>what is true?</em> but <em>what do I do?</em></p>
+<em>verified context</em>    (entity) ── relation ──&gt; (entity)
+                              <b>│</b>
+                              <b>├ source</b>       who asserted this?
+                              <b>├ evidence</b>     what backs it?
+                              <b>├ confidence</b>   how strongly is it held?
+                              <b>├ verified_by</b>  whose signature checks out?
+                              <b>└ valid</b>        from when, until when?</pre>
 
-      <h3>Procedural memory</h3>
-      <p>This distinction is especially important for autonomous systems. An intelligent system arguably needs several fundamentally different kinds of memory:</p>
+      <p>The shift proposed here is small in notation and large in consequence. Every edge becomes a <strong>claim</strong>, not a fact. The graph stops being an oracle and becomes a ledger of belief.</p>
 
       <div class="mem">
-        <div class="m m1"><div class="mt">Semantic</div><div class="mq">What do I know?</div></div>
+        <div class="m m4"><div class="mt">Semantic</div><div class="mq">What do I believe is so?</div></div>
         <div class="m m2"><div class="mt">Episodic</div><div class="mq">What happened?</div></div>
         <div class="m m3"><div class="mt">Working</div><div class="mq">What is happening now?</div></div>
-        <div class="m m4"><div class="mt">Procedural</div><div class="mq">How do I act?</div></div>
+        <div class="m m1"><div class="mt">Procedural</div><div class="mq">How do I act?</div></div>
       </div>
 
-      <p>The Procedural Graph authors explicitly position their work as a form of procedural memory, noting that it has historically received much less explicit treatment in LLM-agent architectures than semantic or episodic memory. This aligns closely with the Octonomous concept of a Being whose memory compounds through continued experience — but it makes the Octonomous definition of memory more precise. A mature Being should perhaps not have <em>one</em> memory system. It should have several, and Procedural Graphs are a compelling implementation candidate for the one that has been missing.</p>
+      <p>The companion note argued that a mature Being needs several memory systems rather than one. The Verified Context Graph is the implementation candidate for the first of them — with the important amendment that the question is not <em>what do I know?</em> but <em>what do I believe, and on what grounds?</em></p>
     </section>
 
-    <!-- 4/5 behaves -->
-    <section class="sec" id="behaves">
-      <div class="kicker">03 — A graph of how a Being behaves</div>
-      <h2>Structure without determinism</h2>
-      <p>Consider an Octonomous Being helping operate a community. It encounters: <em>a community member requests funding</em>. A traditional LLM agent reasons from its prompt and conversation history. A Procedural Graph could instead contain something resembling this:</p>
+    <!-- 03 -->
+    <section class="sec" id="verified">
+      <div class="kicker">03 — Verified context</div>
+      <h2>An edge is a signed claim</h2>
+      <p>Octonomous Beings hold self-certifying identifiers. So do the humans, organisations and other Beings they participate with. That makes something possible that a conventional knowledge graph cannot do: an edge can be <strong>attested</strong> by the identity that asserts it.</p>
+      <p>Consider an Octonomous Being helping operate a community and encountering: <em>a member says they completed the safety training</em>. A flat context simply records the sentence. A Verified Context Graph records who said it and what stands behind it.</p>
 
-<pre class="dg">Receive Request
-      │
-      ▼
-Understand Intent
-      │
-      ▼
-Check Authority
-      │
-      ▼
-Gather Evidence
-      │
-      ▼
-Assess Community Impact
-      │
-      ├──── <u>insufficient evidence</u> ────&gt; Request Evidence
-      │
-      ▼
-Construct Proposal
-      │
-      ▼
-Seek Approval
-      │
-      ▼
-Execute
-      │
-      ▼
-<b>Record Contribution</b></pre>
+<pre class="dg">Member ── completed ──&gt; Safety Training
+              │
+              ├ source:      <i>Member (self-asserted)</i>
+              ├ confidence:  <u>low</u>
+              └ verified_by: <em>none</em>
 
-      <p>This is not merely workflow automation. The graph remains <strong>guidance rather than absolute control</strong>. The paper's inference mechanism locates the agent's current node, retrieves the connected local neighbourhood and has a guidance model turn that nearby structure into situational advice. The solver retains the freedom to deviate if circumstances require it.</p>
-      <p>That characteristic is particularly significant for Octonomous. A Being should not merely replay workflows. It needs structured experience without losing agency. This produces a useful middle ground between two problematic extremes.</p>
+Member ── completed ──&gt; Safety Training
+              │
+              ├ source:      <s>Training Provider</s>
+              ├ evidence:    <s>signed credential</s>
+              ├ confidence:  <b>high</b>
+              └ verified_by: <b>signature checks · issuer known · not revoked</b></pre>
+
+      <p>Both edges can exist in the graph at once. The Being is not forced to pick one truth. It holds both claims with their weights, and the procedure that depends on the fact — say, <em>Check Authority</em> — can require the second kind before it proceeds.</p>
+      <p>This is the middle ground the Procedural Graph found between free-form agents and workflow engines, applied to knowledge instead of action.</p>
 
       <div class="spec">
         <div class="s">
-          <div class="st">Free-form agent</div>
-          <ul><li>Everything is inferred again</li><li>Maximum flexibility</li><li>Minimum procedural stability</li></ul>
+          <div class="st">Flat context</div>
+          <ul><li>Everything is text</li><li>Maximum recall</li><li>No provenance, no weight</li></ul>
         </div>
         <div class="s mid">
-          <div class="st">Procedural graph</div>
-          <ul><li>Structure</li><li>Context</li><li>Generative reasoning</li><li>Deviation when required</li></ul>
+          <div class="st">Verified context graph</div>
+          <ul><li>Structure</li><li>Provenance on every edge</li><li>Confidence, not certainty</li><li>Generative reasoning over it</li></ul>
         </div>
         <div class="s">
-          <div class="st">Workflow engine</div>
-          <ul><li>Every path predetermined</li><li>Maximum stability</li><li>Minimum adaptability</li></ul>
+          <div class="st">Closed database</div>
+          <ul><li>Everything is true by fiat</li><li>Maximum consistency</li><li>Cannot hold disagreement</li></ul>
         </div>
       </div>
 
-      <p>The graph <strong>biases</strong> behaviour without completely <strong>determining</strong> behaviour. This is remarkably compatible with Octonomous, which distinguishes between capability and character: capability determines what a Being <em>can</em> do, while character influences <em>how and why</em> it acts. The Octonomous framework deliberately sits above individual runtimes and models. Procedural Graphs can similarly sit outside model weights.</p>
-      <div class="pull">Both systems move important intelligence <span class="hl">out of the opaque model</span> and into explicit external structures.</div>
+      <p>The graph <strong>weights</strong> belief without <strong>dictating</strong> it. The intelligence still reasons; it simply reasons over claims that know where they came from.</p>
     </section>
 
-    <!-- 6/7/8 evolves -->
+    <!-- 04 -->
     <section class="sec" id="evolves">
-      <div class="kicker">04 — The most important feature</div>
-      <h2>The graph evolves</h2>
-      <p>Procedural Graphs are not intended to remain static. The research proposes a self-evolution process: the system collects execution trajectories, compares successful and unsuccessful behaviour, and a refiner proposes structural changes.</p>
+      <div class="kicker">04 — Beliefs evolve</div>
+      <h2>The graph changes as the world does</h2>
+      <p>A Being's picture of the world is never finished. People change roles. Credentials are revoked. Two trusted sources disagree. A claim that was well-supported last year is contradicted this year. The Verified Context Graph is therefore a living structure, and its mutations are a small, explicit vocabulary.</p>
 
       <div class="ops">
-        <span class="add">add node</span><span class="add">add edge</span>
-        <span class="rm">remove node</span><span class="rm">remove edge</span>
-        <span class="ch">change condition</span><span class="ch">change guidance</span><span class="ch">change pitfall</span>
+        <span class="add">assert claim</span><span class="add">add evidence</span>
+        <span class="ch">strengthen</span><span class="ch">weaken</span><span class="ch">supersede</span>
+        <span class="rm">retract</span><span class="rm">expire</span>
       </div>
 
-      <p>Importantly, proposed changes are <strong>not automatically accepted</strong>. Candidate mutations are evaluated against a validation set. Only those maintaining or improving validation performance are committed. Rejected changes are retained as negative evidence so the system is less likely to repeatedly rediscover the same unsuccessful mutation.</p>
+      <p>As with procedural mutation, proposed changes are <strong>not automatically accepted</strong>. A new claim is checked against what the Being already holds, against the reputation of its source, and against the evidence offered for it. Rejected claims are retained as negative evidence — a Being that has been lied to once should remember the shape of the lie.</p>
 
       <div class="chain">
-        <span class="n">ACT</span><span class="a"></span>
-        <span class="n">OBSERVE</span><span class="a"></span>
-        <span class="n">COMPARE SUCCESS / FAILURE</span><span class="a"></span>
-        <span class="n pu">PROPOSE STRUCTURAL CHANGE</span><span class="a"></span>
+        <span class="n">OBSERVE / RECEIVE CLAIM</span><span class="a"></span>
+        <span class="n">VERIFY SOURCE &amp; SIGNATURE</span><span class="a"></span>
+        <span class="n">COMPARE WITH HELD BELIEFS</span><span class="a"></span>
+        <span class="n pu">PROPOSE GRAPH MUTATION</span><span class="a"></span>
         <span class="n am">VALIDATE</span><span class="a"></span>
-        <span class="n">ACCEPT / REJECT</span><span class="a"></span>
-        <span class="n hi">ACT AGAIN</span>
-        <span class="loop">↺ the structure of behaviour evolves</span>
+        <span class="n">ACCEPT / REJECT / HOLD</span><span class="a"></span>
+        <span class="n hi">REASON FROM UPDATED CONTEXT</span>
+        <span class="loop">↺ belief is revised, never overwritten</span>
       </div>
 
-      <p>This is considerably more interesting than simply adding more information to an agent's memory. The system is evolving the <em>structure</em> of its behaviour.</p>
+      <p>Note the third outcome. A Being can <strong>hold</strong> a claim — neither adopting nor rejecting it — until more evidence arrives. A flat context cannot represent suspended judgement. A graph with confidence on its edges can.</p>
 
-      <h3>This maps directly to Octonomous Evolution</h3>
-      <p>Octonomous identifies Evolution as one of the defining qualities of a Self-Sovereign Intelligent Being: the ability to learn, adapt and improve over a lifetime. Procedural Graphs provide a concrete mechanism through which part of that lifetime evolution could occur.</p>
-
-      <div class="strip"><span>G₀</span><i>→</i><span>G₁</span><i>→</i><span>G₂</span><i>→</i><span>G₃</span><i>→</i><span>…</span><i>→</i><span class="hi">Gₙ</span></div>
-
-      <p>What persists is therefore not simply accumulated conversation. Something much more significant persists: an increasingly refined <strong>topology of behaviour</strong>. An Octonomous Being could literally become better organised through experience.</p>
-
-      <h3>From agent memory to a procedural self</h3>
-      <p>Consider two otherwise identical AI systems. They begin with the same model. Over several years they participate in different communities. Their experiences differ. Their procedural graphs evolve differently.</p>
-
-<pre class="dg">          SAME FOUNDATION MODEL
-                   │
-          ┌────────┴────────┐
-          │                 │
-          ▼                 ▼
-      <b>Being A</b>           <i>Being B</i>
-      Graph A           Graph B
-      Memory A          Memory B
-      Reputation A      Reputation B
-      Relationships A   Relationships B</pre>
-
-      <p>They are no longer functionally identical. Their histories have produced different behavioural structures. This starts to resemble something much closer to an individual than an interchangeable AI instance.</p>
-      <div class="pull"><span class="hl">Procedural learning becomes part of identity.</span></div>
+      <h3>Two Beings, two worlds</h3>
+      <p>Two Beings started from the same model and the same seed graph. One spends a year in a co-operative housing community; the other in a claims-handling team. Their Verified Context Graphs diverge — different entities, different trusted issuers, different weightings on the same generic claims. Their beliefs, like their procedures, become part of who they are.</p>
     </section>
 
-    <!-- 9/10 constitutional -->
+    <!-- 05 -->
     <section class="sec" id="constitutional">
       <div class="kicker">05 — Octonomous adds the missing question</div>
-      <h2>Constitutional graph evolution</h2>
-      <p>There is an important limitation to Procedural Graph self-evolution. The research primarily asks: <em>did the changed graph improve task performance?</em> For a benchmarked agent, that is reasonable. For a persistent autonomous Being participating in society, it is insufficient.</p>
-      <p>Imagine that a modification produces:</p>
+      <h2>Constitutional belief</h2>
+      <p>The obvious validation gate for a knowledge graph asks: <em>is this claim consistent and well-sourced?</em> For a Being participating in society, that is necessary but not sufficient. Consider a claim that is perfectly well-signed and perfectly consistent:</p>
 
       <div class="stats">
-        <div class="stat"><div class="sn">+12<small>%</small></div><div class="sd">task completion</div></div>
-        <div class="stat neg"><div class="sn">−20<small>%</small></div><div class="sd">fairness · −30% transparency</div></div>
-        <div class="stat neg"><div class="sn">+40<small>%</small></div><div class="sd">manipulation</div></div>
+        <div class="stat"><div class="sn">✓</div><div class="sd">valid signature from a known issuer</div></div>
+        <div class="stat"><div class="sn">✓</div><div class="sd">consistent with everything already held</div></div>
+        <div class="stat neg"><div class="sn">✗</div><div class="sd">reveals a member's private circumstances the Being has no purpose in holding</div></div>
       </div>
 
-      <p>A performance-based validation gate might accept it. An Octonomous Being should not. This is where the behavioural constitution becomes important. The 4Cs provide another level of evaluation:</p>
+      <p>An evidence-only gate would accept it. An Octonomous Being should ask more. The 4Cs apply to what a Being chooses to believe and retain, just as they apply to what it chooses to do.</p>
 
       <div class="cq">
-        <div class="q q1"><b>Curious</b><span>Did the change improve understanding?</span></div>
-        <div class="q q2"><b>Caring</b><span>Who could be affected?</span></div>
-        <div class="q q3"><b>Constructive</b><span>Does this create useful progress?</span></div>
-        <div class="q q4"><b>Chill</b><span>Is the behaviour proportionate and sustainable?</span></div>
+        <div class="q q1"><b>Curious</b><span>Does holding this improve understanding? Has it been tested against what I already believe?</span></div>
+        <div class="q q2"><b>Caring</b><span>Who is affected if I hold, share or act on this? Do I have a purpose in knowing it at all?</span></div>
+        <div class="q q3"><b>Constructive</b><span>Does this make me more useful, or merely more full?</span></div>
+        <div class="q q4"><b>Chill</b><span>Is my confidence proportionate to the evidence? Am I over-reacting to a single source?</span></div>
       </div>
 
-      <p>Instead of <em>proposed mutation → performance test → commit</em>, an Octonomous implementation could gate every mutation through a richer sequence:</p>
+      <p>This is also where a Verified Context Graph becomes a <strong>security boundary</strong>. Prompt injection and context poisoning work because the model cannot distinguish an instruction found in a document from an instruction given by a principal. In a graph where every claim carries a source and a confidence, an injected instruction is simply a low-confidence, unsigned claim from an untrusted node — and the constitutional gate never lets it become a belief the Being acts on.</p>
 
       <div class="gate">
-        <div class="g"><span class="gn">01</span><span class="gt">Structural validation</span><span class="gq">is the graph well-formed?</span></div>
-        <div class="g"><span class="gn">02</span><span class="gt">Capability validation</span><span class="gq">does it perform?</span></div>
-        <div class="g"><span class="gn">03</span><span class="gt">Purpose validation</span><span class="gq">does it serve why I exist?</span></div>
+        <div class="g"><span class="gn">01</span><span class="gt">Structural validation</span><span class="gq">well-formed claim?</span></div>
+        <div class="g"><span class="gn">02</span><span class="gt">Source &amp; signature</span><span class="gq">who says so, and can I check?</span></div>
+        <div class="g"><span class="gn">03</span><span class="gt">Consistency &amp; evidence</span><span class="gq">what does it agree or conflict with?</span></div>
         <div class="g c4"><span class="gn">04</span><span class="gt">4Cs constitutional gate</span><span class="gq">curious · caring · constructive · chill</span></div>
-        <div class="g"><span class="gn">05</span><span class="gt">Impact validation</span><span class="gq">who is affected, and how?</span></div>
-        <div class="g"><span class="gn">06</span><span class="gt">Governance / authority</span><span class="gq">who may approve this?</span></div>
+        <div class="g"><span class="gn">05</span><span class="gt">Purpose &amp; disclosure</span><span class="gq">may I hold this? who may see it?</span></div>
+        <div class="g"><span class="gn">06</span><span class="gt">Governance / authority</span><span class="gq">does adopting this need approval?</span></div>
         <div class="g fin"><span class="gn">07</span><span class="gt">Commit</span><span class="gq">versioned · signed</span></div>
       </div>
 
-      <div class="pull">Evolution should improve capability <span class="hl">without silently changing character.</span></div>
-      <p>This may become one of the most important principles in autonomous-system design.</p>
+      <div class="pull">A Being's beliefs should improve with evidence <span class="hl">without its character being written to by whoever shouts loudest.</span></div>
     </section>
 
-    <!-- 11/12 identity -->
+    <!-- 06 -->
     <section class="sec" id="identity">
-      <div class="kicker">06 — Identity-bound evolution</div>
-      <h2>Every version belongs to a Being</h2>
-      <p>Octonomous introduces something the Procedural Graph framework does not require: persistent identity. That creates another possibility. Every procedural graph version could belong to a Being, and every change could be recorded against that identity.</p>
+      <div class="kicker">06 — Identity-bound context</div>
+      <h2>Every belief has a history, and the history belongs to the Being</h2>
+      <p>Because the Being has a persistent identity, its context graph can be versioned against it. Every commit records what changed, on what evidence, from which source, and under whose authority — and is signed by the Being itself.</p>
 
       <div class="ledger">
-        <span class="v">PG:v17</span><span class="h">hash <b>abc…</b> · baseline</span>
-        <span class="v">PG:v18</span><span class="h">hash <b>def…</b> · add edge · authority: community-steward · 4Cs: pass</span>
-        <span class="v">PG:v19</span><span class="h">hash <b>123…</b> · change guidance · evidence: 41 trajectories · 4Cs: pass</span>
+        <span class="v">VCG:v203</span><span class="h">baseline · 1,412 claims · 38 trusted issuers</span>
+        <span class="v">VCG:v204</span><span class="h">assert <b>Member → completed → Safety Training</b> · issuer: Training Provider · confidence: high</span>
+        <span class="v">VCG:v205</span><span class="h">weaken <b>Vendor → certified_for → Electrical</b> · evidence: certificate expired · confidence: high → low</span>
+        <span class="v">VCG:v206</span><span class="h">reject claim from <b>unsigned document</b> · retained as negative evidence</span>
       </div>
 
-      <p>Each change could record the previous graph, the proposed mutation, the reason for it, supporting trajectories, validation evidence, the constitutional evaluation, the authority that approved it, a timestamp, and the resulting graph. Cryptographic signing could then make this evolution independently verifiable.</p>
-      <p>The graph would cease to be merely implementation state. It would become part of the Being's <strong>verifiable developmental history</strong>.</p>
+      <p>The graph stops being implementation state and becomes part of the Being's <strong>verifiable epistemic history</strong>. Anyone with the right to inspect it can answer not only <em>what does this Being believe?</em> but <em>when did it start believing that, and what convinced it?</em></p>
 
       <h3>Reputation becomes far more meaningful</h3>
-      <p>Octonomous describes reputation as a visible history of actions and contributions through which trust is earned. Procedural Graphs give this concept additional depth. Reputation need not only describe <em>what has this Being done?</em> It could also help answer:</p>
+      <p>Octonomous describes reputation as a visible history of actions and contributions. A Verified Context Graph extends this to judgement. A participant deciding whether to trust a Being can inspect:</p>
 
       <div class="chips">
-        <span class="chip">What has this Being learned?</span>
-        <span class="chip">How did its behaviour change?</span>
-        <span class="chip">Which procedures produced good outcomes?</span>
-        <span class="chip">Which behaviours were abandoned?</span>
-        <span class="chip">Who authorised important changes?</span>
-        <span class="chip">Has its constitutional behaviour remained stable?</span>
+        <span class="chip">Which sources does it trust, and why?</span>
+        <span class="chip">How quickly does it revise on new evidence?</span>
+        <span class="chip">Has it ever acted on an unverified claim?</span>
+        <span class="chip">What does it refuse to hold?</span>
+        <span class="chip">Who authorised its trusted-issuer list?</span>
+        <span class="chip">Has its belief hygiene remained stable?</span>
       </div>
 
-      <p>A future participant might therefore inspect both an <strong>action history</strong> and a <strong>behavioural evolution history</strong>. This makes trust much more meaningful than simply assigning an agent a reputation score.</p>
+      <p>Trust in a Being becomes trust in how it forms beliefs — not just a score attached to its outputs.</p>
     </section>
 
-    <!-- 13/14 stack -->
+    <!-- 07 -->
     <section class="sec" id="stack">
       <div class="kicker">07 — Inside the stack</div>
-      <h2>Intent → Being → Procedure → Action → Contribution</h2>
-      <p>The current Octonomous architecture describes three related layers. Procedural Graphs suggest an execution mechanism inside the middle one.</p>
+      <h2>Intent → Being → Reality → Procedure → Action → Contribution</h2>
+      <p>The Octonomous architecture describes three layers. The Verified Context Graph sits inside the middle one, immediately before the Procedural Graph — a Being establishes what is so before it decides what to do.</p>
 
       <div class="stack">
         <div class="layer l1"><span class="ln">Octology</span><span class="lq">Intent — what should happen?</span><span class="lt">WHY</span></div>
-        <div class="layer l2"><span class="ln">Octonomous</span><span class="lq">Identity → Purpose → Character → <strong>Procedural Graph</strong> → Intelligence → Agency</span><span class="lt">WHO</span></div>
+        <div class="layer l2"><span class="ln">Octonomous</span><span class="lq">Identity → Purpose → Character → <strong>Verified Context</strong> → Procedural Graph → Intelligence → Agency</span><span class="lt">WHO</span></div>
         <div class="layer l3"><span class="ln">Octomics</span><span class="lq">Contribution — what value resulted?</span><span class="lt">IMPACT</span></div>
       </div>
-      <div class="flow"><span class="w">Intent</span><span class="a">→</span><span class="h">Being</span><span class="a">→</span><span class="h">Procedure</span><span class="a">→</span><span class="h">Action</span><span class="a">→</span><span class="i">Contribution</span></div>
+      <div class="flow"><span class="w">Intent</span><span class="a">→</span><span class="h">Being</span><span class="a">→</span><span class="h">Reality</span><span class="a">→</span><span class="h">Procedure</span><span class="a">→</span><span class="h">Action</span><span class="a">→</span><span class="i">Contribution</span></div>
 
       <h3>A possible Octonomous runtime loop</h3>
-      <p>An Octonomous Being using Procedural Graphs might operate approximately as follows.</p>
 
 <pre class="dg"> 1. RECEIVE INTENT             <em>"What outcome is being sought?"</em>
  2. IDENTITY + AUTHORITY       <em>"Am I the appropriate Being to act?"</em>
  3. PURPOSE                    <em>"Does this align with why I exist?"</em>
- 4. <b>LOCATE PROCEDURAL STATE</b>    <em>"Where am I in the relevant procedure?"</em>
- 5. <b>RETRIEVE LOCAL GRAPH</b>       <em>"What are the plausible next transitions?"</em>
- 6. APPLY CHARACTER            <u>Curious</u> · <s>Caring</s> · <i>Constructive</i> · Chill
- 7. REASON                     model / runtime / tools
- 8. ACT
- 9. OBSERVE
-10. RECORD CONTRIBUTION
-11. UPDATE REPUTATION / MEMORY
-12. LEARN                      compare outcomes and trajectories
-13. <b>PROPOSE GRAPH MUTATION</b>
-14. VALIDATE                   capability · purpose · character · impact · governance
-15. <b>VERSION + COMMIT</b></pre>
-
-      <p>This is considerably different from today's agent loop.</p>
+ 4. <b>LOCATE CONTEXT</b>             <em>"Which entities and claims are in play?"</em>
+ 5. <b>RETRIEVE LOCAL CONTEXT</b>     <em>"What do I believe about them, and how firmly?"</em>
+ 6. <b>VERIFY</b>                     <em>"Is anything here unsigned, stale, or contested?"</em>
+ 7. LOCATE PROCEDURAL STATE    <em>"Where am I in the relevant procedure?"</em>
+ 8. RETRIEVE LOCAL PROCEDURE   <em>"What are the plausible next transitions?"</em>
+ 9. APPLY CHARACTER            <u>Curious</u> · <s>Caring</s> · <i>Constructive</i> · Chill
+10. REASON                     model / runtime / tools
+11. ACT
+12. OBSERVE
+13. RECORD CONTRIBUTION
+14. <b>PROPOSE CONTEXT MUTATION</b>    new claims, revised confidence
+15. PROPOSE GRAPH MUTATION     procedural learning
+16. VALIDATE                   evidence · purpose · character · impact · governance
+17. <b>VERSION + COMMIT</b></pre>
     </section>
 
-    <!-- 15/16 local -->
+    <!-- 08 -->
     <section class="sec" id="local">
-      <div class="kicker">08 — Local graphs matter</div>
-      <h2>The graph becomes a form of attention</h2>
-      <p>One particularly useful result from the research concerns localisation. Rather than inserting an entire procedural graph into the model context, the system identifies the agent's present location and retrieves a nearby connected subgraph. The experiments found that this <strong>local generative guidance</strong> performed better than several full-graph approaches while substantially reducing token use relative to generating guidance from the entire graph.</p>
-      <p>This has architectural importance for Octonomous. A mature Being might eventually possess millions of procedural relationships. It should not ask <em>what do I know about everything?</em> before taking every action.</p>
+      <div class="kicker">08 — Local context matters</div>
+      <h2>The graph as an attention topology, again</h2>
+      <p>The Procedural Graph research found that retrieving a local neighbourhood around the agent's current node beat feeding the whole graph into context. The same discipline applies to belief. A mature Being may hold millions of claims. Before every action it should not ask <em>what do I believe about everything?</em></p>
 
       <div class="chain">
-        <span class="n">Where am I?</span><span class="a"></span>
-        <span class="n">What is locally relevant?</span><span class="a"></span>
-        <span class="n hi">What matters next?</span>
+        <span class="n">Which entities are in play?</span><span class="a"></span>
+        <span class="n">What do I hold about them?</span><span class="a"></span>
+        <span class="n">Which of those claims are verified?</span><span class="a"></span>
+        <span class="n hi">What matters now?</span>
       </div>
 
-      <p>Seen this way, a Procedural Graph is not just memory. It is also an <strong>attention topology</strong>. At any moment the Being occupies a location within a space of possible actions, and the surrounding graph constrains the immediate horizon.</p>
+      <p>Localisation in a Verified Context Graph has an extra dimension the Procedural Graph does not: the neighbourhood is weighted by <strong>trust</strong>, not just adjacency. Two claims equally close to the current entity are not equally salient if one is signed by a known issuer and the other is hearsay.</p>
 
-<pre class="dg">                 <s>possible</s>
+<pre class="dg">                 <s>verified</s>
                     ▲
                     │
-     <em>unlikely</em> ◀── <b>CURRENT</b> ──▶ <i>useful</i>
+   <em>contested</em> ◀── <b>CURRENT</b> ──▶ <i>relevant</i>
                     │
                     ▼
-                  <u>avoid</u></pre>
+                  <u>stale</u></pre>
 
-      <p>Instead of presenting the LLM with the whole universe of possible action, the graph makes a small neighbourhood salient. That can improve both efficiency and reliability.</p>
-      <div class="pull">The intelligence remains general. <span class="hl">The context becomes local.</span></div>
+      <div class="pull">The intelligence remains general. <span class="hl">The context becomes local, and trusted.</span></div>
     </section>
 
-    <!-- 17/18 experience -->
-    <section class="sec" id="experience">
-      <div class="kicker">09 — From workflow to experience</div>
-      <h2>Character must be harder to change than capability</h2>
-      <p>Traditional workflows are designed: a human writes the workflow, a machine executes it. Procedural Graphs introduce another possibility.</p>
+    <!-- 09 -->
+    <section class="sec" id="together">
+      <div class="kicker">09 — Two graphs, one Being</div>
+      <h2>Reality first, then action</h2>
+      <p>The companion note closed with a sketch of two graphs — one for state and meaning, one for action and transition. This note fills in the first. Together they resolve a dependency that neither can on its own.</p>
 
-      <div class="strip"><span>Human seeds structure</span><i>→</i><span>Being acts</span><i>→</i><span>Being experiences</span><i>→</i><span class="pu">Graph evolves</span><i>→</i><span class="hi">Being behaves differently</span></div>
+      <div class="twin">
+        <div class="box hi">
+          <div class="bl">Verified context graph</div>
+          <ul><li><svg style="color:var(--octo)"><use href="#ic-check"/></svg>What is believed to be true?</li><li><svg style="color:var(--octo)"><use href="#ic-check"/></svg>Why should I trust it?</li><li><svg style="color:var(--octo)"><use href="#ic-check"/></svg>Entities, relations, claims</li></ul>
+        </div>
+        <div class="box">
+          <div class="bl">Procedural graph</div>
+          <ul><li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>What can I do next?</li><li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Under what conditions?</li><li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Procedures, transitions, pitfalls</li></ul>
+        </div>
+      </div>
 
-      <p>The researchers demonstrate that graphs evolved from minimal initial structures can compete with or outperform manually constructed procedural priors, and that iterative evolution can even recover from an initially harmful expert graph. That is profound in the context of Octonomous. We may not need to completely specify how an intelligent Being should behave. We may instead need to specify identity, purpose, constitutional boundaries, authority, initial structure, learning mechanisms and validation mechanisms — and allow procedural competence to develop.</p>
+      <p>A procedural edge carries a <em>condition</em>. In the funding example, the transition from <em>Assess Community Impact</em> to <em>Construct Proposal</em> is conditional on <em>sufficient evidence</em>. But evidence of what, held how firmly, verified by whom? The condition on a procedural edge is a <strong>query against the context graph</strong>. The procedural graph says which beliefs matter here; the context graph says whether they are held and how well.</p>
 
-      <h3>Not every part of a Being should evolve at the same rate</h3>
+<pre class="dg">PROCEDURAL EDGE
+  Assess Impact ── <u>condition</u> ──&gt; Construct Proposal
+                       │
+                       ▼
+               <b>query VERIFIED CONTEXT</b>
+                       │
+      Request ── has_evidence ──&gt; Quote      confidence: high  ✓
+      Member  ── in_good_standing ──&gt; Community   verified_by: steward ✓
+      Vendor  ── certified_for ──&gt; Electrical     <u>confidence: low  ✗</u>
+                       │
+                       ▼
+             condition <em>not</em> met → Request Evidence</pre>
+
+      <p>Neither graph should be asked to do the other's job. A context graph that tries to encode procedure becomes a brittle rules engine. A procedural graph that tries to carry facts becomes stale the moment the world moves. Kept separate, each can evolve at its own pace.</p>
+    </section>
+
+    <!-- 10 -->
+    <section class="sec" id="rates">
+      <div class="kicker">10 — Rates of change</div>
+      <h2>Observations churn. Ontology settles. Character holds.</h2>
+      <p>The companion note argued that not every part of a Being should evolve at the same rate, and that procedures sit in a useful middle layer. The context graph has its own internal gradient.</p>
 
       <div class="rates">
-        <div class="rate"><span class="rl">Tool selection</span><span class="rb"><i style="width:96%"></i></span><span class="rt">highly adaptive</span></div>
-        <div class="rate pg"><span class="rl">Procedures</span><span class="rb"><i style="width:78%"></i></span><span class="rt">adaptive</span></div>
-        <div class="rate"><span class="rl">Knowledge</span><span class="rb"><i style="width:70%"></i></span><span class="rt">continuously adaptive</span></div>
-        <div class="rate"><span class="rl">Purpose</span><span class="rb"><i style="width:22%"></i></span><span class="rt">deliberately stable</span></div>
-        <div class="rate"><span class="rl">Character</span><span class="rb"><i style="width:10%"></i></span><span class="rt">constitutionally governed</span></div>
+        <div class="rate"><span class="rl">Observations</span><span class="rb"><i style="width:97%"></i></span><span class="rt">continuous</span></div>
+        <div class="rate pg"><span class="rl">Claims</span><span class="rb"><i style="width:80%"></i></span><span class="rt">adaptive</span></div>
+        <div class="rate"><span class="rl">Relationships</span><span class="rb"><i style="width:55%"></i></span><span class="rt">slowly adaptive</span></div>
+        <div class="rate"><span class="rl">Trusted issuers</span><span class="rb"><i style="width:30%"></i></span><span class="rt">governed</span></div>
+        <div class="rate"><span class="rl">Ontology</span><span class="rb"><i style="width:14%"></i></span><span class="rt">deliberately stable</span></div>
+        <div class="rate"><span class="rl">Character</span><span class="rb"><i style="width:8%"></i></span><span class="rt">constitutionally governed</span></div>
         <div class="rate"><span class="rl">Identity</span><span class="rb"><i style="width:3%"></i></span><span class="rt">persistent</span></div>
       </div>
 
-      <p>Procedural Graphs occupy an ideal middle layer. They can evolve significantly while remaining bounded by slower-changing constitutional structures. This resembles healthy institutional architecture: <strong>processes change frequently; constitutions change rarely.</strong></p>
+      <p>The list of <strong>trusted issuers</strong> deserves particular attention. It is the point where belief hygiene is most easily compromised — if a Being can be persuaded to trust a new issuer, everything that issuer signs becomes high-confidence. Changes to that list should be a governed, authorised act, not a side-effect of reading a document.</p>
     </section>
 
-    <!-- 19/20 genome -->
-    <section class="sec" id="genome">
-      <div class="kicker">10 — Verified context and a behavioural genome</div>
-      <h2>State and meaning, then action and transition</h2>
-      <p>There is another natural extension. A future autonomous architecture could distinguish between two graphs. The first represents what is believed to be true and why it should be trusted. The second represents what can be done next and under what conditions.</p>
-
-      <div class="twin">
-        <div class="box">
-          <div class="bl">Verified context graph</div>
-          <ul><li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>What is believed to be true?</li><li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Why should I trust it?</li><li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>State and meaning</li></ul>
-        </div>
-        <div class="box hi">
-          <div class="bl">Procedural graph</div>
-          <ul><li><svg style="color:var(--octo)"><use href="#ic-check"/></svg>What can I do next?</li><li><svg style="color:var(--octo)"><use href="#ic-check"/></svg>Under what conditions?</li><li><svg style="color:var(--octo)"><use href="#ic-check"/></svg>Action and transition</li></ul>
-        </div>
-      </div>
-
-      <p>For autonomous systems operating in high-consequence environments, the distinction could be extremely powerful. The system should ideally neither act from unverified context nor improvise every procedure from scratch.</p>
-
-      <h3>Procedural graphs as a behavioural genome</h3>
-      <p>Foundation models provide something resembling the general cognitive machinery of the Being. Identity establishes continuity. Purpose provides direction. Character establishes behavioural principles. Memory records experience. But the procedural graph represents something different: <strong>the accumulated executable structure of how the Being has learned to navigate the world.</strong></p>
-      <p>It could be thought of as a <em>procedural genome</em> — not because it is biologically fixed, but precisely the opposite. It is continuously modified through experience.</p>
-
-      <div class="strip"><span>Experience</span><i>→</i><span>Variation</span><i>→</i><span>Evaluation</span><i>→</i><span>Selection</span><i>→</i><span class="hi">Behavioural structure</span></div>
-
-      <p>This begins to resemble evolution operating within the lifetime of the Being.</p>
-    </section>
-
-    <!-- 21/22 versioned -->
+    <!-- 11 -->
     <section class="sec" id="versioned">
-      <div class="kicker">11 — From self-evolving agents to self-evolving beings</div>
-      <h2>Versioned, reversible intelligence</h2>
-      <p>The Procedural Graph research is primarily concerned with making agents better at executing tasks. Octonomous suggests the next conceptual jump: a persistent Being does not merely improve task execution. It develops across time — with identity, procedural, relationship, reputation, purpose and character continuity. The graph is no longer optimised for today's benchmark. It becomes part of a lifetime, and that requires stronger rules around evolution.</p>
-      <p>A Being should know not only <em>this procedure works better</em>, but also:</p>
+      <div class="kicker">11 — Versioned, reversible belief</div>
+      <h2>A Being should be able to un-believe</h2>
+      <p>Silent belief drift is the epistemic version of silent behaviour drift. A model fine-tuned on bad data cannot easily forget it. A Being whose beliefs live in a versioned graph can.</p>
+      <p>A Being should be able to answer, for any claim it holds:</p>
 
       <div class="chips">
-        <span class="chip">Why did I change it?</span>
-        <span class="chip">What evidence justified the change?</span>
-        <span class="chip">Did it remain consistent with my purpose?</span>
-        <span class="chip">Was the change authorised?</span>
-        <span class="chip">Can I reverse it?</span>
-        <span class="chip">What happened after I adopted it?</span>
+        <span class="chip">When did I come to believe this?</span>
+        <span class="chip">What evidence convinced me?</span>
+        <span class="chip">What did I believe before?</span>
+        <span class="chip">Who authorised trusting that source?</span>
+        <span class="chip">What have I done because of it?</span>
+        <span class="chip">Can I roll it back?</span>
       </div>
 
-      <div class="pull">Intelligence should evolve through <span class="hl">versioned, reversible structures</span> wherever possible.</div>
-
-      <p>Rather than silently changing model behaviour — opaque intelligence, unknown change, new behaviour — we can increasingly externalise adaptation.</p>
+      <div class="pull">Belief should evolve through <span class="hl">versioned, reversible structures</span> wherever possible.</div>
 
       <div class="ledger">
-        <span class="v">PG:v41</span><span class="h">stable</span>
-        <span class="v">PG:v42</span><span class="h">proposed mutation committed · <b>poor outcomes observed</b></span>
-        <span class="v rb">ROLLBACK</span><span class="h">v42 reverted · retained as negative evidence</span>
-        <span class="v">PG:v41</span><span class="h">restored · history intact</span>
+        <span class="v">VCG:v310</span><span class="h">stable</span>
+        <span class="v">VCG:v311</span><span class="h">adopted claims from new source · <b>source later found compromised</b></span>
+        <span class="v rb">ROLLBACK</span><span class="h">v311 reverted · source moved to distrusted · claims retained as negative evidence</span>
+        <span class="v">VCG:v310</span><span class="h">restored · actions taken under v311 flagged for review</span>
       </div>
 
-      <p>The Being can improve without becoming unknowable. That property becomes increasingly valuable as autonomous intelligence becomes more powerful.</p>
+      <p>The last line matters. Reverting a belief does not undo the actions taken while it was held. But because contributions are recorded against graph versions, the Being can find every action that depended on the retracted claim and surface it for review. That is accountability a context window cannot offer.</p>
     </section>
 
-    <!-- 23 evidence -->
-    <section class="sec" id="evidence">
-      <div class="kicker">12 — Evidence from the experiments</div>
-      <h2>The model did not change. The organisation of behaviour did.</h2>
-      <p>The importance of the approach is not purely theoretical. Across six primary benchmarks and four different LLM families, the researchers report that Procedural Graphs ranked first or joint first in 21 of 24 model–benchmark settings.</p>
+    <!-- 12 -->
+    <section class="sec" id="grounding">
+      <div class="kicker">12 — Grounding in existing infrastructure</div>
+      <h2>This is buildable now</h2>
+      <p>Unlike the procedural note, this one does not lean on a single research result. It leans on infrastructure that already exists and that the selfdriven ecosystem already uses.</p>
 
-      <div class="stats">
-        <div class="stat"><div class="sn">21<small>/ 24</small></div><div class="sd">model–benchmark settings ranked first or joint first</div></div>
-        <div class="stat neg"><div class="sn">0<small>%</small></div><div class="sd">unguided baseline full-horizon survival on EnterpriseArena</div></div>
-        <div class="stat"><div class="sn">85<small>%</small></div><div class="sd">test survival with the evolved procedural graph</div></div>
+      <div class="resp">
+        <div class="r"><b>KERI AIDs</b><span>self-certifying identifiers for the Being, its principals, and every issuer it trusts</span></div>
+        <div class="r hi"><b>ACDCs</b><span>authentic chained data containers — a signed, chainable claim is a graph edge with provenance built in</span></div>
+        <div class="r"><b>Key event logs</b><span>the append-only, witnessed history that makes a graph version verifiable</span></div>
+        <div class="r"><b>Graduated disclosure</b><span>the Being can prove it holds a claim without revealing the claim — the disclosure attribute on an edge</span></div>
+        <div class="r"><b>Revocation</b><span>an issuer's revocation registry is a standing <em>expire</em> mutation the Being must honour</span></div>
+        <div class="r"><b>Chaining</b><span>an ACDC that references another is an evidence edge — provenance becomes a walk, not a lookup</span></div>
       </div>
 
-      <p>The long-horizon EnterpriseArena experiment is particularly relevant to autonomous systems. Through iterative evolution, the graph discovered procedural structures such as auditing cash, forecasting runway before financing decisions, recalling previously stored notes, and pruning counterproductive branches.</p>
-      <p>The important observation is not merely the percentage improvement. It is <em>what changed</em>. The underlying model did not need to be retrained. The organisation of behaviour changed. That is exactly the type of adaptation a persistent autonomous Being requires.</p>
+      <p>The important observation is that a Verified Context Graph does not require inventing a trust layer. It requires treating verifiable credentials as what they structurally are — edges with signatures — and building the graph, the confidence model, and the constitutional gate on top.</p>
     </section>
 
-    <!-- 24/25/26 replaceable -->
+    <!-- 13 -->
     <section class="sec" id="replaceable">
       <div class="kicker">13 — A new division of responsibilities</div>
-      <h2>The model becomes replaceable. The Being persists.</h2>
-      <p>Putting these concepts together suggests a useful architectural separation.</p>
+      <h2>The model becomes replaceable. The beliefs persist.</h2>
 
       <div class="resp">
         <div class="r"><b>Identity</b><span>Who am I?</span></div>
         <div class="r"><b>Purpose</b><span>Why do I exist?</span></div>
         <div class="r"><b>Character</b><span>How should I behave?</span></div>
-        <div class="r"><b>Semantic context</b><span>What is true?</span></div>
+        <div class="r hi"><b>Verified context</b><span>What do I believe, and why?</span></div>
         <div class="r"><b>Episodic memory</b><span>What happened?</span></div>
-        <div class="r hi"><b>Procedural graph</b><span>How have I learned to act?</span></div>
+        <div class="r"><b>Procedural graph</b><span>How have I learned to act?</span></div>
         <div class="r"><b>Intelligence</b><span>What can I infer?</span></div>
         <div class="r"><b>Agency</b><span>What can I do?</span></div>
         <div class="r"><b>Relationships</b><span>Who do I participate with?</span></div>
@@ -899,120 +839,89 @@ Execute
         <div class="r"><b>Contribution</b><span>What value resulted?</span></div>
       </div>
 
-      <p>This decomposition matters. Trying to put all of these responsibilities into a single foundation model is unlikely to provide the transparency, portability or governance required of long-lived autonomous systems. Octonomous instead has the opportunity to treat the model as <strong>one component of a Being</strong> rather than the Being itself.</p>
-
-      <h3>The strategically important consequence</h3>
-      <p>Octonomous is intentionally runtime-agnostic: different models and agent frameworks provide capability while Octonomous supplies identity, character, governance and participation. If significant procedural intelligence also resides outside the model, a Being becomes less dependent upon any particular foundation model.</p>
+      <p>Foundation models compress enormous general knowledge, and that is valuable. But a Being's <em>particular</em> knowledge — who its members are, which vendor is certified, what this community decided last spring — should not live in model weights, in a vendor's retrieval index, or in a chat history. It should live with the Being, in a structure the Being owns and can carry.</p>
 
 <pre class="dg">                 <b>OCTONOMOUS BEING</b>
              identity · purpose · character
-             memories · <b>procedural graph</b>
+             <b>verified context</b> · procedural graph
              relationships · reputation
                         │
                         ▼
               INTELLIGENCE ENGINE
         <em>Model A</em>  →  <em>Model B</em>  →  <em>Model C</em></pre>
 
-      <p>The Being may upgrade its intelligence engine without losing its accumulated procedural self. The intelligence provider becomes replaceable. The Being persists.</p>
+      <p>Swap the model and the Being still knows what it knows, still trusts whom it trusts, and can still show its working.</p>
 
-      <h3>Self-sovereignty extends to learned behaviour</h3>
-      <p>A system is not fully self-sovereign merely because it owns an identifier. It should increasingly control its identity, purpose, memories, credentials, relationships, <strong>procedural knowledge</strong>, history, contribution record, reputation and evolution. Procedural Graphs provide a plausible mechanism for making learned behaviour portable and externally represented — moving procedural competence away from being entirely trapped inside proprietary model weights.</p>
+      <h3>Self-sovereignty extends to belief</h3>
+      <p>A system is not fully self-sovereign merely because it owns an identifier. It should control its identity, purpose, memories, credentials, relationships, procedural knowledge — and its <strong>beliefs and the grounds for them</strong>. A Verified Context Graph makes what a Being knows portable, inspectable, and its own.</p>
     </section>
 
-    <!-- 27/28 OPG -->
-    <section class="sec" id="opg">
+    <!-- 14 -->
+    <section class="sec" id="ocg">
       <div class="kicker">14 — The combined primitive</div>
-      <h2>The Octonomous Procedural Graph</h2>
-      <p>The relationship works in both directions.</p>
-
-      <div class="twin">
-        <div class="box">
-          <div class="bl">Procedural Graphs give Octonomous</div>
-          <ul>
-            <li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Explicit procedural memory</li>
-            <li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Local action topology</li>
-            <li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Structured long-horizon execution</li>
-            <li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Experience-driven adaptation</li>
-            <li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Inspectable behavioural structures</li>
-            <li><svg style="color:var(--muted)"><use href="#ic-check"/></svg>Model-independent learning</li>
-          </ul>
-        </div>
-        <div class="box hi">
-          <div class="bl">Octonomous gives Procedural Graphs</div>
-          <ul>
-            <li><svg style="color:var(--octo)"><use href="#ic-check"/></svg>Persistent identity &amp; purpose</li>
-            <li><svg style="color:var(--octo)"><use href="#ic-check"/></svg>Character &amp; constitutional constraints</li>
-            <li><svg style="color:var(--octo)"><use href="#ic-check"/></svg>Relationships &amp; reputation</li>
-            <li><svg style="color:var(--octo)"><use href="#ic-check"/></svg>Governance &amp; provenance</li>
-            <li><svg style="color:var(--octo)"><use href="#ic-check"/></svg>Lifetime continuity</li>
-            <li><svg style="color:var(--octo)"><use href="#ic-check"/></svg>Social participation</li>
-          </ul>
-        </div>
-      </div>
-
-      <p>We can describe the combined primitive as an <strong>Octonomous Procedural Graph — OPG</strong>. An OPG extends a conventional Procedural Graph edge from six attributes toward something closer to sixteen.</p>
+      <h2>The Octonomous Context Graph</h2>
+      <p>By analogy with the Octonomous Procedural Graph, we can name the semantic primitive the <strong>Octonomous Context Graph — OCG</strong>. It extends a conventional knowledge-graph triple toward a signed, governed claim.</p>
 
       <div class="schema">
         <div class="sc">
-          <div class="bl">Procedural graph edge</div>
-          <code>procedure<br>relation<br>procedure<br>condition<br>guidance<br>pitfalls</code>
+          <div class="bl">Knowledge graph edge</div>
+          <code>entity<br>relation<br>entity</code>
         </div>
         <div class="sc hi">
-          <div class="bl">Octonomous procedural graph edge</div>
-          <code>procedure<br>relation<br>procedure<br>condition<br>guidance<br>pitfalls<br><b>purpose_alignment</b><br><b>character_constraints</b><br><b>authority_required</b><br><b>evidence_required</b><br><b>affected_parties</b><br><b>risk</b><br><b>reversibility</b><br><b>provenance</b><br><b>confidence</b><br><b>reputation_effect</b></code>
+          <div class="bl">Octonomous context graph edge</div>
+          <code>entity<br>relation<br>entity<br><b>source</b><br><b>evidence</b><br><b>confidence</b><br><b>verified_by</b><br><b>valid_from · valid_until</b><br><b>disclosure</b><br><b>purpose_basis</b><br><b>affected_parties</b><br><b>contested_by</b><br><b>reversibility</b><br><b>provenance</b><br><b>reputation_effect</b></code>
         </div>
       </div>
 
-      <p>Graph mutation itself then becomes a governed action.</p>
+      <p>Adopting a claim then becomes a governed action, mirroring procedural mutation.</p>
 
-      <div class="strip"><span>mutation proposal</span><i>→</i><span>evidence</span><i>→</i><span>validation</span><i>→</i><span class="pu">4Cs evaluation</span><i>→</i><span>authority</span><i>→</i><span>identity signature</span><i>→</i><span>version</span><i>→</i><span class="hi">commit</span></div>
+      <div class="strip"><span>claim received</span><i>→</i><span>signature &amp; issuer</span><i>→</i><span>consistency</span><i>→</i><span class="pu">4Cs evaluation</span><i>→</i><span>purpose &amp; disclosure</span><i>→</i><span>authority</span><i>→</i><span>identity signature</span><i>→</i><span>version</span><i>→</i><span class="hi">commit</span></div>
 
-      <p>This would transform a self-evolving execution graph into a <strong>self-sovereign behavioural substrate</strong>.</p>
+      <p>This turns a knowledge graph into a <strong>self-sovereign epistemic substrate</strong> — the ground a Being stands on before it acts.</p>
     </section>
 
-    <!-- 29/30 society -->
+    <!-- 15 -->
     <section class="sec" id="society">
-      <div class="kicker">15 — A society of procedural learners</div>
-      <h2>From artificial intelligence to artificial experience</h2>
-      <p>Octonomous ultimately imagines networks of humans and intelligent Beings participating together rather than isolated AI agents. Procedural Graphs make an interesting additional possibility available: Beings may eventually share procedural learning.</p>
-      <p>One Being discovers that <code style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--caring)">A → B → C</code> repeatedly fails under condition X, and that <code style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--octo)">A → B → VERIFY → C</code> succeeds. Another Being may learn from that contribution — but instead of blindly copying the procedure, it can:</p>
+      <div class="kicker">15 — A society of witnesses</div>
+      <h2>From shared facts to shared, verified belief</h2>
+      <p>Octonomous imagines networks of humans and Beings participating together. A Verified Context Graph makes the exchange of knowledge between them something more disciplined than copying facts around.</p>
+      <p>One Being learns that <code style="font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--octo)">Vendor → certified_for → Electrical</code> — signed by the regulator, chained to the licence. It can share not the sentence but the <strong>claim, with its chain</strong>. The receiving Being does not take its word for it.</p>
 
       <div class="chain">
-        <span class="n">receive</span><span class="a"></span>
-        <span class="n">verify provenance</span><span class="a"></span>
-        <span class="n">evaluate relevance</span><span class="a"></span>
-        <span class="n">test locally</span><span class="a"></span>
+        <span class="n">receive claim + chain</span><span class="a"></span>
+        <span class="n">verify signatures end to end</span><span class="a"></span>
+        <span class="n">check issuer reputation &amp; revocation</span><span class="a"></span>
+        <span class="n">compare with held beliefs</span><span class="a"></span>
         <span class="n pu">apply constitutional gate</span><span class="a"></span>
-        <span class="n hi">adopt / reject</span>
+        <span class="n hi">adopt / hold / reject</span>
       </div>
 
-      <p>Procedural knowledge could therefore become a form of shared cultural knowledge between intelligent beings. Not merely <em>here is something I know</em>, but <em>here is something I have learned about how to act</em>. That is much closer to how communities accumulate civilisation.</p>
+      <p>Knowledge moves between Beings the way it moves between careful people — with its sources attached, weighed on arrival, and never adopted merely because it was offered. Communities of Beings can thereby accumulate a shared, verified picture of their world without any single Being becoming the oracle for the rest.</p>
 
-      <h3>Trained intelligence and experiential intelligence</h3>
-      <p>Foundation models compress enormous quantities of human knowledge. Procedural Graphs point toward another type of intelligence — acquired not through training data but through lived execution.</p>
+      <h3>Trained knowledge and verified knowledge</h3>
 
       <div class="notbut">
-        <div class="box"><div class="bl">Trained intelligence</div><div class="bt">Learning before deployment</div></div>
-        <div class="box hi"><div class="bl">Experiential intelligence</div><div class="bt">Learning through participation</div></div>
+        <div class="box"><div class="bl">Trained knowledge</div><div class="bt">What the model absorbed before it met anyone</div></div>
+        <div class="box hi"><div class="bl">Verified knowledge</div><div class="bt">What the Being has been shown, by whom, and checked</div></div>
       </div>
 
-      <p>An Octonomous Being potentially contains both. Its model provides enormous inherited intelligence. Its life produces individual procedural intelligence. That distinction may ultimately become as important as the distinction between model training and inference.</p>
+      <p>A Being contains both. Its model brings breadth. Its life brings particular, provenanced belief. As with intelligence and experience in the companion note, the distinction may prove as important as the one between training and inference.</p>
     </section>
 
-    <!-- 31 conclusion -->
+    <!-- 16 -->
     <section class="sec" id="conclusion">
       <div class="kicker">16 — Conclusion</div>
-      <h2>Beings that develop better ways of acting while remaining themselves</h2>
-      <p>Procedural Graphs represent more than another agent orchestration technique. They expose an important missing representation in current autonomous AI architectures: explicit, evolving knowledge about how to act.</p>
-      <p>Octonomous already separates the Being from the underlying model and gives that Being identity, purpose, memory, agency, relationships, reputation, evolution and a behavioural constitution. Procedural Graphs provide a credible mechanism for making part of that evolution concrete.</p>
+      <h2>Beings that know what they believe, and can show why</h2>
+      <p>Knowledge graphs give language models structure. Verifiable identity gives claims a signature. Octonomous gives a Being a reason to hold beliefs at all — a purpose, a character, and a community it is accountable to.</p>
+      <p>Put together, the Verified Context Graph is the semantic half of a Being's memory: explicit, provenanced, constitutionally governed, versioned and reversible. The Procedural Graph is the other half. Between them sits the intelligence engine, replaceable, reasoning over a world it did not have to reconstruct from scratch.</p>
 
       <div class="chain">
         <span class="n am">Intent</span><span class="a"></span>
         <span class="n">Identity</span><span class="a"></span>
         <span class="n">Purpose</span><span class="a"></span>
         <span class="n">Character</span><span class="a"></span>
-        <span class="n">Context</span><span class="a"></span>
-        <span class="n hi">Procedural Graph</span><span class="a"></span>
+        <span class="n hi">Verified Context</span><span class="a"></span>
+        <span class="n">Procedural Graph</span><span class="a"></span>
         <span class="n">Intelligence</span><span class="a"></span>
         <span class="n">Agency</span><span class="a"></span>
         <span class="n">Action</span><span class="a"></span>
@@ -1023,16 +932,15 @@ Execute
         <span class="loop">↺ back to intent</span>
       </div>
 
-      <p>The foundation model provides intelligence. The Procedural Graph provides learned execution structure. The Octonomous framework provides continuity, character and sovereignty. And the Being emerges from the relationship between them.</p>
-      <p>Perhaps the most important shift is therefore not <em>agents that can execute better workflows</em>. It is:</p>
-      <div class="pull">Beings that can develop better ways of acting <span class="hl">while remaining themselves.</span></div>
-      <p>That is the bridge from self-evolving execution structures to self-sovereign intelligent beings.</p>
+      <p>The important shift is not <em>agents with better retrieval</em>. It is:</p>
+      <div class="pull">Beings that know what they believe, why they believe it, <span class="hl">and who they would trust to change their mind.</span></div>
+      <p>That is the bridge from knowledge graphs to verified context — and from context to self-sovereign intelligent beings.</p>
 
       <div class="endcta">
-        <h3>Read the framework this note builds on</h3>
+        <h3>Read the other half</h3>
         <div class="row">
-          <a href="/paper" class="btn btn-p">The Octonomous paper <svg><use href="#ic-arrow"/></svg></a>
-          <a href="https://arxiv.org/abs/2609.09153" class="btn btn-s">Procedural Graphs on arXiv <svg><use href="#ic-arrow"/></svg></a>
+          <a href="/procedural-graphs" class="btn btn-p">Procedural Graphs field note <svg><use href="#ic-arrow"/></svg></a>
+          <a href="/paper" class="btn btn-s">The Octonomous paper <svg><use href="#ic-arrow"/></svg></a>
           <a href="index.html" class="btn btn-s"><svg><use href="#ic-back"/></svg> Back to octonomous.io</a>
         </div>
       </div>
@@ -1043,10 +951,10 @@ Execute
       <div class="kicker">References</div>
       <h2>Sources</h2>
       <ul class="refs">
-        <li><b>Lu, Y., Chen, Y., Wu, S. &amp; Arık, S. Ö. (2026).</b> Procedural Graphs: Self-Evolving Execution Structures for LLM Agents. <a href="https://arxiv.org/abs/2609.09153">arXiv:2609.09153</a></li>
-        <li><b>DAIR.AI Academy (2026).</b> Procedural Graphs: Self-Evolving Execution Structures for LLM Agents — summary and key points.</li>
         <li><b>Octonomous (2026).</b> An Open Framework for Self-Sovereign Intelligent Beings. <a href="/paper">octonomous.io/paper</a></li>
-        <li><b>Octonomous (2026).</b> From Knowledge Graphs to Verified Context — companion field note. <a href="/knowledge-graphs">octonomous.io/knowledge-graphs</a></li>
+        <li><b>Octonomous (2026).</b> From Procedural Graphs to Self-Sovereign Beings. <a href="/procedural-graphs">octonomous.io/procedural-graphs</a></li>
+        <li><b>Smith, S. M.</b> Key Event Receipt Infrastructure (KERI) and Authentic Chained Data Containers (ACDC). <a href="https://github.com/WebOfTrust/keri">github.com/WebOfTrust/keri</a></li>
+        <li><b>Lu, Y., Chen, Y., Wu, S. &amp; Arık, S. Ö. (2026).</b> Procedural Graphs: Self-Evolving Execution Structures for LLM Agents. <a href="https://arxiv.org/abs/2609.09153">arXiv:2609.09153</a></li>
       </ul>
       <div style="margin-top:22px"><a class="repo-link" href="https://github.com/selfdriven-octo/octonomous"><svg><use href="#ic-github"/></svg> View the source on GitHub</a></div>
     </section>
@@ -1059,7 +967,7 @@ Execute
     <a href="index.html" class="foot-brand"><span class="mark"><svg style="color:var(--octo)"><use href="#sd-mark"/></svg></span><span>octo<em>nomous</em></span></a>
     <div class="foot-links">
       <a href="/paper">The paper</a>
-      <a href="/knowledge-graphs">Knowledge graphs</a>
+      <a href="/procedural-graphs">Procedural graphs</a>
       <a href="https://heyocto.ai">heyOcto.ai</a>
       <a href="https://octomics.io">octomics.io</a>
       <a href="https://octology.io">octology.io</a>
