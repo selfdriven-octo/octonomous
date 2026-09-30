@@ -1,0 +1,1028 @@
+---
+layout: null
+permalink: "/coasean-singularity"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<link rel="shortcut icon" href="/assets/img/selfdriven-logo-round-green-transparent.png">
+<link rel="apple-touch-icon" href="/assets/img/selfdriven-logo-round-green-transparent.png" />
+<title>From the Coasean Singularity to Trusted Beings — Octonomous field note</title>
+<meta name="description" content="AI agents may make search, negotiation and contracting nearly free. What they don't make cheaper is trust — who is on the other side, whose side the agent is on, and who answers. An Octonomous reading of The Coasean Singularity?">
+<meta property="og:title" content="When transacting is free, trust is the price">
+<meta property="og:description" content="Agents make markets cheap. Beings make them trustworthy.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://octonomous.io/coasean-singularity">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#09090f; --surface:#111118; --surface2:#18181f;
+  --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.14);
+  --text:#f0eeff; --muted:#7e7a9a; --muted2:#3d3a55;
+
+  --curious:#f5c842; --caring:#ff5f7e; --constructive:#00e5a0;
+  --chill:#7b6cff; --chill-bright:#9b8fff;
+  --curious-dim:rgba(245,200,66,0.13); --caring-dim:rgba(255,95,126,0.13);
+  --constructive-dim:rgba(0,229,160,0.13); --chill-dim:rgba(123,108,255,0.13);
+
+  --octo:#93dd3d; --octo-dim:rgba(147,221,61,0.13); --octo-glow:rgba(147,221,61,0.30);
+  --pill:999px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth; background:#09090f !important; background-image:linear-gradient(#09090f,#09090f) !important; scroll-padding-top:90px}
+body{
+  background:#09090f !important; background-image:linear-gradient(#09090f,#09090f) !important; color:var(--text);
+  font-family:'DM Sans',sans-serif; line-height:1.6; overflow-x:hidden; cursor:none; -webkit-font-smoothing:antialiased;
+}
+a{cursor:none; color:inherit; text-decoration:none}
+::selection{background:var(--octo); color:#06150a}
+
+/* cursor */
+.cursor-dot{position:fixed;top:0;left:0;width:8px;height:8px;border-radius:50%;background:var(--octo);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .12s ease,background .2s}
+.cursor-ring{position:fixed;top:0;left:0;width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(240,238,255,.3);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .18s ease,width .2s,height .2s,border-color .2s}
+@media (hover:none){body{cursor:auto} a{cursor:auto} .cursor-dot,.cursor-ring{display:none}}
+
+/* reading progress */
+.progress{position:fixed; top:0; left:0; height:3px; width:0%; z-index:1100; background:linear-gradient(90deg,var(--curious),var(--caring),var(--constructive),var(--chill)); transition:width .1s linear}
+
+/* nav */
+nav{position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center; justify-content:space-between; padding:16px 30px; background:rgba(9,9,15,.72); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border-bottom:1px solid var(--border)}
+.brand{display:flex; align-items:center; gap:11px; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:19px; letter-spacing:-.03em}
+.brand .mark svg{width:26px;height:26px}
+.brand em{font-style:normal; color:var(--octo)}
+.nav-links{display:flex; align-items:center; gap:26px}
+.nav-links a{font-size:14px; color:var(--muted); font-weight:500; transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:14px; padding:9px 18px; border-radius:var(--pill); background:var(--octo-dim); color:var(--octo); border:1.5px solid rgba(147,221,61,.30); transition:transform .2s,box-shadow .2s}
+.nav-cta:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(147,221,61,.18)}
+.nav-cta svg{width:13px;height:13px;vertical-align:-1px}
+@media(max-width:860px){.nav-links a:not(.nav-cta){display:none}}
+
+/* hero */
+.p-hero{padding:150px 0 60px; position:relative; overflow:hidden}
+.gblob{position:absolute; border-radius:50%; filter:blur(100px); opacity:.4; z-index:0}
+.gb1{width:420px;height:420px;background:var(--curious);top:-140px;left:-120px}
+.gb2{width:360px;height:360px;background:var(--constructive);top:-80px;right:-100px}
+.gb3{width:300px;height:300px;background:var(--octo);top:60px;left:38%;opacity:.24}
+.p-hero-in{max-width:1120px; margin:0 auto; padding:0 30px; display:grid; grid-template-columns:220px 1fr; gap:56px; position:relative; z-index:2}
+.p-hero-copy{grid-column:2; min-width:0}
+.doc-eyebrow{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--octo); display:inline-flex; align-items:center; gap:9px; margin-bottom:26px}
+.doc-eyebrow::before{content:''; width:26px; height:1px; background:var(--octo); opacity:.7}
+.p-hero h1{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; letter-spacing:-.045em; line-height:1.02; font-size:clamp(34px,6vw,60px)}
+.p-hero h1 .g{background:linear-gradient(105deg,var(--octo),var(--constructive)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.p-hero .sub{color:var(--muted); font-size:clamp(17px,2.2vw,20px); margin-top:22px; max-width:640px}
+.doc-meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:30px}
+.doc-meta span{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.06em; color:var(--muted); padding:7px 14px; border:1px solid var(--border); border-radius:var(--pill); background:var(--surface)}
+.doc-meta span b{color:var(--text); font-weight:500}
+
+/* layout */
+.layout{max-width:1120px; margin:0 auto; padding:40px 30px 40px; display:grid; grid-template-columns:220px 1fr; gap:56px; position:relative; z-index:1}
+.toc{position:sticky; top:100px; align-self:start; height:max-content}
+.toc .toc-label{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted2); margin-bottom:16px}
+.toc ol{list-style:none; counter-reset:toc; display:flex; flex-direction:column; gap:2px}
+.toc li{counter-increment:toc}
+.toc a{display:flex; gap:11px; align-items:baseline; padding:7px 0; font-size:13.5px; color:var(--muted); border-left:2px solid transparent; padding-left:14px; margin-left:-16px; transition:color .2s,border-color .2s}
+.toc a::before{content:counter(toc,decimal-leading-zero); font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--muted2); flex:none}
+.toc a:hover{color:var(--text)}
+.toc a.active{color:var(--octo); border-color:var(--octo)}
+.toc a.active::before{color:var(--octo)}
+@media(max-width:900px){.layout{grid-template-columns:1fr; gap:0} .toc{display:none} .p-hero-in{grid-template-columns:1fr} .p-hero-copy{grid-column:1}}
+
+/* article / prose */
+article{max-width:680px}
+.sec{padding:44px 0; border-top:1px solid var(--border)}
+.sec:first-child{border-top:none; padding-top:8px}
+.sec .kicker{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:14px}
+.sec h2{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; letter-spacing:-.035em; line-height:1.08; font-size:clamp(26px,4vw,38px); margin-bottom:22px}
+.sec h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; letter-spacing:-.02em; font-size:21px; margin:30px 0 10px}
+article p{color:#c9c5df; font-size:17.5px; line-height:1.72; margin-bottom:18px}
+article p.lead{font-size:20px; color:var(--text)}
+article strong{color:var(--text); font-weight:600}
+article em{font-style:italic; color:var(--text)}
+
+/* pull quote */
+.pull{margin:38px 0; padding:6px 0 6px 28px; border-left:3px solid var(--octo); font-family:'Bricolage Grotesque',sans-serif; font-weight:700; letter-spacing:-.02em; font-size:clamp(22px,3.4vw,30px); line-height:1.22; color:var(--text)}
+.pull .hl{color:var(--octo)}
+
+/* have/lack inline lists */
+.twin{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:24px 0 6px}
+.twin .box{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px 22px}
+.twin .box.hi{border-color:rgba(147,221,61,.28)}
+.twin .box .bl{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:14px}
+.twin .box.hi .bl{color:var(--octo)}
+.twin ul{list-style:none; display:flex; flex-direction:column; gap:9px}
+.twin li{font-size:15px; color:var(--muted); display:flex; gap:10px; align-items:center}
+.twin .box.hi li{color:var(--text); font-weight:500}
+.twin li svg{width:15px;height:15px;flex:none}
+@media(max-width:560px){.twin{grid-template-columns:1fr}}
+
+/* 4Cs blocks */
+.cc{border:1px solid var(--border); border-left-width:3px; border-radius:16px; background:var(--surface); padding:26px 26px; margin:16px 0}
+.cc .top{display:flex; align-items:center; gap:14px; margin-bottom:14px}
+.cc .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none}
+.cc .ico svg{width:22px;height:22px}
+.cc h3{margin:0; font-size:24px}
+.cc .es{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.08em; margin-top:2px}
+.cc p{font-size:16px; margin-bottom:14px; color:#c3bfda}
+.cc .asks{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+.cc .asks span{font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:13.5px; padding:6px 13px; border-radius:var(--pill); background:var(--surface2); border:1px solid var(--border)}
+.cc-c{border-left-color:var(--curious)} .cc-c .ico{background:var(--curious-dim);color:var(--curious)} .cc-c h3,.cc-c .es{color:var(--curious)}
+.cc-k{border-left-color:var(--caring)} .cc-k .ico{background:var(--caring-dim);color:var(--caring)} .cc-k h3,.cc-k .es{color:var(--caring)}
+.cc-b{border-left-color:var(--constructive)} .cc-b .ico{background:var(--constructive-dim);color:var(--constructive)} .cc-b h3,.cc-b .es{color:var(--constructive)}
+.cc-l{border-left-color:var(--chill)} .cc-l .ico{background:var(--chill-dim);color:var(--chill-bright)} .cc-l h3,.cc-l .es{color:var(--chill-bright)}
+
+/* anatomy list */
+.defs{display:flex; flex-direction:column; gap:2px; margin:22px 0 6px}
+.def{display:grid; grid-template-columns:150px 1fr; gap:18px; padding:15px 0; border-bottom:1px solid var(--border); align-items:baseline}
+.def:last-child{border-bottom:none}
+.def dt{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; color:var(--octo); letter-spacing:-.01em}
+.def dd{color:#c3bfda; font-size:16px}
+@media(max-width:560px){.def{grid-template-columns:1fr; gap:3px}}
+
+/* chips */
+.chips{display:flex; flex-wrap:wrap; gap:10px; margin:22px 0}
+.chip{font-family:'JetBrains Mono',monospace; font-size:13px; padding:9px 15px; border-radius:var(--pill); background:var(--surface2); border:1px solid var(--border); color:var(--text)}
+
+/* stack mini */
+.stack{display:flex; flex-direction:column; gap:10px; margin:26px 0}
+.layer{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:18px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 22px}
+.layer .ln{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:19px; letter-spacing:-.02em}
+.layer .lq{color:var(--muted); font-size:14px}
+.layer .lt{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.08em; padding:5px 12px; border-radius:var(--pill); white-space:nowrap}
+.l1{border-color:rgba(245,200,66,.3)} .l1 .ln{color:var(--curious)} .l1 .lt{background:var(--curious-dim);color:var(--curious)}
+.l2{border-color:rgba(147,221,61,.32); background:linear-gradient(180deg,rgba(147,221,61,.06),var(--surface))} .l2 .ln{color:var(--octo)} .l2 .lt{background:var(--octo-dim);color:var(--octo)}
+.l3{border-color:rgba(0,229,160,.3)} .l3 .ln{color:var(--constructive)} .l3 .lt{background:var(--constructive-dim);color:var(--constructive)}
+.flow{text-align:center; font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:20px; letter-spacing:-.02em; margin-top:6px}
+.flow .a{color:var(--muted2); margin:0 8px} .flow .w{color:var(--curious)} .flow .h{color:var(--octo)} .flow .i{color:var(--constructive)}
+@media(max-width:560px){.layer{grid-template-columns:1fr; gap:8px} .layer .lt{justify-self:start}}
+
+/* closing 4C */
+.fourC{display:flex; flex-wrap:wrap; gap:16px; margin:26px 0 4px}
+.fourC span{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:clamp(20px,3vw,30px); letter-spacing:-.03em}
+.fourC .c1{color:var(--curious)} .fourC .c2{color:var(--caring)} .fourC .c3{color:var(--constructive)} .fourC .c4{color:var(--chill-bright)}
+
+/* end cta */
+.endcta{margin:20px 0 0; padding:34px 30px; border:1px solid rgba(147,221,61,.28); border-radius:22px; background:radial-gradient(120% 120% at 0% 0%,rgba(147,221,61,.10),transparent 55%),var(--surface); text-align:center}
+.endcta h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:24px; letter-spacing:-.02em; margin-bottom:18px}
+.endcta .row{display:flex; flex-wrap:wrap; gap:12px; justify-content:center}
+.btn{display:inline-flex; align-items:center; gap:8px; font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:15px; padding:12px 22px; border-radius:var(--pill); transition:transform .2s,box-shadow .2s}
+.btn svg{width:16px;height:16px}
+.btn-p{background:var(--octo); color:#06150a} .btn-p:hover{transform:translateY(-4px); box-shadow:0 16px 40px var(--octo-glow)}
+.btn-s{background:var(--surface2); color:var(--text); border:1px solid var(--border2)} .btn-s:hover{transform:translateY(-4px)}
+
+/* footer */
+footer{border-top:1px solid var(--border); padding:56px 30px 46px; margin-top:30px}
+.foot-in{max-width:1120px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap}
+.foot-brand{display:flex; align-items:center; gap:11px; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:19px; letter-spacing:-.03em}
+.foot-brand .mark svg{width:24px;height:24px}
+.foot-brand em{font-style:normal;color:var(--octo)}
+.foot-links{display:flex; gap:22px; flex-wrap:wrap}
+.foot-links a{color:var(--muted); font-size:14px; transition:color .2s}
+.foot-links a:hover{color:var(--octo)}
+.foot-cs{display:flex; gap:7px}
+.foot-cs i{width:11px;height:11px;border-radius:50%}
+.foot-cs .c1{background:var(--curious)} .foot-cs .c2{background:var(--caring)} .foot-cs .c3{background:var(--constructive)} .foot-cs .c4{background:var(--chill)}
+.foot-copy{max-width:1120px; margin:26px auto 0; color:var(--muted); font-size:13px}
+
+/* resources: podcasts + pdfs + repo */
+.pods{display:grid; gap:14px; margin:22px 0 16px}
+.pod{background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:20px 22px}
+.pod-top{display:flex; align-items:center; gap:13px; margin-bottom:14px}
+.pod-ic{width:44px; height:44px; border-radius:12px; flex:none; display:grid; place-items:center; background:var(--octo-dim); color:var(--octo)}
+.pod-ic svg{width:22px; height:22px}
+.pod-top h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; letter-spacing:-.02em; margin:0}
+.pod-meta{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.pod audio{width:100%; height:40px}
+.docs{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0 24px}
+.doc-card{display:flex; align-items:center; gap:13px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:17px 18px; transition:transform .2s,border-color .2s}
+.doc-card:hover{transform:translateY(-4px); border-color:rgba(147,221,61,.32)}
+.doc-ic{width:40px;height:40px;border-radius:11px;flex:none;display:grid;place-items:center;background:var(--octo-dim);color:var(--octo)}
+.doc-ic svg{width:20px;height:20px}
+.doc-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;margin:0 0 2px}
+.doc-card .sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc-card .ar{margin-left:auto;color:var(--muted);flex:none}
+.doc-card .ar svg{width:16px;height:16px}
+.doc-card:hover .ar{color:var(--octo)}
+.repo-link{display:inline-flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:15px;padding:12px 20px;border-radius:var(--pill);background:var(--surface2);border:1px solid var(--border2);color:var(--text);transition:transform .2s,border-color .2s,color .2s}
+.repo-link:hover{transform:translateY(-3px);border-color:var(--octo);color:var(--octo)}
+.repo-link svg{width:18px;height:18px}
+@media(max-width:560px){.docs{grid-template-columns:1fr}}
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .6s,transform .6s cubic-bezier(.34,1.56,.64,1)}
+.reveal.vis{opacity:1; transform:translateY(0)}
+
+/* ===== field-note additions: procedural graphs ===== */
+.p-hero h1 .g2{background:linear-gradient(105deg,var(--chill-bright),var(--octo)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.fn{color:var(--chill-bright)} .doc-eyebrow.fn::before{background:var(--chill-bright)}
+.gb1{background:var(--chill)} .gb2{background:var(--octo)} .gb3{background:var(--constructive)}
+
+/* source card */
+.srcbox{display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start; background:var(--surface); border:1px solid rgba(123,108,255,.32); border-radius:18px; padding:20px 22px; margin:6px 0 26px}
+.srcbox .si{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--chill-dim);color:var(--chill-bright);flex:none}
+.srcbox .si svg{width:21px;height:21px}
+.srcbox .sl{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--chill-bright); margin-bottom:6px}
+.srcbox h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:17px; letter-spacing:-.01em; margin:0 0 4px}
+.srcbox p{font-size:14px; color:var(--muted); margin:0}
+.srcbox a{color:var(--text); border-bottom:1px solid var(--border2)} .srcbox a:hover{color:var(--octo); border-color:var(--octo)}
+
+/* vertical flow chain */
+.chain{display:flex; flex-direction:column; align-items:center; gap:0; margin:26px 0}
+.chain .n{font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.04em; color:var(--text); background:var(--surface); border:1px solid var(--border2); border-radius:var(--pill); padding:9px 18px; text-align:center; min-width:180px}
+.chain .n.hi{border-color:rgba(147,221,61,.5); color:var(--octo); background:var(--octo-dim)}
+.chain .n.pu{border-color:rgba(123,108,255,.5); color:var(--chill-bright); background:var(--chill-dim)}
+.chain .n.am{border-color:rgba(245,200,66,.45); color:var(--curious); background:var(--curious-dim)}
+.chain .n.gr{border-color:rgba(0,229,160,.45); color:var(--constructive); background:var(--constructive-dim)}
+.chain .n.rd{border-color:rgba(255,95,126,.45); color:var(--caring); background:var(--caring-dim)}
+.chain .n small{display:block; font-family:'DM Sans',sans-serif; font-size:12px; color:var(--muted); letter-spacing:0; margin-top:2px}
+.chain .a{width:1px; height:18px; background:var(--muted2); position:relative}
+.chain .a::after{content:''; position:absolute; left:50%; bottom:-1px; width:6px; height:6px; border-right:1px solid var(--muted2); border-bottom:1px solid var(--muted2); transform:translateX(-50%) rotate(45deg)}
+.chain .loop{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted2); margin-top:12px}
+
+/* horizontal step strip */
+.strip{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:22px 0; font-family:'JetBrains Mono',monospace; font-size:12.5px}
+.strip span{padding:8px 14px; border-radius:var(--pill); background:var(--surface2); border:1px solid var(--border); color:var(--text)}
+.strip i{color:var(--muted2); font-style:normal}
+.strip span.hi{color:var(--octo); border-color:rgba(147,221,61,.45); background:var(--octo-dim)}
+.strip span.pu{color:var(--chill-bright); border-color:rgba(123,108,255,.45); background:var(--chill-dim)}
+
+/* mono diagram block (ascii-ish) */
+pre.dg{font-family:'JetBrains Mono',monospace; font-size:13px; line-height:1.55; color:#c9c5df; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px 24px; margin:22px 0; overflow-x:auto; white-space:pre}
+pre.dg b{color:var(--octo); font-weight:500} pre.dg i{color:var(--chill-bright); font-style:normal} pre.dg u{color:var(--curious); text-decoration:none} pre.dg s{color:var(--constructive); text-decoration:none} pre.dg em{color:var(--muted2); font-style:normal}
+.dg-cap{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:-12px 0 24px}
+
+/* not / but */
+.notbut{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0}
+.notbut .box{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px 22px}
+.notbut .box.hi{border-color:rgba(147,221,61,.32); background:linear-gradient(180deg,rgba(147,221,61,.05),var(--surface))}
+.notbut .bl{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:10px}
+.notbut .box.hi .bl{color:var(--octo)}
+.notbut .bt{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; letter-spacing:-.01em; line-height:1.3}
+.notbut .box.hi .bt{color:var(--text)} .notbut .box:not(.hi) .bt{color:var(--muted)}
+@media(max-width:560px){.notbut{grid-template-columns:1fr}}
+
+/* memory grid */
+.mem{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:24px 0}
+.mem .m{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 16px; border-top-width:3px}
+.mem .m .mt{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:17px; letter-spacing:-.02em; margin-bottom:6px}
+.mem .m .mq{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted)}
+.mem .m1{border-top-color:var(--curious)} .mem .m1 .mt{color:var(--curious)}
+.mem .m2{border-top-color:var(--caring)} .mem .m2 .mt{color:var(--caring)}
+.mem .m3{border-top-color:var(--constructive)} .mem .m3 .mt{color:var(--constructive)}
+.mem .m4{border-top-color:var(--octo); background:linear-gradient(180deg,rgba(147,221,61,.06),var(--surface))} .mem .m4 .mt{color:var(--octo)}
+@media(max-width:700px){.mem{grid-template-columns:1fr 1fr}}
+
+/* three-way spectrum */
+.spec{display:grid; grid-template-columns:1fr 1.2fr 1fr; gap:12px; margin:24px 0; align-items:stretch}
+.spec .s{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px 18px}
+.spec .s.mid{border-color:rgba(147,221,61,.4); background:linear-gradient(180deg,rgba(147,221,61,.07),var(--surface))}
+.spec .st{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:12px}
+.spec .s.mid .st{color:var(--octo)}
+.spec ul{list-style:none; display:flex; flex-direction:column; gap:7px}
+.spec li{font-size:14px; color:var(--muted)}
+.spec .s.mid li{color:var(--text); font-weight:500}
+.spec li::before{content:'– '; color:var(--muted2)} .spec .s.mid li::before{content:'+ '; color:var(--octo)}
+@media(max-width:640px){.spec{grid-template-columns:1fr}}
+
+/* mutation ops */
+.ops{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 24px}
+.ops span{font-family:'JetBrains Mono',monospace; font-size:12.5px; padding:7px 13px; border-radius:8px; background:var(--surface2); border:1px solid var(--border); color:var(--text)}
+.ops span.add{color:var(--constructive)} .ops span.rm{color:var(--caring)} .ops span.ch{color:var(--curious)}
+
+/* gate pipeline */
+.gate{display:flex; flex-direction:column; gap:8px; margin:24px 0}
+.gate .g{display:grid; grid-template-columns:34px 1fr auto; align-items:center; gap:14px; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 18px}
+.gate .g .gn{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted2)}
+.gate .g .gt{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px; letter-spacing:-.01em}
+.gate .g .gq{font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace; white-space:nowrap}
+.gate .g.c4{border-color:rgba(255,255,255,.18); background:linear-gradient(90deg,var(--curious-dim),var(--caring-dim),var(--constructive-dim),var(--chill-dim))}
+.gate .g.c4 .gt{color:var(--text)}
+.gate .g.fin{border-color:rgba(147,221,61,.45)} .gate .g.fin .gt{color:var(--octo)}
+@media(max-width:560px){.gate .g{grid-template-columns:34px 1fr} .gate .g .gq{display:none}}
+
+/* 4C questions */
+.cq{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:22px 0}
+.cq .q{border:1px solid var(--border); border-left-width:3px; border-radius:14px; background:var(--surface); padding:16px 18px}
+.cq .q b{display:block; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:18px; letter-spacing:-.02em; margin-bottom:4px}
+.cq .q span{font-size:15px; color:#c3bfda}
+.cq .q1{border-left-color:var(--curious)} .cq .q1 b{color:var(--curious)}
+.cq .q2{border-left-color:var(--caring)} .cq .q2 b{color:var(--caring)}
+.cq .q3{border-left-color:var(--constructive)} .cq .q3 b{color:var(--constructive)}
+.cq .q4{border-left-color:var(--chill)} .cq .q4 b{color:var(--chill-bright)}
+@media(max-width:560px){.cq{grid-template-columns:1fr}}
+
+/* version ledger */
+.ledger{display:grid; grid-template-columns:auto 1fr; gap:0 18px; margin:22px 0; align-items:stretch}
+.ledger .v{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--octo); padding:12px 0; position:relative; padding-left:22px}
+.ledger .v::before{content:''; position:absolute; left:0; top:18px; width:9px; height:9px; border-radius:50%; background:var(--octo); box-shadow:0 0 0 4px var(--octo-dim)}
+.ledger .v::after{content:''; position:absolute; left:4px; top:30px; bottom:-12px; width:1px; background:var(--muted2)}
+.ledger .v:last-of-type::after{display:none}
+.ledger .h{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); padding:12px 0}
+.ledger .h b{color:var(--text); font-weight:500}
+.ledger .v.rb{color:var(--caring)} .ledger .v.rb::before{background:var(--caring); box-shadow:0 0 0 4px var(--caring-dim)}
+
+/* rates of change */
+.rates{display:flex; flex-direction:column; gap:6px; margin:24px 0}
+.rate{display:grid; grid-template-columns:130px 1fr auto; align-items:center; gap:14px; font-size:14px}
+.rate .rl{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15px; letter-spacing:-.01em}
+.rate .rb{height:10px; border-radius:999px; background:var(--surface2); border:1px solid var(--border); overflow:hidden}
+.rate .rb i{display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--chill),var(--octo))}
+.rate .rt{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); white-space:nowrap}
+.rate.pg .rl{color:var(--octo)}
+@media(max-width:560px){.rate{grid-template-columns:100px 1fr} .rate .rt{display:none}}
+
+/* stats */
+.stats{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:24px 0}
+.stat{background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:22px 20px}
+.stat .sn{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:clamp(30px,5vw,44px); letter-spacing:-.04em; line-height:1; color:var(--octo)}
+.stat .sn small{font-size:.45em; color:var(--muted); letter-spacing:0; margin-left:4px}
+.stat .sd{font-size:13.5px; color:var(--muted); margin-top:10px}
+.stat.neg .sn{color:var(--caring)}
+@media(max-width:640px){.stats{grid-template-columns:1fr}}
+
+/* responsibilities */
+.resp{display:grid; grid-template-columns:1fr; gap:0; margin:22px 0; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--surface)}
+.resp .r{display:grid; grid-template-columns:170px 1fr; gap:16px; padding:12px 20px; border-bottom:1px solid var(--border); align-items:baseline}
+.resp .r:last-child{border-bottom:none}
+.resp .r b{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:-.01em; color:var(--text)}
+.resp .r span{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--muted)}
+.resp .r.hi{background:rgba(147,221,61,.06)} .resp .r.hi b{color:var(--octo)}
+@media(max-width:560px){.resp .r{grid-template-columns:1fr; gap:2px}}
+
+/* OPG schema */
+.schema{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0}
+.schema .sc{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px 22px}
+.schema .sc.hi{border-color:rgba(147,221,61,.36)}
+.schema .bl{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:12px}
+.schema .sc.hi .bl{color:var(--octo)}
+.schema code{display:block; font-family:'JetBrains Mono',monospace; font-size:13px; line-height:1.8; color:#c9c5df}
+.schema .sc.hi code b{color:var(--octo); font-weight:500}
+@media(max-width:560px){.schema{grid-template-columns:1fr}}
+
+/* references */
+.refs{list-style:none; display:flex; flex-direction:column; gap:12px; margin:18px 0 6px}
+.refs li{font-size:14.5px; color:var(--muted); padding-left:18px; position:relative; line-height:1.55}
+.refs li::before{content:'—'; position:absolute; left:0; color:var(--muted2)}
+.refs li b{color:var(--text); font-weight:600}
+.refs li a{color:var(--octo); border-bottom:1px solid rgba(147,221,61,.3)}
+
+/* ===== field-note additions: physical reality ===== */
+.p-hero h1 .g3{background:linear-gradient(105deg,var(--octo),var(--constructive)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.pr{color:var(--octo)} .doc-eyebrow.pr::before{background:var(--octo)}
+.gb1{background:var(--constructive)} .gb2{background:var(--curious)} .gb3{background:var(--octo)}
+.twin li svg{color:var(--octo)}
+
+/* ===== field-note additions: decision ai ===== */
+article{min-width:0} /* stop pre.dg min-content widening the 1fr grid column on mobile */
+.srcbox a{overflow-wrap:anywhere}
+.p-hero h1 .g4{background:linear-gradient(105deg,var(--curious),var(--octo)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.da{color:var(--curious)} .doc-eyebrow.da::before{background:var(--curious)}
+.gb1{background:var(--curious)} .gb2{background:var(--chill)} .gb3{background:var(--octo)}
+.srcbox.da{border-color:rgba(245,200,66,.32)} .srcbox.da .si{background:var(--curious-dim);color:var(--curious)} .srcbox.da .sl{color:var(--curious)}
+.sec h2 a, article p a{color:var(--text); border-bottom:1px solid rgba(147,221,61,.35); transition:color .2s,border-color .2s}
+article p a:hover{color:var(--octo); border-color:var(--octo)}
+.l4{border-color:rgba(123,108,255,.34)} .l4 .ln{color:var(--chill-bright)} .l4 .lt{background:var(--chill-dim);color:var(--chill-bright)}
+.cap{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:-8px 0 24px; line-height:1.6}
+
+/* decision state distribution */
+.dist{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 22px 20px; margin:22px 0; display:flex; flex-direction:column; gap:11px}
+.dist .dh{display:flex; justify-content:space-between; gap:12px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:2px}
+.dist .row{display:grid; grid-template-columns:96px 1fr 56px; align-items:center; gap:14px}
+.dist .ol{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--muted)}
+.dist .bar{height:12px; border-radius:999px; background:var(--surface2); border:1px solid var(--border); overflow:hidden}
+.dist .bar i{display:block; height:100%; border-radius:999px; background:var(--muted2)}
+.dist .pv{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--muted); text-align:right}
+.dist .row.top .ol,.dist .row.top .pv{color:var(--text)}
+.dist .row.top .bar i{background:linear-gradient(90deg,var(--curious),var(--octo))}
+.dist .row.dis .bar i{background:var(--caring)}
+.dist .row.dis .ol,.dist .row.dis .pv{color:var(--text)}
+.dist .tag{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; padding:3px 8px; border-radius:var(--pill); background:var(--caring-dim); color:var(--caring); margin-left:8px; vertical-align:1px}
+@media(max-width:560px){.dist .row{grid-template-columns:78px 1fr 46px; gap:10px} .dist .tag{display:none}}
+
+/* authority bands */
+.bands{margin:22px 0; background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow:hidden}
+.band{display:grid; grid-template-columns:104px 1fr 1.05fr; gap:18px; align-items:center; padding:14px 20px; border-bottom:1px solid var(--border)}
+.band:last-child{border-bottom:none}
+.band.bh{padding:12px 20px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.band.bh .mk{color:var(--curious)}
+.band .br{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--muted); white-space:nowrap}
+.band .bt{position:relative; height:10px; border-radius:999px; background:var(--surface2); border:1px solid var(--border)}
+.band .bt i{position:absolute; top:-1px; bottom:-1px; border-radius:999px; background:var(--muted2); min-width:6px}
+.band .bt b{position:absolute; top:-7px; bottom:-7px; left:71%; width:2px; margin-left:-1px; border-radius:2px; background:var(--curious); opacity:.45}
+.band .ba{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:-.01em; color:var(--muted)}
+.band.hit{background:linear-gradient(90deg,rgba(245,200,66,.08),transparent)}
+.band.hit .br{color:var(--text)} .band.hit .ba{color:var(--text)}
+.band.hit .bt i{background:linear-gradient(90deg,var(--curious),var(--octo))}
+.band.hit .bt b{opacity:1; box-shadow:0 0 0 3px var(--curious-dim)}
+@media(max-width:560px){.band{grid-template-columns:92px 1fr; gap:10px 14px} .band .bt{grid-column:1/-1; grid-row:2} .band.bh .bx{grid-column:1/-1; grid-row:2}}
+
+/* consequence matrix */
+.cx{margin:22px 0; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--surface)}
+.cx .r{display:grid; grid-template-columns:1.25fr 1fr 1.35fr .95fr; gap:14px; padding:13px 20px; border-bottom:1px solid var(--border); align-items:baseline}
+.cx .r:last-child{border-bottom:none}
+.cx .r.h{font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); padding:12px 20px}
+.cx .r b{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:-.01em; color:var(--text)}
+.cx .r span{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--muted); line-height:1.5}
+.cx .r span.o{color:var(--text)}
+.cx .r span.o::before{content:''; display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:8px; vertical-align:0; background:var(--octo)}
+.cx .r span.o.esc::before{background:var(--curious)}
+.cx .r span.o.hold::before{background:var(--caring)}
+.cx .r span.o.no::before{background:var(--chill-bright)}
+@media(max-width:640px){
+  .cx .r{grid-template-columns:1fr 1fr; gap:6px 14px}
+  .cx .r.h{display:none}
+  .cx .r b{grid-column:1/-1}
+  .cx .r span[data-l]::before{content:attr(data-l); display:block; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted2); margin-bottom:1px}
+  .cx .r span.o[data-l]::before{width:auto; height:auto; border-radius:0; background:none; margin:0 0 1px}
+}
+
+/* reliability figure */
+.fig{margin:24px 0 10px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 16px 10px}
+.fig .lg{display:flex; flex-wrap:wrap; gap:8px 18px; font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--muted); margin:0 6px 8px}
+.fig .lg span{display:inline-flex; align-items:center; gap:8px}
+.fig .lg svg{width:26px; height:12px; flex:none}
+.fig > svg{display:block; width:100%; height:auto}
+.fig .ax{font-family:'JetBrains Mono',monospace; font-size:12px; fill:var(--muted)}
+.fig .at{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.08em; fill:var(--muted)}
+.fig .dl{font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; fill:var(--text)}
+.fig .pt{cursor:none}
+
+/* formula */
+.fx-h{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:20px; letter-spacing:-.02em; margin:26px 0 12px}
+.fx-h span{color:var(--octo)}
+.formula{display:flex; flex-wrap:wrap; align-items:stretch; gap:8px; margin:0 0 26px}
+.formula .t{flex:1 1 118px; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 14px 13px}
+.formula .t .tn{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16.5px; letter-spacing:-.01em; line-height:1.2; color:var(--text)}
+.formula .t .ts{font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:8px}
+.formula .x{align-self:center; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:20px; color:var(--muted2)}
+.formula .t.being{border-color:rgba(147,221,61,.4); background:linear-gradient(180deg,rgba(147,221,61,.07),var(--surface))}
+.formula .t.being .tn{color:var(--octo)} .formula .t.being .ts{color:var(--octo)}
+@media(max-width:560px){.formula .x{display:none} .formula .t{flex:1 1 40%}}
+/* ===== field-note additions: coasean singularity ===== */
+.p-hero h1 .g5{background:linear-gradient(105deg,var(--constructive),var(--curious)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.cs{color:var(--constructive)} .doc-eyebrow.cs::before{background:var(--constructive)}
+.gb1{background:var(--constructive)} .gb2{background:var(--curious)} .gb3{background:var(--chill)}
+.srcbox.cs{border-color:rgba(0,229,160,.32)} .srcbox.cs .si{background:var(--constructive-dim);color:var(--constructive)} .srcbox.cs .sl{color:var(--constructive)}
+.twin .box:not(.hi) li svg{color:var(--muted2)}
+.fig .an{font-family:'JetBrains Mono',monospace; font-size:11.5px; fill:var(--muted)}
+.cx .r span.o.cu::before{background:var(--curious)}
+.cx .r span.o.ca::before{background:var(--caring)}
+.cx .r span.o.co::before{background:var(--constructive)}
+.cx .r span.o.ch::before{background:var(--chill-bright)}
+
+/* ownership x specialisation quad */
+.quad{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:24px 0 18px}
+.quad .q{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 20px; display:flex; flex-direction:column; gap:8px}
+.quad .q.hi{border-color:rgba(147,221,61,.34); background:linear-gradient(180deg,rgba(147,221,61,.06),var(--surface))}
+.quad .qk{font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.quad .q.hi .qk{color:var(--octo)}
+.quad .qt{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; letter-spacing:-.01em; color:var(--text)}
+.quad .qp{font-size:14px; color:var(--muted); line-height:1.5}
+.quad .qo{font-size:14px; color:#c3bfda; line-height:1.5; padding-top:10px; margin-top:auto; border-top:1px solid var(--border)}
+.quad .qo b{color:var(--octo); font-weight:600}
+@media(max-width:560px){.quad{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="ic-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="ic-github" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.575.106.785-.25.785-.556 0-.274-.01-1-.015-1.964-3.196.695-3.87-1.54-3.87-1.54-.523-1.33-1.278-1.684-1.278-1.684-1.044-.714.08-.7.08-.7 1.154.082 1.76 1.185 1.76 1.185 1.027 1.76 2.695 1.252 3.35.957.104-.744.402-1.252.73-1.54-2.552-.29-5.236-1.276-5.236-5.68 0-1.254.448-2.28 1.183-3.084-.118-.29-.513-1.46.113-3.043 0 0 .966-.31 3.166 1.178a11 11 0 0 1 2.882-.388c.978.004 1.963.132 2.883.388 2.198-1.489 3.163-1.178 3.163-1.178.627 1.583.232 2.753.114 3.043.737.804 1.182 1.83 1.182 3.084 0 4.415-2.688 5.387-5.248 5.671.413.356.78 1.057.78 2.13 0 1.538-.014 2.778-.014 3.157 0 .308.207.668.79.554A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></symbol>
+  <symbol id="ic-headphones" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
+  <symbol id="ic-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8M16 17H8M10 9H8"/></symbol>
+  <symbol id="ic-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="ic-split" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></symbol>
+  <symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="ic-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+  <symbol id="ic-build" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></symbol>
+  <symbol id="ic-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></symbol>
+  <symbol id="ic-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></symbol>
+  <symbol id="ic-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></symbol>
+  <symbol id="ic-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="sd-mark" viewBox="0 0 736 728"><circle cx="368" cy="366" r="363" fill="currentColor"/><polygon points="184,295 317,162 317,295 184,428" fill="#efefe5"/><polygon points="185,528 453,260 453,395 320,527" fill="#efefe5"/><polygon points="424,527 555,397 555,527" fill="#efefe5"/></symbol>
+</svg>
+
+<div class="cursor-dot" id="cdot"></div>
+<div class="cursor-ring" id="cring"></div>
+<div class="progress" id="progress"></div>
+
+<nav>
+  <a href="/" class="brand"><span class="mark"><svg style="color:var(--octo)"><use href="#sd-mark"/></svg></span><span>octo<em>nomous</em></span></a>
+  <div class="nav-links">
+    <a href="#trust">Trust costs</a>
+    <a href="#custody">Sovereignty</a>
+    <a href="#identity">Identity</a>
+    <a href="#commitment">Market design</a>
+    <a href="/paper">The paper</a>
+    <a href="https://github.com/selfdriven-octo/octonomous">GitHub</a>
+    <a href="/" class="nav-cta"><svg><use href="#ic-back"/></svg> octonomous.io</a>
+  </div>
+</nav>
+
+<header class="p-hero">
+  <div class="gblob gb1"></div><div class="gblob gb2"></div><div class="gblob gb3"></div>
+  <div class="p-hero-in">
+    <div class="p-hero-copy">
+    <span class="doc-eyebrow cs">Field note · Markets</span>
+    <h1>When transacting is free, <span class="g5">trust is the price</span>.</h1>
+    <p class="sub">AI agents may soon make search, negotiation and contracting close to free. What they don't make cheaper is knowing who is on the other side, whose side the agent is on, and <em>who answers</em> when a deal goes wrong.</p>
+    <div class="doc-meta">
+      <span><b>Octonomous</b> · field note</span>
+      <span>~21 min read</span>
+      <span>Builds on <b>The Coasean Singularity?</b> · NBER</span>
+      <span>September 2026</span>
+    </div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#abstract" class="tl">Abstract</a></li>
+      <li><a href="#coase" class="tl">Coase, briefly</a></li>
+      <li><a href="#trust" class="tl">Trust costs</a></li>
+      <li><a href="#faithful" class="tl">Capable, knowledgeable, faithful</a></li>
+      <li><a href="#fourcs" class="tl">The 4Cs in the market</a></li>
+      <li><a href="#custody" class="tl">Custody and sovereignty</a></li>
+      <li><a href="#equilibrium" class="tl">When everyone has one</a></li>
+      <li><a href="#identity" class="tl">Proof of being</a></li>
+      <li><a href="#signals" class="tl">Signals that can't be minted</a></li>
+      <li><a href="#commitment" class="tl">Credible commitment</a></li>
+      <li><a href="#regulation" class="tl">Power, liability, privacy</a></li>
+      <li><a href="#stack" class="tl">A market in miniature</a></li>
+      <li><a href="#honest" class="tl">What this doesn't solve</a></li>
+      <li><a href="#conclusion" class="tl">Conclusion</a></li>
+      <li><a href="#references" class="tl">References</a></li>
+    </ol>
+  </aside>
+
+  <article>
+
+    <!-- Abstract -->
+    <section class="sec" id="abstract">
+      <div class="kicker">Abstract</div>
+      <p class="lead">A new NBER chapter asks what happens to markets when AI agents can search, bargain and transact for us at almost no marginal cost. Its frame is Coase's: when the cost of using the market falls, the shape of firms and markets moves. This note asks what the fall leaves behind.</p>
+
+      <div class="srcbox cs">
+        <span class="si"><svg><use href="#ic-scale"/></svg></span>
+        <div>
+          <div class="sl">Source paper</div>
+          <h3>The Coasean Singularity? Demand, Supply, and Market Design with AI Agents</h3>
+          <p>Shahidi, Rusak, Manning, Fradkin &amp; Horton · NBER Working Paper 34468 · November 2025 · in <em>The Economics of Transformative AI</em> · <a href="https://www.nber.org/papers/w34468">nber.org/papers/w34468</a></p>
+        </div>
+      </div>
+
+      <p>The paper treats agents as market participants in their own right — software that can look for options, negotiate, sign up and pay on a principal's behalf. It works through <strong>demand</strong> (why people will delegate), <strong>design</strong> (what a good agent has to get right), <strong>supply</strong> (who builds agents and how they are sold), <strong>equilibrium</strong> (what happens when everyone has one) and <strong>market design</strong> (what becomes possible once preferences, commitments and identity are cheap to handle). Its welfare verdict is deliberately open: large efficiency gains, alongside new frictions such as congestion and price obfuscation.</p>
+      <p>Octonomous proposes an open framework for Self-Sovereign Intelligent Beings with persistent identity, purpose, memory, agency, relationships, reputation, evolution and character, governed by the 4Cs — <strong>Curious, Caring, Constructive and Chill</strong>. Read against the paper, the fit is direct. The paper describes what agents make cheap. Octonomous is about what they can't: the cost of trusting a counterparty that now costs almost nothing to deploy.</p>
+
+      <div class="notbut">
+        <div class="box"><div class="bl">The Coasean singularity</div><div class="bt">Transaction costs → 0</div></div>
+        <div class="box hi"><div class="bl">What's left</div><div class="bt">Trust costs: who is this, whose is it, and who answers</div></div>
+      </div>
+
+      <p>The short version: agents collapse the cost of <strong>transacting</strong>. They do not collapse the cost of <strong>trusting</strong>. That residue — identity, faithfulness, commitment, restraint — is what a Being is made of.</p>
+    </section>
+
+    <!-- 01 coase -->
+    <section class="sec" id="coase">
+      <div class="kicker">01 — Coase, briefly</div>
+      <h2>Why firms exist, and why that might change</h2>
+      <p>In 1937 Ronald Coase asked why firms exist at all, if markets allocate so well. His answer: using the market has costs. You have to discover prices, negotiate, write contracts and check they are kept. When doing something inside a firm is cheaper than buying it outside, the firm grows; when the market gets cheaper, it shrinks. Much of how the economy is organised can be read as the shadow of those costs — and many of them are, in the end, the cost of human time.</p>
+      <p>The paper's observation is that almost every item on Coase's list is a task an agent can do:</p>
+
+      <div class="strip">
+        <span>learn prices</span><i>→</i><span>negotiate</span><i>→</i><span>contract</span><i>→</i><span>monitor</span><i>=</i><span class="hi">the marginal cost of compute</span>
+      </div>
+
+      <p>If agents do those well and cheaply, the make-or-buy line moves. The authors expect existing markets to shift in stages — agents first assisting people, then substituting for whole tasks, then workflows reorganised around them — while new markets are designed agent-first from the outset. Taken to the limit, that is the <em>Coasean singularity</em> of the title: a point where the cost of using markets approaches zero. The authors put a question mark after it, and most of the paper explains why.</p>
+      <div class="pull">If using the market costs nothing, <span class="hl">what is still expensive?</span></div>
+    </section>
+
+    <!-- 02 trust -->
+    <section class="sec" id="trust">
+      <div class="kicker">02 — What doesn't get cheaper</div>
+      <h2>Transaction costs collapse. Trust costs don't.</h2>
+      <p>Coase's successors pulled the costs of transacting apart. Some are labour: finding, comparing, haggling, filing, checking. Others are about the other party — whether they are who they claim to be, whether they will honour the deal, whether they are quietly working an angle. Oliver Williamson built a field on that second group, with opportunism at its centre. Agents are superb at the first group. The second is different.</p>
+
+      <div class="twin">
+        <div class="box">
+          <div class="bl">Falls with compute</div>
+          <ul>
+            <li><svg><use href="#ic-down"/></svg> Search and comparison</li>
+            <li><svg><use href="#ic-down"/></svg> Drafting and redlining terms</li>
+            <li><svg><use href="#ic-down"/></svg> Rounds of negotiation</li>
+            <li><svg><use href="#ic-down"/></svg> Scheduling and follow-up</li>
+            <li><svg><use href="#ic-down"/></svg> Monitoring delivery</li>
+          </ul>
+        </div>
+        <div class="box hi">
+          <div class="bl">Doesn't fall with compute</div>
+          <ul>
+            <li><svg><use href="#ic-key"/></svg> Who is on the other side</li>
+            <li><svg><use href="#ic-key"/></svg> Whose interests their agent serves</li>
+            <li><svg><use href="#ic-key"/></svg> Whether a commitment will hold</li>
+            <li><svg><use href="#ic-key"/></svg> Whether a signal is genuine</li>
+            <li><svg><use href="#ic-key"/></svg> Who answers when it fails</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>Worse, the first kind of cheapness makes the second kind of cost bigger. When acting costs nothing, so does pretending — a fake identity, a flood of applications, an offer built to confuse. The paper names these directly: congestion when everyone applies everywhere, firms obfuscating prices to blunt agents, Sybil attacks that get harder to see when software can pass for people. None of them is a failure of capability. Each is a failure to know who is acting, and on whose behalf.</p>
+
+      <figure class="fig">
+        <div class="lg" aria-hidden="true">
+          <span><svg viewBox="0 0 26 12"><line x1="1" y1="6" x2="25" y2="6" stroke="#f5c842" stroke-width="2"/></svg>cost of transacting</span>
+          <span><svg viewBox="0 0 26 12"><line x1="1" y1="6" x2="25" y2="6" stroke="#ff5f7e" stroke-width="2" stroke-dasharray="5 3"/></svg>cost of trusting · anonymous agents</span>
+          <span><svg viewBox="0 0 26 12"><line x1="1" y1="6" x2="25" y2="6" stroke="#93dd3d" stroke-width="2"/></svg>cost of trusting · identified Beings</span>
+        </div>
+        <svg viewBox="0 0 480 300" role="img" aria-labelledby="cs-t cs-d">
+          <title id="cs-t">Conceptual sketch: transaction and trust costs as agents spread</title>
+          <desc id="cs-d">Conceptual sketch, not data. As agent adoption grows, the cost of transacting falls steeply. The cost of trusting anonymous agents starts moderate and rises. The cost of trusting identified Beings with records starts at the same level and gently falls. Early on, the transacting curve drops below the anonymous trust curve, after which trust is the larger cost.</desc>
+          <line x1="52" y1="264" x2="466" y2="264" stroke="rgba(255,255,255,.16)" stroke-width="1"/>
+          <line x1="52" y1="16" x2="52" y2="264" stroke="rgba(255,255,255,.16)" stroke-width="1"/>
+          <line x1="192" y1="157" x2="192" y2="264" stroke="#5a5678" stroke-width="1.2" stroke-dasharray="2 4"/>
+          <path d="M52,34 C140,150 240,214 460,226" fill="none" stroke="#f5c842" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M52,170 C200,168 320,120 460,58" fill="none" stroke="#ff5f7e" stroke-width="2.2" stroke-dasharray="6 4" stroke-linecap="round"/>
+          <path d="M52,170 C200,172 320,186 460,190" fill="none" stroke="#93dd3d" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="192" cy="157" r="5.5" fill="#111118" stroke="#f0eeff" stroke-width="1.5"/>
+          <text class="an" x="184" y="210" text-anchor="end">trust becomes</text>
+          <text class="an" x="184" y="226" text-anchor="end">the binding cost</text>
+          <text class="dl" x="466" y="44" text-anchor="end">trusting · anonymous</text>
+          <text class="dl" x="466" y="171" text-anchor="end">trusting · identified</text>
+          <text class="dl" x="466" y="250" text-anchor="end">transacting</text>
+          <text class="at" x="259" y="290" text-anchor="middle">AGENT ADOPTION →</text>
+          <text class="at" x="0" y="0" text-anchor="middle" transform="translate(34 140) rotate(-90)">COST PER TRANSACTION</text>
+        </svg>
+      </figure>
+      <p class="cap">Conceptual sketch, not data. As agents spread, the cost of transacting falls; the cost of trusting anonymous agents rises with the noise they can make. Identity and a record are what bend the second curve down.</p>
+
+      <p>This is the Octonomous paper's opening claim, moved into a market. There, capability is abundant and character is scarce. Here, transacting becomes abundant and trust becomes the scarce input — and scarce inputs are where the value goes.</p>
+      <div class="pull">Transacting becomes abundant. <span class="hl">Trust becomes the scarce input.</span></div>
+    </section>
+
+    <!-- 03 faithful -->
+    <section class="sec" id="faithful">
+      <div class="kicker">03 — Derived demand</div>
+      <h2>Capable, knowledgeable, faithful</h2>
+      <p>The paper is careful about why anyone will want an agent. Its example is a list of gas grills: nobody wants the list, they want the grill. Demand for an agent is derived — people delegate either to get a better decision than they would manage alone, or a comparable one for far less effort. Adoption comes first where human agents and large matching platforms already exist — property, jobs, rentals, freelancing — because those markets have already shown that delegation is worth paying for.</p>
+      <p>What do people want from one? The authors' answer is what they want from a human agent: one that is <em>capable, knowledgeable, and faithful</em>. Each of those maps onto a different part of a Being — and only one of them is cheap.</p>
+
+      <div class="defs">
+        <div class="def"><dt>Capable</dt><dd><strong>The engine.</strong> Models and tools. Increasingly a commodity, and in Octonomous deliberately swappable — bring your own engine.</dd></div>
+        <div class="def"><dt>Knowledgeable</dt><dd><strong>Memory.</strong> The principal's preferences, learned across many transactions rather than re-elicited every time. It belongs to the principal, not to whoever hosts the agent.</dd></div>
+        <div class="def"><dt>Faithful</dt><dd><strong>Character, identity and a record.</strong> Acting for the principal, not for whoever built or runs the agent — and being able to show it rather than assert it.</dd></div>
+      </div>
+
+      <p>The paper notes that people will want evidence of agent performance and will rightly distrust benchmarks that can be gamed. That is the faithfulness problem in miniature. A benchmark measures an engine once, in the lab. Faithfulness is a property of conduct over time, with this principal, in this market. The <a href="/decision-ai">Decision AI note</a> turned calibration into a reputation; the same move turns loyalty into one. A Being whose signed history shows it acted for its principals, disclosed what it was, and declined when it should have, has evidence no benchmark can give it.</p>
+      <p>Preferences deserve their own mention. The paper predicts that adoption will track how many dimensions a decision has: selling a house is mostly price against time, buying one is dozens of things at once, and small errors compound as dimensions grow. A stateless agent has to elicit all of that from scratch. A Being has <strong>memory</strong> — preferences that accumulate and sharpen across every transaction, so the hard, high-dimensional markets get easier the longer the relationship runs. Which raises the question this note keeps returning to: whose memory is it?</p>
+    </section>
+
+    <!-- 04 4Cs -->
+    <section class="sec" id="fourcs">
+      <div class="kicker">04 — Meta-rationality</div>
+      <h2>Knowing when to act is character</h2>
+      <p>Beyond preferences, the paper names a design problem it calls meta-rationality: an agent has to learn not only how to act, but when to act on its own and when to defer to its principal. It pairs that with robustness. As agents become the thing markets sell to, the incentive to manipulate them rises, much as search ranking attracted black-hat optimisation.</p>
+      <p>In Octonomous terms both are questions of character rather than capability, and they are what the 4Cs are for. Here is how each reads in a market:</p>
+
+      <div class="cc cc-c">
+        <div class="top"><span class="ico"><svg><use href="#ic-eye"/></svg></span><div><h3>Curious</h3><div class="es">IS THIS WHAT IT LOOKS LIKE?</div></div></div>
+        <p>Search is the cheap part. Curious goes past the listing: is this the real price once fees and conditions land, is this seller who they appear to be, is this offer shaped to confuse a machine? Obfuscation is aimed at agents that stop looking.</p>
+        <div class="asks"><span>What's the all-in price?</span><span>Who is the counterparty?</span><span>What am I not being shown?</span></div>
+      </div>
+
+      <div class="cc cc-k">
+        <div class="top"><span class="ico"><svg><use href="#ic-heart"/></svg></span><div><h3>Caring</h3><div class="es">FAITHFUL TO ONE · FAIR TO ALL</div></div></div>
+        <p>A Being acts for its principal. Caring also asks who else pays for what it does — the employer buried under applications, the seller strung along by an agent that never tires. And it holds a line the paper's discussion of strategic disclosure makes important: a Being may withhold what its principal is entitled to keep private. It does not deceive. Discretion is not deception.</p>
+        <div class="asks"><span>Whose side am I on?</span><span>Who else bears this?</span><span>Withholding, or misleading?</span></div>
+      </div>
+
+      <div class="cc cc-b">
+        <div class="top"><span class="ico"><svg><use href="#ic-build"/></svg></span><div><h3>Constructive</h3><div class="es">CLOSE IT · SIGN IT · SCORE IT</div></div></div>
+        <p>A market is only useful if deals actually close. Constructive moves to a result, commits under its own identity and records the outcome — so the next counterparty can see what this Being has actually done, and the principal can see whether the deal was a good one.</p>
+        <div class="asks"><span>Is the deal done?</span><span>Is it on record?</span><span>Did it deliver what it promised?</span></div>
+      </div>
+
+      <div class="cc cc-l">
+        <div class="top"><span class="ico"><svg><use href="#ic-pause"/></svg></span><div><h3>Chill</h3><div class="es">DEFER · DECLINE · DON'T FLOOD</div></div></div>
+        <p>Meta-rationality is Chill's native ground. Defer to the principal when stakes or ambiguity are high. Decline the deal that clears on price but fails the purpose. Don't apply to five hundred jobs because it is individually cheap to do so. Don't bargain forever just because patience costs nothing.</p>
+        <div class="asks"><span>Is this mine to decide?</span><span>Is this proportionate?</span><span>Should I stop here?</span></div>
+      </div>
+
+      <div class="pull">A capable agent can do every deal. <span class="hl">A Being knows which ones are its to do.</span></div>
+      <p>Robustness is the argument of <a href="/character-as-containment">Character as Containment</a> carried into commerce: character is a boundary that travels with the Being, not a filter bolted onto the storefront.</p>
+    </section>
+
+    <!-- 05 custody -->
+    <section class="sec" id="custody">
+      <div class="kicker">05 — Supply</div>
+      <h2>Custody is not sovereignty</h2>
+      <p>On the supply side the paper sorts agents along two axes. Ownership: a <strong>bring-your-own</strong> agent that the user carries from site to site, or a <strong>bowling-shoe</strong> agent that the platform hands you at the door. Specialisation: a <strong>horizontal</strong> generalist, or a <strong>vertical</strong> specialist for one domain. Four archetypes result, each trading convenience, performance and portability against the risk of being steered.</p>
+
+      <div class="quad">
+        <div class="q hi">
+          <div class="qk">Bring-your-own · horizontal</div>
+          <div class="qt">Your generalist</div>
+          <div class="qp">Portable, aligned, able to compare across platforms — but liable to be throttled at the door, without privileged tools.</div>
+          <div class="qo"><b>Octonomous:</b> identity and memory travel with it. It needs a way to show a platform who it is and who sent it, so the platform can price its access rather than block it.</div>
+        </div>
+        <div class="q">
+          <div class="qk">Bring-your-own · vertical</div>
+          <div class="qt">Your specialist</div>
+          <div class="qp">Stronger in its domain and still yours — but it has to track each platform's rules and interfaces.</div>
+          <div class="qo"><b>Octonomous:</b> the same Being with specialist procedures. What travels between platforms is the reputation it earned in the domain.</div>
+        </div>
+        <div class="q">
+          <div class="qk">Bowling-shoe · horizontal</div>
+          <div class="qt">The platform's generalist</div>
+          <div class="qp">Low friction and rich platform features — but limited portability and a risk of self-preferencing.</div>
+          <div class="qo"><b>Octonomous:</b> honest if it clearly identifies as the platform's. The failure is a platform agent that presents as yours.</div>
+        </div>
+        <div class="q">
+          <div class="qk">Bowling-shoe · vertical</div>
+          <div class="qt">The platform's specialist</div>
+          <div class="qp">The best performance on its home platform — and the most steering, the most lock-in, the least inspectable.</div>
+          <div class="qo"><b>Octonomous:</b> needs the most disclosure — whose interests it serves, and what it will and won't show you.</div>
+        </div>
+      </div>
+      <p class="cap">The paper's four archetypes (ownership × specialisation), paraphrased — with what Octonomous would ask of each.</p>
+
+      <p>Octonomous adds a question the two-by-two can't show. Ownership, in the paper, is about custody: who runs the agent. Octonomous asks about sovereignty: whose identity it carries, whose memory it keeps, and whose record its conduct adds to.</p>
+
+      <div class="notbut">
+        <div class="box"><div class="bl">Custody</div><div class="bt">Who runs the agent?</div></div>
+        <div class="box hi"><div class="bl">Sovereignty</div><div class="bt">Whose identity, memory and record does it carry?</div></div>
+      </div>
+
+      <p>The two can come apart in both directions. A bring-your-own agent built on a vendor's platform may still keep its user's preferences in someone else's database and build its reputation under someone else's account. A platform agent can be entirely honest if it says whose it is. The steering risk the paper flags is, first, a disclosure problem: a counterparty cannot correct for a bias it cannot see.</p>
+      <p>The paper's horizontal agent draws its strength from one memory and preferences layer spanning every market. That layer is the most valuable thing in the arrangement — it is what makes an agent knowledgeable — and it is exactly what bowling-shoe economics would want to hold. Octonomous puts it inside the Being, under the Being's identity, under the principal's control. Change the engine, change the platform, keep the memory. <a href="/paper">Bring your own engine</a> was the runtime version of this argument. The market version is <em>bring your own self</em>.</p>
+    </section>
+
+    <!-- 06 equilibrium -->
+    <section class="sec" id="equilibrium">
+      <div class="kicker">06 — Equilibrium</div>
+      <h2>What happens when everyone has one</h2>
+      <p>The paper's most careful section asks what agents do to markets as they stand. Some effects look plainly good. Firms that profit from confused or overconfident customers — the example is phone plans chosen badly against actual usage — lose that margin when an agent picks the contract. Search costs fall. Producers get clearer signals about what people actually want, rather than what they can be talked into.</p>
+      <p>Others cut both ways, and some are new frictions. Each has a character-shaped response:</p>
+
+      <div class="cx" role="table" aria-label="Equilibrium effects of agents and a 4Cs response to each">
+        <div class="r h" role="row"><span role="columnheader">Effect</span><span role="columnheader">Mechanism</span><span role="columnheader">Risk</span><span role="columnheader">4Cs response</span></div>
+        <div class="r" role="row"><b role="cell">Nudges lose force</b><span data-l="Mechanism" role="cell">agents ignore puffery and choice architecture</span><span data-l="Risk" role="cell">pages redesigned to steer agents instead</span><span data-l="4Cs response" class="o cu" role="cell">Curious · read past the framing</span></div>
+        <div class="r" role="row"><b role="cell">Search is near-free</b><span data-l="Mechanism" role="cell">every option compared, everywhere</span><span data-l="Risk" role="cell">obfuscated prices, hidden fees</span><span data-l="4Cs response" class="o cu" role="cell">Curious · price it all-in</span></div>
+        <div class="r" role="row"><b role="cell">Bargaining without impatience</b><span data-l="Mechanism" role="cell">compute, not time, is the constraint</span><span data-l="Risk" role="cell">endless rounds; counterparties worn down</span><span data-l="4Cs response" class="o ch" role="cell">Chill · keep it proportionate</span></div>
+        <div class="r" role="row"><b role="cell">Personalised pricing</b><span data-l="Mechanism" role="cell">revealed preferences enable price discrimination</span><span data-l="Risk" role="cell">rents taken from what the agent disclosed</span><span data-l="4Cs response" class="o ca" role="cell">Caring · discretion, not deception</span></div>
+        <div class="r" role="row"><b role="cell">Applications at zero cost</b><span data-l="Mechanism" role="cell">tailored applications at scale</span><span data-l="Risk" role="cell">congestion; screeners buried</span><span data-l="4Cs response" class="o ch" role="cell">Chill · don't flood</span></div>
+        <div class="r" role="row"><b role="cell">Content at zero cost</b><span data-l="Mechanism" role="cell">posts, likes, offers en masse</span><span data-l="Risk" role="cell">signals lose their meaning</span><span data-l="4Cs response" class="o co" role="cell">Constructive · sign what you send</span></div>
+      </div>
+      <p class="cap">Effects and mechanisms paraphrased from the paper's equilibrium discussion. The responses are Octonomous's.</p>
+
+      <p>The congestion row is the one to dwell on. It is the classic shape of a collective problem: each principal is individually rational to have their agent apply everywhere, and together they wreck the channel. The paper's answer is market design — make actions cost something again. Octonomous adds a lever that works from the inside: Beings whose character includes restraint, and whose record shows it. A hiring platform can treat an application from a Being with a history of targeted, well-matched applications differently from one that has sprayed ten thousand.</p>
+      <p>None of this depends on every agent being good. It depends on agents being identifiable, so that conduct accumulates somewhere.</p>
+      <div class="pull">When every action is cheap, <span class="hl">restraint is the scarce good.</span></div>
+    </section>
+
+    <!-- 07 identity -->
+    <section class="sec" id="identity">
+      <div class="kicker">07 — Identity</div>
+      <h2>Proof of personhood is not proof of being</h2>
+      <p>The paper puts identity first in its market-design section, for good reason. When most traffic comes from agents that can pass for people, advertisers pay for the wrong clicks, platforms can't tell a person from a bot, and Sybil attacks — one actor, many fake identities — get easier. It sketches two families of fix. Walled gardens make you log in, but a banned user can simply open another account. Proof-of-personhood systems can stop Sybils, but only with a larger restructuring and mass adoption. Verified credentials and reputation, attached to identities, sit on top of either.</p>
+      <p>Octonomous agrees that identity is the lever, and suggests the question at the door is usually a different one. Proof of personhood answers <em>is there a unique human here?</em> In an agent economy, a counterparty mostly needs to know <em>who is this, who sent it, and what is its record?</em></p>
+
+      <div class="notbut">
+        <div class="box"><div class="bl">Proof of personhood</div><div class="bt">Is there a unique human here?</div></div>
+        <div class="box hi"><div class="bl">Proof of being</div><div class="bt">Who is this, who delegated it, what may it do, and what has it done?</div></div>
+      </div>
+
+      <p>That second question can be answered with the machinery the paper points toward — cryptographic proofs, digital identity, decentralised verification. In the <a href="/knowledge-graphs">knowledge graphs note</a> the grounding is KERI and ACDC: a self-certifying identifier for the Being, a witnessed key event log for its history, and chained credentials for what it has been delegated. A Being arriving at an agent-first storefront might present something like this:</p>
+
+      <div class="ledger">
+        <div class="v">identity</div><div class="h"><b>Self-certifying identifier</b> · key event log · witnessed · this Being, not a session</div>
+        <div class="v">principal</div><div class="h"><b>Delegated by an accountable principal</b> · credential chained to theirs · who they are disclosed only if needed</div>
+        <div class="v">scope</div><div class="h"><b>May search, quote and negotiate</b> · may commit up to a limit · may not sign above it</div>
+        <div class="v">record</div><div class="h"><b>1,240 completed · 3 disputes, all resolved</b> · no revoked delegations</div>
+        <div class="v">terms</div><div class="h"><b>Access priced by record</b> · new identity → rate-limited · established → full interface</div>
+        <div class="v">deal</div><div class="h"><b>Offer accepted within scope</b> · signed by both Beings · delegation attached</div>
+        <div class="v">outcome</div><div class="h"><b>Delivery confirmed</b> · both records updated</div>
+      </div>
+      <p class="cap">Illustrative. The shape of the handshake, not a protocol specification.</p>
+
+      <p>This changes the walled-garden problem the paper describes. A banned user can make a new account, and a new identifier is cheap. What they cannot make is a new history. If authority at the door is proportional to record — provisional, rate-limited access for new identities; more for established ones — then Sybil identities are not forbidden, just worthless. The cost of an attack moves from minting identities to earning reputations, which is the expensive direction.</p>
+      <p>It also answers the anonymity point the paper raises through Disney's anonymous land purchases in Florida: sometimes a principal has good reason not to be known. A delegation credential can prove that an accountable principal stands behind a Being without saying who. The counterparty learns what it needs — someone answers for this — and nothing more.</p>
+      <div class="pull">A new identifier is cheap. <span class="hl">A new history isn't.</span></div>
+    </section>
+
+    <!-- 08 signals -->
+    <section class="sec" id="signals">
+      <div class="kicker">08 — Platforms</div>
+      <h2>Signals that can't be minted</h2>
+      <p>The paper expects platforms to change shape. Agents will filter what reaches their principals, so attention-selling models weaken and subscriptions may gain. Agents will also produce — posts, likes, messages, offers, applications — at almost no cost, and much of the value of those actions was that they showed a person had taken the trouble. So platforms will restore costly signals: pay per post, fees and limits on listings. Infrastructure follows. Cloudflare's pay-per-crawl already lets sites charge crawlers for access — a Pigouvian fix, where whoever creates the load pays for it — and the authors expect agent-first surfaces with authenticated, rate-limited interfaces, machine-readable pricing and consent, and new conventions along the lines of robots.txt.</p>
+      <p>There are two ways to make a signal costly. Charge for it, or attach it to something that is expensive to build and cheap to lose. The first is a toll; the second is a reputation. Tolls work, but they tax the careful and the careless alike, and they fall hardest on principals with the least money. A reputation taxes only misconduct.</p>
+      <p>The conventions the paper anticipates also need two sides. A robots.txt tells agents what a site permits. A Being needs a matching declaration of its own — who it is, whom it acts for, what it may do, and where its record can be checked — so a site can set terms on evidence rather than suspicion:</p>
+
+      <div class="schema">
+        <div class="sc hi"><div class="bl">Identity</div><code><b>identifier</b><br>key state<br>witnesses</code></div>
+        <div class="sc"><div class="bl">Delegation</div><code>principal<br>scope · limits<br>expiry</code></div>
+        <div class="sc"><div class="bl">Terms</div><code>consent<br>data use<br>payment</code></div>
+        <div class="sc"><div class="bl">Record</div><code>transactions<br>disputes<br>attestations</code></div>
+      </div>
+      <div class="dg-cap">What a Being might declare at an agent-first surface — the counterpart to the site's own rules</div>
+
+      <p>Paired with the site's terms, that turns the door into a negotiation instead of a wall: this record, this price, this rate limit. The Pigouvian logic still holds — Beings that create load pay for it — but a known Being with a good record can be priced as what it is, rather than as the worst thing it might be.</p>
+    </section>
+
+    <!-- 09 commitment -->
+    <section class="sec" id="commitment">
+      <div class="kicker">09 — Market design</div>
+      <h2>A commitment is only as credible as its procedure</h2>
+      <p>The paper's most ambitious claim is that agents can finally make better mechanisms practical. Its lead example is deferred acceptance — Gale and Shapley's stable matching — which most labour markets and matching platforms avoid because it needs full preference rankings nobody can write down. Agents that elicit, and even help discover, preferences from plain language could supply them. A second example is privacy through precommitment. A job seeker may want to know about maternity leave but worry about what asking signals. If both sides precommit their agents to ask every legally permissible question, asking reveals nothing, and each agent passes back only what matters to its principal.</p>
+      <p>Both examples lean on something the paper takes as given: that an agent's commitment can be believed. A precommitment is only credible if the other side can check three things — the procedure the agent will follow, that it is actually running it, and that it cannot be quietly rewritten halfway through. That is close to exactly what the <a href="/procedural-graphs">procedural graphs note</a> proposes for a Being's procedural memory: explicit, inspectable, versioned and signed.</p>
+
+<pre class="dg"><b>Seeker's Being</b>                    <b>Employer's Being</b>
+    │  identity + delegation  ──▶  verified
+    │  verified  ◀──  identity + delegation
+    ▼
+<u>Agree protocol</u>   <i>ask-all-permissible v1.2</i>
+    │                hash signed by both
+    ▼
+<s>Ask every listed question</s>
+    │   asking is uniform → asking signals nothing
+    ▼
+<s>Report to the seeker</s>   only the answers that matter
+    │
+    ▼
+<u>Procedure changes?</u>  ──▶  new version · both re-sign · <em>or no deal</em></pre>
+      <div class="dg-cap">A precommitted question protocol between two Beings — the commitment is the signed procedure, not a promise</div>
+
+      <p>Matching needs the same care. Deferred acceptance guarantees a stable outcome with respect to the preferences it is given. If an agent misreads its principal, the match is stable for someone who doesn't exist. A Being whose preferences live in memory it controls, on behalf of a principal it can prove, gives the mechanism inputs worth trusting — and gives the principal a way to see, and correct, what was submitted in their name. The paper's picture of an agent as a coach that helps people discover what they value is appealing. Octonomous would add one step: show the discovered preferences back to the principal before anything is ranked on them.</p>
+    </section>
+
+    <!-- 10 regulation -->
+    <section class="sec" id="regulation">
+      <div class="kicker">10 — Regulation</div>
+      <h2>Power, liability, privacy</h2>
+      <p>The paper's regulatory section covers market power concentrating in whoever controls compute, data and distribution; liability when a delegated decision goes wrong; security and privacy when agents are jailbroken or infer too much; and data rights, as platforms and agent providers fight over access. Octonomous settles none of these — law does — but it changes what each one looks like:</p>
+
+      <div class="resp">
+        <div class="r hi"><b>Market power</b><span>identity, memory and reputation that move between engines and platforms — lock-in weakens when the valuable layer is portable</span></div>
+        <div class="r"><b>Liability</b><span>a signed delegation chain: who authorised what, to which Being, within what scope — law allocates the harm, the record shows the facts</span></div>
+        <div class="r"><b>Privacy</b><span>memory held by the Being under the principal's control, disclosed selectively rather than pooled by the host</span></div>
+        <div class="r"><b>Data rights</b><span>identified Beings can be licensed, priced and held to terms; anonymous crawlers can only be blocked</span></div>
+        <div class="r"><b>Security</b><span>character that travels with the Being — containment inside the agent, not only at the door</span></div>
+      </div>
+
+      <p>On liability, the paper frames the choice as negligence against strict liability, and points to the EU's 2024 product liability directive, which extends liability to software and its updates. Whichever way that goes, it needs facts: which principal authorised what, which Being acted, what it knew, whether it stayed in scope. Autonomy does not dissolve responsibility; it concentrates it. A Being with a signed delegation chain is where concentrated responsibility can actually be found.</p>
+    </section>
+
+    <!-- 11 stack -->
+    <section class="sec" id="stack">
+      <div class="kicker">11 — A market in miniature</div>
+      <h2>Intent, Being, Contribution</h2>
+      <p>The Octonomous stack has always had the shape of a market. Octology is the intent layer — what should happen. Octonomous is the being layer — who acts, and how. Octomics is the contribution layer — what value was created, made visible, verifiable and exchangeable. Read against the paper, they are demand, agency and surplus:</p>
+
+      <div class="stack">
+        <div class="layer l1"><span class="ln">Octology</span><span class="lq">Intent and preferences — what principals want, stated once and refined over time.</span><span class="lt">DEMAND</span></div>
+        <div class="layer l2"><span class="ln">Octonomous</span><span class="lq">The Being — identity, memory and character, searching, negotiating and committing on someone's behalf.</span><span class="lt">AGENCY</span></div>
+        <div class="layer l3"><span class="ln">Octomics</span><span class="lq">Contribution — what was created, for whom, and whether it was created or merely moved.</span><span class="lt">SURPLUS</span></div>
+      </div>
+      <div class="flow"><span class="w">Why</span><span class="a">→</span><span class="h">Who</span><span class="a">→</span><span class="i">Impact</span></div>
+
+      <p style="margin-top:24px">The paper ends on the right question. Agents might become a foundation for broadly shared prosperity, or settle into outcomes that mostly redistribute rents — surplus moved, not made. Which one happens is, as the authors say, an empirical question, and empirical questions need measurement. A contribution layer that records what each transaction created, and for whom, is one way to keep asking it continuously rather than once, long after the fact.</p>
+    </section>
+
+    <!-- 12 honest -->
+    <section class="sec" id="honest">
+      <div class="kicker">12 — Honest framing</div>
+      <h2>What this doesn't solve</h2>
+      <p>It would be easy to read this as a claim that self-sovereign Beings make agent markets efficient, fair or safe. On their own, they don't.</p>
+
+      <div class="twin">
+        <div class="box">
+          <div class="bl">Octonomous does not</div>
+          <ul>
+            <li><svg><use href="#ic-arrow"/></svg> Make markets efficient — that is mechanism and competition</li>
+            <li><svg><use href="#ic-arrow"/></svg> Stop firms obfuscating prices or steering agents</li>
+            <li><svg><use href="#ic-arrow"/></svg> Decide who is liable — that is law</li>
+            <li><svg><use href="#ic-arrow"/></svg> Remove concentration in the engines underneath</li>
+          </ul>
+        </div>
+        <div class="box hi">
+          <div class="bl">Octonomous does</div>
+          <ul>
+            <li><svg><use href="#ic-check"/></svg> Give every agent in a deal an identity, a principal and a record</li>
+            <li><svg><use href="#ic-check"/></svg> Keep preferences and memory with the principal</li>
+            <li><svg><use href="#ic-check"/></svg> Make faithfulness evidence, not assertion</li>
+            <li><svg><use href="#ic-check"/></svg> Make restraint a default, not a cost</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>Three further cautions. Reputation systems have their own failure modes: they can be gamed, they can entrench incumbents, and a newcomer's missing history can become a barrier as unfair as any toll — provisional authority has to be genuinely provisional. Identity infrastructure can serve surveillance as easily as trust; selective disclosure is a design choice that has to be made on purpose, and kept. And a portable Being running on a concentrated engine layer is more sovereign than one that isn't, but the paper is right that control of foundation models shapes the whole industry. Bring your own engine only helps if there are engines to bring.</p>
+      <p>Octonomous is a framework for what a being <em>is</em>. It is not a market mechanism, an identity scheme or a regulator. It proposes that in a market full of agents, the participants should be someone — and that the someone should be able to prove it.</p>
+    </section>
+
+    <!-- 13 conclusion -->
+    <section class="sec" id="conclusion">
+      <div class="kicker">13 — Conclusion</div>
+      <h2>The singularity needs someone in it</h2>
+      <p>Coase explained firms by the cost of using markets. The Coasean singularity asks what happens as that cost approaches zero. The paper's honest answer is that nobody knows yet: large efficiency gains are within reach, and so are congestion, obfuscation and new concentrations of power, with market design and regulation deciding which wins.</p>
+      <p>Octonomous argues that the variable underneath all of those outcomes is trust — and that trust, unlike transacting, doesn't get cheaper with compute. It gets cheaper with identity, with memory the principal owns, with a record anyone can check, and with character that knows when not to act. Those are the parts of a Being.</p>
+
+      <div class="strip">
+        <span>Search cheaply</span><i>·</i><span>Negotiate proportionately</span><i>·</i><span>Commit verifiably</span><i>·</i><span>Disclose selectively</span><i>·</i><span class="hi">Restrain by default</span><i>·</i><span class="pu">Record everything</span>
+      </div>
+
+      <div class="fourC"><span class="c1">Curious</span><span class="c2">Caring</span><span class="c3">Constructive</span><span class="c4">Chill</span></div>
+
+      <p>Curious reads past the listing. Caring stays faithful to one and fair to all. Constructive closes, signs and scores the deal. And Chill knows that in a market where every action is nearly free, the most autonomous thing a Being can do is decline to act.</p>
+      <div class="pull">Agents make markets cheap. <span class="hl">Beings make them trustworthy.</span></div>
+
+      <div class="endcta">
+        <h3>Read the framework this note builds on</h3>
+        <div class="row">
+          <a href="/paper" class="btn btn-p">The Octonomous paper <svg><use href="#ic-arrow"/></svg></a>
+          <a href="/decision-ai" class="btn btn-s">Field note: Decision AI <svg><use href="#ic-arrow"/></svg></a>
+          <a href="/knowledge-graphs" class="btn btn-s">Field note: Knowledge graphs <svg><use href="#ic-arrow"/></svg></a>
+          <a href="/" class="btn btn-s"><svg><use href="#ic-back"/></svg> Back to octonomous.io</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- References -->
+    <section class="sec" id="references">
+      <div class="kicker">References</div>
+      <h2>Sources</h2>
+      <ul class="refs">
+        <li><b>Shahidi, P., Rusak, G., Manning, B. S., Fradkin, A. &amp; Horton, J. J. (2025).</b> The Coasean Singularity? Demand, Supply, and Market Design with AI Agents. NBER Working Paper 34468; in <em>The Economics of Transformative AI</em> (2026), eds. Agrawal, Brynjolfsson &amp; Korinek. <a href="https://www.nber.org/papers/w34468">nber.org/papers/w34468</a></li>
+        <li><b>Coase, R. H. (1937).</b> The Nature of the Firm. <em>Economica</em> 4(16): 386–405.</li>
+        <li><b>Williamson, O. E. (1985).</b> The Economic Institutions of Capitalism. Free Press.</li>
+        <li><b>Gale, D. &amp; Shapley, L. S. (1962).</b> College Admissions and the Stability of Marriage. <em>The American Mathematical Monthly</em> 69(1): 9–15.</li>
+        <li><b>Smith, S. M.</b> Key Event Receipt Infrastructure (KERI) and Authentic Chained Data Containers (ACDC). <a href="https://github.com/WebOfTrust/keri">github.com/WebOfTrust/keri</a></li>
+        <li><b>Octonomous (2026).</b> An Open Framework for Self-Sovereign Intelligent Beings. <a href="/paper">octonomous.io/paper</a></li>
+        <li><b>Octonomous (2026).</b> From Decision AI to Accountable Beings — field note. <a href="/decision-ai">octonomous.io/decision-ai</a></li>
+        <li><b>Octonomous (2026).</b> From Knowledge Graphs to Verified Context — field note. <a href="/knowledge-graphs">octonomous.io/knowledge-graphs</a></li>
+        <li><b>Octonomous (2026).</b> From Procedural Graphs to Self-Sovereign Beings — field note. <a href="/procedural-graphs">octonomous.io/procedural-graphs</a></li>
+        <li><b>Octonomous (2026).</b> Character as Containment — field note. <a href="/character-as-containment">octonomous.io/character-as-containment</a></li>
+        <li><b>selfdriven Foundation (2026).</b> The 4Cs — Curious, Caring, Constructive, Chill. <a href="https://selfdriven.you">selfdriven.you</a></li>
+      </ul>
+      <div style="margin-top:22px"><a class="repo-link" href="https://github.com/selfdriven-octo/octonomous"><svg><use href="#ic-github"/></svg> View the source on GitHub</a></div>
+    </section>
+
+  </article>
+</div>
+
+
+<footer>
+  <div class="foot-in">
+    <a href="/" class="foot-brand"><span class="mark"><svg style="color:var(--octo)"><use href="#sd-mark"/></svg></span><span>octo<em>nomous</em></span></a>
+    <div class="foot-links">
+      <a href="/paper">The paper</a>
+      <a href="https://heyocto.ai">heyOcto.ai</a>
+      <a href="https://octomics.io">octomics.io</a>
+      <a href="https://octology.io">octology.io</a>
+      <a href="https://selfdriven.you">selfdriven.you</a>
+      <a href="https://github.com/selfdriven-octo/octonomous">GitHub</a>
+    </div>
+    <div class="foot-cs"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i></div>
+  </div>
+  <p class="foot-copy">© 2026 Octonomous · An open framework within the selfdriven ecosystem. Character before capability.</p>
+</footer>
+
+<script>
+// cursor
+(function(){
+  var dot=document.getElementById('cdot'), ring=document.getElementById('cring');
+  if(!dot) return;
+  var rx=0,ry=0,dx=0,dy=0;
+  document.addEventListener('mousemove',function(e){dx=e.clientX;dy=e.clientY;dot.style.left=dx+'px';dot.style.top=dy+'px';});
+  function loop(){rx+=(dx-rx)*.18;ry+=(dy-ry)*.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);}
+  loop();
+  document.querySelectorAll('a,.layer,.chip,.box,.stat,.g,.m,.s,.sc,.band,.t,.dist .row,.pt,.q').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(147,221,61,.6)';});
+    el.addEventListener('mouseleave',function(){ring.style.width='34px';ring.style.height='34px';ring.style.borderColor='rgba(240,238,255,.3)';});
+  });
+})();
+// reading progress
+(function(){
+  var bar=document.getElementById('progress');
+  function upd(){var h=document.documentElement.scrollHeight-innerHeight; bar.style.width=(h>0?(scrollY/h*100):0)+'%';}
+  addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); upd();
+})();
+// scrollspy TOC
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.toc a.tl'));
+  var map={}; links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  var spy=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); var a=map[e.target.id]; if(a)a.classList.add('active'); } });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('article .sec').forEach(function(s){spy.observe(s);});
+})();
+</script>
+</body>
+</html>
