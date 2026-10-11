@@ -1,0 +1,1104 @@
+---
+layout: null
+permalink: "/composers"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<link rel="shortcut icon" href="/assets/img/selfdriven-logo-round-green-transparent.png">
+<link rel="apple-touch-icon" href="/assets/img/selfdriven-logo-round-green-transparent.png" />
+<title>Agents as Composers: Verified Context, Verified Code — Octonomous field note</title>
+<meta name="description" content="How an Octonomous Being can work as a composer: writing a small, typed composition that binds a verified, validated context graph to verified, validated code controllers — checked before it runs, signed when it passes, played by code that can't improvise.">
+<meta property="og:title" content="Agents as composers. The model writes the score; verified code plays it.">
+<meta property="og:description" content="Verified context graphs, verified code controllers, and a Being that composes from both — checked before anything moves.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://octonomous.io/composers">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#09090f; --surface:#111118; --surface2:#18181f;
+  --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.14);
+  --text:#f0eeff; --muted:#7e7a9a; --muted2:#3d3a55;
+
+  --curious:#f5c842; --caring:#ff5f7e; --constructive:#00e5a0;
+  --chill:#7b6cff; --chill-bright:#9b8fff;
+  --curious-dim:rgba(245,200,66,0.13); --caring-dim:rgba(255,95,126,0.13);
+  --constructive-dim:rgba(0,229,160,0.13); --chill-dim:rgba(123,108,255,0.13);
+
+  --octo:#93dd3d; --octo-dim:rgba(147,221,61,0.13); --octo-glow:rgba(147,221,61,0.30);
+  --pill:999px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth; background:#09090f !important; background-image:linear-gradient(#09090f,#09090f) !important; scroll-padding-top:90px}
+body{
+  background:#09090f !important; background-image:linear-gradient(#09090f,#09090f) !important; color:var(--text);
+  font-family:'DM Sans',sans-serif; line-height:1.6; overflow-x:hidden; cursor:none; -webkit-font-smoothing:antialiased;
+}
+a{cursor:none; color:inherit; text-decoration:none}
+::selection{background:var(--octo); color:#06150a}
+
+/* cursor */
+.cursor-dot{position:fixed;top:0;left:0;width:8px;height:8px;border-radius:50%;background:var(--octo);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .12s ease,background .2s}
+.cursor-ring{position:fixed;top:0;left:0;width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(240,238,255,.3);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .18s ease,width .2s,height .2s,border-color .2s}
+@media (hover:none){body{cursor:auto} a{cursor:auto} .cursor-dot,.cursor-ring{display:none}}
+
+/* reading progress */
+.progress{position:fixed; top:0; left:0; height:3px; width:0%; z-index:1100; background:linear-gradient(90deg,var(--curious),var(--caring),var(--constructive),var(--chill)); transition:width .1s linear}
+
+/* nav */
+nav{position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center; justify-content:space-between; padding:16px 30px; background:rgba(9,9,15,.72); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border-bottom:1px solid var(--border)}
+.brand{display:flex; align-items:center; gap:11px; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:19px; letter-spacing:-.03em}
+.brand .mark svg{width:26px;height:26px}
+.brand em{font-style:normal; color:var(--octo)}
+.nav-links{display:flex; align-items:center; gap:26px}
+.nav-links a{font-size:14px; color:var(--muted); font-weight:500; transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:14px; padding:9px 18px; border-radius:var(--pill); background:var(--octo-dim); color:var(--octo); border:1.5px solid rgba(147,221,61,.30); transition:transform .2s,box-shadow .2s}
+.nav-cta:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(147,221,61,.18)}
+.nav-cta svg{width:13px;height:13px;vertical-align:-1px}
+@media(max-width:860px){.nav-links a:not(.nav-cta){display:none}}
+
+/* hero */
+.p-hero{padding:150px 0 60px; position:relative; overflow:hidden}
+.gblob{position:absolute; border-radius:50%; filter:blur(100px); opacity:.4; z-index:0}
+.gb1{width:420px;height:420px;background:var(--curious);top:-140px;left:-120px}
+.gb2{width:360px;height:360px;background:var(--constructive);top:-80px;right:-100px}
+.gb3{width:300px;height:300px;background:var(--octo);top:60px;left:38%;opacity:.24}
+.p-hero-in{max-width:1120px; margin:0 auto; padding:0 30px; display:grid; grid-template-columns:220px 1fr; gap:56px; position:relative; z-index:2}
+.p-hero-copy{grid-column:2; min-width:0}
+.doc-eyebrow{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--octo); display:inline-flex; align-items:center; gap:9px; margin-bottom:26px}
+.doc-eyebrow::before{content:''; width:26px; height:1px; background:var(--octo); opacity:.7}
+.p-hero h1{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; letter-spacing:-.045em; line-height:1.02; font-size:clamp(34px,6vw,60px)}
+.p-hero h1 .g{background:linear-gradient(105deg,var(--octo),var(--constructive)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.p-hero .sub{color:var(--muted); font-size:clamp(17px,2.2vw,20px); margin-top:22px; max-width:640px}
+.doc-meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:30px}
+.doc-meta span{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.06em; color:var(--muted); padding:7px 14px; border:1px solid var(--border); border-radius:var(--pill); background:var(--surface)}
+.doc-meta span b{color:var(--text); font-weight:500}
+
+/* layout */
+.layout{max-width:1120px; margin:0 auto; padding:40px 30px 40px; display:grid; grid-template-columns:220px 1fr; gap:56px; position:relative; z-index:1}
+.toc{position:sticky; top:100px; align-self:start; height:max-content}
+.toc .toc-label{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted2); margin-bottom:16px}
+.toc ol{list-style:none; counter-reset:toc; display:flex; flex-direction:column; gap:2px}
+.toc li{counter-increment:toc}
+.toc a{display:flex; gap:11px; align-items:baseline; padding:7px 0; font-size:13.5px; color:var(--muted); border-left:2px solid transparent; padding-left:14px; margin-left:-16px; transition:color .2s,border-color .2s}
+.toc a::before{content:counter(toc,decimal-leading-zero); font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--muted2); flex:none}
+.toc a:hover{color:var(--text)}
+.toc a.active{color:var(--octo); border-color:var(--octo)}
+.toc a.active::before{color:var(--octo)}
+@media(max-width:900px){.layout{grid-template-columns:1fr; gap:0} .toc{display:none} .p-hero-in{grid-template-columns:1fr} .p-hero-copy{grid-column:1}}
+
+/* article / prose */
+article{max-width:680px}
+.sec{padding:44px 0; border-top:1px solid var(--border)}
+.sec:first-child{border-top:none; padding-top:8px}
+.sec .kicker{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:14px}
+.sec h2{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; letter-spacing:-.035em; line-height:1.08; font-size:clamp(26px,4vw,38px); margin-bottom:22px}
+.sec h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; letter-spacing:-.02em; font-size:21px; margin:30px 0 10px}
+article p{color:#c9c5df; font-size:17.5px; line-height:1.72; margin-bottom:18px}
+article p.lead{font-size:20px; color:var(--text)}
+article strong{color:var(--text); font-weight:600}
+article em{font-style:italic; color:var(--text)}
+
+/* pull quote */
+.pull{margin:38px 0; padding:6px 0 6px 28px; border-left:3px solid var(--octo); font-family:'Bricolage Grotesque',sans-serif; font-weight:700; letter-spacing:-.02em; font-size:clamp(22px,3.4vw,30px); line-height:1.22; color:var(--text)}
+.pull .hl{color:var(--octo)}
+
+/* have/lack inline lists */
+.twin{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:24px 0 6px}
+.twin .box{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px 22px}
+.twin .box.hi{border-color:rgba(147,221,61,.28)}
+.twin .box .bl{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:14px}
+.twin .box.hi .bl{color:var(--octo)}
+.twin ul{list-style:none; display:flex; flex-direction:column; gap:9px}
+.twin li{font-size:15px; color:var(--muted); display:flex; gap:10px; align-items:center}
+.twin .box.hi li{color:var(--text); font-weight:500}
+.twin li svg{width:15px;height:15px;flex:none}
+@media(max-width:560px){.twin{grid-template-columns:1fr}}
+
+/* 4Cs blocks */
+.cc{border:1px solid var(--border); border-left-width:3px; border-radius:16px; background:var(--surface); padding:26px 26px; margin:16px 0}
+.cc .top{display:flex; align-items:center; gap:14px; margin-bottom:14px}
+.cc .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none}
+.cc .ico svg{width:22px;height:22px}
+.cc h3{margin:0; font-size:24px}
+.cc .es{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.08em; margin-top:2px}
+.cc p{font-size:16px; margin-bottom:14px; color:#c3bfda}
+.cc .asks{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+.cc .asks span{font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:13.5px; padding:6px 13px; border-radius:var(--pill); background:var(--surface2); border:1px solid var(--border)}
+.cc-c{border-left-color:var(--curious)} .cc-c .ico{background:var(--curious-dim);color:var(--curious)} .cc-c h3,.cc-c .es{color:var(--curious)}
+.cc-k{border-left-color:var(--caring)} .cc-k .ico{background:var(--caring-dim);color:var(--caring)} .cc-k h3,.cc-k .es{color:var(--caring)}
+.cc-b{border-left-color:var(--constructive)} .cc-b .ico{background:var(--constructive-dim);color:var(--constructive)} .cc-b h3,.cc-b .es{color:var(--constructive)}
+.cc-l{border-left-color:var(--chill)} .cc-l .ico{background:var(--chill-dim);color:var(--chill-bright)} .cc-l h3,.cc-l .es{color:var(--chill-bright)}
+
+/* anatomy list */
+.defs{display:flex; flex-direction:column; gap:2px; margin:22px 0 6px}
+.def{display:grid; grid-template-columns:150px 1fr; gap:18px; padding:15px 0; border-bottom:1px solid var(--border); align-items:baseline}
+.def:last-child{border-bottom:none}
+.def dt{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; color:var(--octo); letter-spacing:-.01em}
+.def dd{color:#c3bfda; font-size:16px}
+@media(max-width:560px){.def{grid-template-columns:1fr; gap:3px}}
+
+/* chips */
+.chips{display:flex; flex-wrap:wrap; gap:10px; margin:22px 0}
+.chip{font-family:'JetBrains Mono',monospace; font-size:13px; padding:9px 15px; border-radius:var(--pill); background:var(--surface2); border:1px solid var(--border); color:var(--text)}
+
+/* stack mini */
+.stack{display:flex; flex-direction:column; gap:10px; margin:26px 0}
+.layer{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:18px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 22px}
+.layer .ln{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:19px; letter-spacing:-.02em}
+.layer .lq{color:var(--muted); font-size:14px}
+.layer .lt{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.08em; padding:5px 12px; border-radius:var(--pill); white-space:nowrap}
+.l1{border-color:rgba(245,200,66,.3)} .l1 .ln{color:var(--curious)} .l1 .lt{background:var(--curious-dim);color:var(--curious)}
+.l2{border-color:rgba(147,221,61,.32); background:linear-gradient(180deg,rgba(147,221,61,.06),var(--surface))} .l2 .ln{color:var(--octo)} .l2 .lt{background:var(--octo-dim);color:var(--octo)}
+.l3{border-color:rgba(0,229,160,.3)} .l3 .ln{color:var(--constructive)} .l3 .lt{background:var(--constructive-dim);color:var(--constructive)}
+.flow{text-align:center; font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:20px; letter-spacing:-.02em; margin-top:6px}
+.flow .a{color:var(--muted2); margin:0 8px} .flow .w{color:var(--curious)} .flow .h{color:var(--octo)} .flow .i{color:var(--constructive)}
+@media(max-width:560px){.layer{grid-template-columns:1fr; gap:8px} .layer .lt{justify-self:start}}
+
+/* closing 4C */
+.fourC{display:flex; flex-wrap:wrap; gap:16px; margin:26px 0 4px}
+.fourC span{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:clamp(20px,3vw,30px); letter-spacing:-.03em}
+.fourC .c1{color:var(--curious)} .fourC .c2{color:var(--caring)} .fourC .c3{color:var(--constructive)} .fourC .c4{color:var(--chill-bright)}
+
+/* end cta */
+.endcta{margin:20px 0 0; padding:34px 30px; border:1px solid rgba(147,221,61,.28); border-radius:22px; background:radial-gradient(120% 120% at 0% 0%,rgba(147,221,61,.10),transparent 55%),var(--surface); text-align:center}
+.endcta h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:24px; letter-spacing:-.02em; margin-bottom:18px}
+.endcta .row{display:flex; flex-wrap:wrap; gap:12px; justify-content:center}
+.btn{display:inline-flex; align-items:center; gap:8px; font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:15px; padding:12px 22px; border-radius:var(--pill); transition:transform .2s,box-shadow .2s}
+.btn svg{width:16px;height:16px}
+.btn-p{background:var(--octo); color:#06150a} .btn-p:hover{transform:translateY(-4px); box-shadow:0 16px 40px var(--octo-glow)}
+.btn-s{background:var(--surface2); color:var(--text); border:1px solid var(--border2)} .btn-s:hover{transform:translateY(-4px)}
+
+/* footer */
+footer{border-top:1px solid var(--border); padding:56px 30px 46px; margin-top:30px}
+.foot-in{max-width:1120px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap}
+.foot-brand{display:flex; align-items:center; gap:11px; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:19px; letter-spacing:-.03em}
+.foot-brand .mark svg{width:24px;height:24px}
+.foot-brand em{font-style:normal;color:var(--octo)}
+.foot-links{display:flex; gap:22px; flex-wrap:wrap}
+.foot-links a{color:var(--muted); font-size:14px; transition:color .2s}
+.foot-links a:hover{color:var(--octo)}
+.foot-cs{display:flex; gap:7px}
+.foot-cs i{width:11px;height:11px;border-radius:50%}
+.foot-cs .c1{background:var(--curious)} .foot-cs .c2{background:var(--caring)} .foot-cs .c3{background:var(--constructive)} .foot-cs .c4{background:var(--chill)}
+.foot-copy{max-width:1120px; margin:26px auto 0; color:var(--muted); font-size:13px}
+
+/* resources: podcasts + pdfs + repo */
+.pods{display:grid; gap:14px; margin:22px 0 16px}
+.pod{background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:20px 22px}
+.pod-top{display:flex; align-items:center; gap:13px; margin-bottom:14px}
+.pod-ic{width:44px; height:44px; border-radius:12px; flex:none; display:grid; place-items:center; background:var(--octo-dim); color:var(--octo)}
+.pod-ic svg{width:22px; height:22px}
+.pod-top h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; letter-spacing:-.02em; margin:0}
+.pod-meta{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.pod audio{width:100%; height:40px}
+.docs{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0 24px}
+.doc-card{display:flex; align-items:center; gap:13px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:17px 18px; transition:transform .2s,border-color .2s}
+.doc-card:hover{transform:translateY(-4px); border-color:rgba(147,221,61,.32)}
+.doc-ic{width:40px;height:40px;border-radius:11px;flex:none;display:grid;place-items:center;background:var(--octo-dim);color:var(--octo)}
+.doc-ic svg{width:20px;height:20px}
+.doc-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;margin:0 0 2px}
+.doc-card .sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc-card .ar{margin-left:auto;color:var(--muted);flex:none}
+.doc-card .ar svg{width:16px;height:16px}
+.doc-card:hover .ar{color:var(--octo)}
+.repo-link{display:inline-flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:15px;padding:12px 20px;border-radius:var(--pill);background:var(--surface2);border:1px solid var(--border2);color:var(--text);transition:transform .2s,border-color .2s,color .2s}
+.repo-link:hover{transform:translateY(-3px);border-color:var(--octo);color:var(--octo)}
+.repo-link svg{width:18px;height:18px}
+@media(max-width:560px){.docs{grid-template-columns:1fr}}
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .6s,transform .6s cubic-bezier(.34,1.56,.64,1)}
+.reveal.vis{opacity:1; transform:translateY(0)}
+
+/* ===== field-note additions: procedural graphs ===== */
+.p-hero h1 .g2{background:linear-gradient(105deg,var(--chill-bright),var(--octo)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.fn{color:var(--chill-bright)} .doc-eyebrow.fn::before{background:var(--chill-bright)}
+.gb1{background:var(--chill)} .gb2{background:var(--octo)} .gb3{background:var(--constructive)}
+
+/* source card */
+.srcbox{display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start; background:var(--surface); border:1px solid rgba(123,108,255,.32); border-radius:18px; padding:20px 22px; margin:6px 0 26px}
+.srcbox .si{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--chill-dim);color:var(--chill-bright);flex:none}
+.srcbox .si svg{width:21px;height:21px}
+.srcbox .sl{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--chill-bright); margin-bottom:6px}
+.srcbox h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:17px; letter-spacing:-.01em; margin:0 0 4px}
+.srcbox p{font-size:14px; color:var(--muted); margin:0}
+.srcbox a{color:var(--text); border-bottom:1px solid var(--border2)} .srcbox a:hover{color:var(--octo); border-color:var(--octo)}
+
+/* vertical flow chain */
+.chain{display:flex; flex-direction:column; align-items:center; gap:0; margin:26px 0}
+.chain .n{font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.04em; color:var(--text); background:var(--surface); border:1px solid var(--border2); border-radius:var(--pill); padding:9px 18px; text-align:center; min-width:180px}
+.chain .n.hi{border-color:rgba(147,221,61,.5); color:var(--octo); background:var(--octo-dim)}
+.chain .n.pu{border-color:rgba(123,108,255,.5); color:var(--chill-bright); background:var(--chill-dim)}
+.chain .n.am{border-color:rgba(245,200,66,.45); color:var(--curious); background:var(--curious-dim)}
+.chain .n.gr{border-color:rgba(0,229,160,.45); color:var(--constructive); background:var(--constructive-dim)}
+.chain .n.rd{border-color:rgba(255,95,126,.45); color:var(--caring); background:var(--caring-dim)}
+.chain .n small{display:block; font-family:'DM Sans',sans-serif; font-size:12px; color:var(--muted); letter-spacing:0; margin-top:2px}
+.chain .a{width:1px; height:18px; background:var(--muted2); position:relative}
+.chain .a::after{content:''; position:absolute; left:50%; bottom:-1px; width:6px; height:6px; border-right:1px solid var(--muted2); border-bottom:1px solid var(--muted2); transform:translateX(-50%) rotate(45deg)}
+.chain .loop{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted2); margin-top:12px}
+
+/* horizontal step strip */
+.strip{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:22px 0; font-family:'JetBrains Mono',monospace; font-size:12.5px}
+.strip span{padding:8px 14px; border-radius:var(--pill); background:var(--surface2); border:1px solid var(--border); color:var(--text)}
+.strip i{color:var(--muted2); font-style:normal}
+.strip span.hi{color:var(--octo); border-color:rgba(147,221,61,.45); background:var(--octo-dim)}
+.strip span.pu{color:var(--chill-bright); border-color:rgba(123,108,255,.45); background:var(--chill-dim)}
+
+/* mono diagram block (ascii-ish) */
+pre.dg{font-family:'JetBrains Mono',monospace; font-size:13px; line-height:1.55; color:#c9c5df; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px 24px; margin:22px 0; overflow-x:auto; white-space:pre}
+pre.dg b{color:var(--octo); font-weight:500} pre.dg i{color:var(--chill-bright); font-style:normal} pre.dg u{color:var(--curious); text-decoration:none} pre.dg s{color:var(--constructive); text-decoration:none} pre.dg em{color:var(--muted2); font-style:normal}
+.dg-cap{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:-12px 0 24px}
+
+/* not / but */
+.notbut{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0}
+.notbut .box{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px 22px}
+.notbut .box.hi{border-color:rgba(147,221,61,.32); background:linear-gradient(180deg,rgba(147,221,61,.05),var(--surface))}
+.notbut .bl{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:10px}
+.notbut .box.hi .bl{color:var(--octo)}
+.notbut .bt{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; letter-spacing:-.01em; line-height:1.3}
+.notbut .box.hi .bt{color:var(--text)} .notbut .box:not(.hi) .bt{color:var(--muted)}
+@media(max-width:560px){.notbut{grid-template-columns:1fr}}
+
+/* memory grid */
+.mem{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:24px 0}
+.mem .m{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 16px; border-top-width:3px}
+.mem .m .mt{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:17px; letter-spacing:-.02em; margin-bottom:6px}
+.mem .m .mq{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted)}
+.mem .m1{border-top-color:var(--curious)} .mem .m1 .mt{color:var(--curious)}
+.mem .m2{border-top-color:var(--caring)} .mem .m2 .mt{color:var(--caring)}
+.mem .m3{border-top-color:var(--constructive)} .mem .m3 .mt{color:var(--constructive)}
+.mem .m4{border-top-color:var(--octo); background:linear-gradient(180deg,rgba(147,221,61,.06),var(--surface))} .mem .m4 .mt{color:var(--octo)}
+@media(max-width:700px){.mem{grid-template-columns:1fr 1fr}}
+
+/* three-way spectrum */
+.spec{display:grid; grid-template-columns:1fr 1.2fr 1fr; gap:12px; margin:24px 0; align-items:stretch}
+.spec .s{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px 18px}
+.spec .s.mid{border-color:rgba(147,221,61,.4); background:linear-gradient(180deg,rgba(147,221,61,.07),var(--surface))}
+.spec .st{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:12px}
+.spec .s.mid .st{color:var(--octo)}
+.spec ul{list-style:none; display:flex; flex-direction:column; gap:7px}
+.spec li{font-size:14px; color:var(--muted)}
+.spec .s.mid li{color:var(--text); font-weight:500}
+.spec li::before{content:'– '; color:var(--muted2)} .spec .s.mid li::before{content:'+ '; color:var(--octo)}
+@media(max-width:640px){.spec{grid-template-columns:1fr}}
+
+/* mutation ops */
+.ops{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 24px}
+.ops span{font-family:'JetBrains Mono',monospace; font-size:12.5px; padding:7px 13px; border-radius:8px; background:var(--surface2); border:1px solid var(--border); color:var(--text)}
+.ops span.add{color:var(--constructive)} .ops span.rm{color:var(--caring)} .ops span.ch{color:var(--curious)}
+
+/* gate pipeline */
+.gate{display:flex; flex-direction:column; gap:8px; margin:24px 0}
+.gate .g{display:grid; grid-template-columns:34px 1fr auto; align-items:center; gap:14px; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 18px}
+.gate .g .gn{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted2)}
+.gate .g .gt{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px; letter-spacing:-.01em}
+.gate .g .gq{font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace; white-space:nowrap}
+.gate .g.c4{border-color:rgba(255,255,255,.18); background:linear-gradient(90deg,var(--curious-dim),var(--caring-dim),var(--constructive-dim),var(--chill-dim))}
+.gate .g.c4 .gt{color:var(--text)}
+.gate .g.fin{border-color:rgba(147,221,61,.45)} .gate .g.fin .gt{color:var(--octo)}
+@media(max-width:560px){.gate .g{grid-template-columns:34px 1fr} .gate .g .gq{display:none}}
+
+/* 4C questions */
+.cq{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:22px 0}
+.cq .q{border:1px solid var(--border); border-left-width:3px; border-radius:14px; background:var(--surface); padding:16px 18px}
+.cq .q b{display:block; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:18px; letter-spacing:-.02em; margin-bottom:4px}
+.cq .q span{font-size:15px; color:#c3bfda}
+.cq .q1{border-left-color:var(--curious)} .cq .q1 b{color:var(--curious)}
+.cq .q2{border-left-color:var(--caring)} .cq .q2 b{color:var(--caring)}
+.cq .q3{border-left-color:var(--constructive)} .cq .q3 b{color:var(--constructive)}
+.cq .q4{border-left-color:var(--chill)} .cq .q4 b{color:var(--chill-bright)}
+@media(max-width:560px){.cq{grid-template-columns:1fr}}
+
+/* version ledger */
+.ledger{display:grid; grid-template-columns:auto 1fr; gap:0 18px; margin:22px 0; align-items:stretch}
+.ledger .v{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--octo); padding:12px 0; position:relative; padding-left:22px}
+.ledger .v::before{content:''; position:absolute; left:0; top:18px; width:9px; height:9px; border-radius:50%; background:var(--octo); box-shadow:0 0 0 4px var(--octo-dim)}
+.ledger .v::after{content:''; position:absolute; left:4px; top:30px; bottom:-12px; width:1px; background:var(--muted2)}
+.ledger .v:last-of-type::after{display:none}
+.ledger .h{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); padding:12px 0}
+.ledger .h b{color:var(--text); font-weight:500}
+.ledger .v.rb{color:var(--caring)} .ledger .v.rb::before{background:var(--caring); box-shadow:0 0 0 4px var(--caring-dim)}
+
+/* rates of change */
+.rates{display:flex; flex-direction:column; gap:6px; margin:24px 0}
+.rate{display:grid; grid-template-columns:130px 1fr auto; align-items:center; gap:14px; font-size:14px}
+.rate .rl{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15px; letter-spacing:-.01em}
+.rate .rb{height:10px; border-radius:999px; background:var(--surface2); border:1px solid var(--border); overflow:hidden}
+.rate .rb i{display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--chill),var(--octo))}
+.rate .rt{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); white-space:nowrap}
+.rate.pg .rl{color:var(--octo)}
+@media(max-width:560px){.rate{grid-template-columns:100px 1fr} .rate .rt{display:none}}
+
+/* stats */
+.stats{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:24px 0}
+.stat{background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:22px 20px}
+.stat .sn{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:clamp(30px,5vw,44px); letter-spacing:-.04em; line-height:1; color:var(--octo)}
+.stat .sn small{font-size:.45em; color:var(--muted); letter-spacing:0; margin-left:4px}
+.stat .sd{font-size:13.5px; color:var(--muted); margin-top:10px}
+.stat.neg .sn{color:var(--caring)}
+@media(max-width:640px){.stats{grid-template-columns:1fr}}
+
+/* responsibilities */
+.resp{display:grid; grid-template-columns:1fr; gap:0; margin:22px 0; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--surface)}
+.resp .r{display:grid; grid-template-columns:170px 1fr; gap:16px; padding:12px 20px; border-bottom:1px solid var(--border); align-items:baseline}
+.resp .r:last-child{border-bottom:none}
+.resp .r b{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:-.01em; color:var(--text)}
+.resp .r span{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--muted)}
+.resp .r.hi{background:rgba(147,221,61,.06)} .resp .r.hi b{color:var(--octo)}
+@media(max-width:560px){.resp .r{grid-template-columns:1fr; gap:2px}}
+
+/* OPG schema */
+.schema{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0}
+.schema .sc{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px 22px}
+.schema .sc.hi{border-color:rgba(147,221,61,.36)}
+.schema .bl{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:12px}
+.schema .sc.hi .bl{color:var(--octo)}
+.schema code{display:block; font-family:'JetBrains Mono',monospace; font-size:13px; line-height:1.8; color:#c9c5df}
+.schema .sc.hi code b{color:var(--octo); font-weight:500}
+@media(max-width:560px){.schema{grid-template-columns:1fr}}
+
+/* references */
+.refs{list-style:none; display:flex; flex-direction:column; gap:12px; margin:18px 0 6px}
+.refs li{font-size:14.5px; color:var(--muted); padding-left:18px; position:relative; line-height:1.55}
+.refs li::before{content:'—'; position:absolute; left:0; color:var(--muted2)}
+.refs li b{color:var(--text); font-weight:600}
+.refs li a{color:var(--octo); border-bottom:1px solid rgba(147,221,61,.3)}
+
+/* ===== field-note additions: physical reality ===== */
+.p-hero h1 .g3{background:linear-gradient(105deg,var(--octo),var(--constructive)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.pr{color:var(--octo)} .doc-eyebrow.pr::before{background:var(--octo)}
+.gb1{background:var(--constructive)} .gb2{background:var(--curious)} .gb3{background:var(--octo)}
+.twin li svg{color:var(--octo)}
+
+/* ===== field-note additions: decision ai ===== */
+article{min-width:0} /* stop pre.dg min-content widening the 1fr grid column on mobile */
+.srcbox a{overflow-wrap:anywhere}
+.p-hero h1 .g4{background:linear-gradient(105deg,var(--curious),var(--octo)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.da{color:var(--curious)} .doc-eyebrow.da::before{background:var(--curious)}
+.gb1{background:var(--curious)} .gb2{background:var(--chill)} .gb3{background:var(--octo)}
+.srcbox.da{border-color:rgba(245,200,66,.32)} .srcbox.da .si{background:var(--curious-dim);color:var(--curious)} .srcbox.da .sl{color:var(--curious)}
+.sec h2 a, article p a{color:var(--text); border-bottom:1px solid rgba(147,221,61,.35); transition:color .2s,border-color .2s}
+article p a:hover{color:var(--octo); border-color:var(--octo)}
+.l4{border-color:rgba(123,108,255,.34)} .l4 .ln{color:var(--chill-bright)} .l4 .lt{background:var(--chill-dim);color:var(--chill-bright)}
+.cap{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:-8px 0 24px; line-height:1.6}
+
+/* decision state distribution */
+.dist{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 22px 20px; margin:22px 0; display:flex; flex-direction:column; gap:11px}
+.dist .dh{display:flex; justify-content:space-between; gap:12px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:2px}
+.dist .row{display:grid; grid-template-columns:96px 1fr 56px; align-items:center; gap:14px}
+.dist .ol{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--muted)}
+.dist .bar{height:12px; border-radius:999px; background:var(--surface2); border:1px solid var(--border); overflow:hidden}
+.dist .bar i{display:block; height:100%; border-radius:999px; background:var(--muted2)}
+.dist .pv{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--muted); text-align:right}
+.dist .row.top .ol,.dist .row.top .pv{color:var(--text)}
+.dist .row.top .bar i{background:linear-gradient(90deg,var(--curious),var(--octo))}
+.dist .row.dis .bar i{background:var(--caring)}
+.dist .row.dis .ol,.dist .row.dis .pv{color:var(--text)}
+.dist .tag{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; padding:3px 8px; border-radius:var(--pill); background:var(--caring-dim); color:var(--caring); margin-left:8px; vertical-align:1px}
+@media(max-width:560px){.dist .row{grid-template-columns:78px 1fr 46px; gap:10px} .dist .tag{display:none}}
+
+/* authority bands */
+.bands{margin:22px 0; background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow:hidden}
+.band{display:grid; grid-template-columns:104px 1fr 1.05fr; gap:18px; align-items:center; padding:14px 20px; border-bottom:1px solid var(--border)}
+.band:last-child{border-bottom:none}
+.band.bh{padding:12px 20px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.band.bh .mk{color:var(--curious)}
+.band .br{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--muted); white-space:nowrap}
+.band .bt{position:relative; height:10px; border-radius:999px; background:var(--surface2); border:1px solid var(--border)}
+.band .bt i{position:absolute; top:-1px; bottom:-1px; border-radius:999px; background:var(--muted2); min-width:6px}
+.band .bt b{position:absolute; top:-7px; bottom:-7px; left:71%; width:2px; margin-left:-1px; border-radius:2px; background:var(--curious); opacity:.45}
+.band .ba{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:-.01em; color:var(--muted)}
+.band.hit{background:linear-gradient(90deg,rgba(245,200,66,.08),transparent)}
+.band.hit .br{color:var(--text)} .band.hit .ba{color:var(--text)}
+.band.hit .bt i{background:linear-gradient(90deg,var(--curious),var(--octo))}
+.band.hit .bt b{opacity:1; box-shadow:0 0 0 3px var(--curious-dim)}
+@media(max-width:560px){.band{grid-template-columns:92px 1fr; gap:10px 14px} .band .bt{grid-column:1/-1; grid-row:2} .band.bh .bx{grid-column:1/-1; grid-row:2}}
+
+/* consequence matrix */
+.cx{margin:22px 0; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--surface)}
+.cx .r{display:grid; grid-template-columns:1.25fr 1fr 1.35fr .95fr; gap:14px; padding:13px 20px; border-bottom:1px solid var(--border); align-items:baseline}
+.cx .r:last-child{border-bottom:none}
+.cx .r.h{font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); padding:12px 20px}
+.cx .r b{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:-.01em; color:var(--text)}
+.cx .r span{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--muted); line-height:1.5}
+.cx .r span.o{color:var(--text)}
+.cx .r span.o::before{content:''; display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:8px; vertical-align:0; background:var(--octo)}
+.cx .r span.o.esc::before{background:var(--curious)}
+.cx .r span.o.hold::before{background:var(--caring)}
+.cx .r span.o.no::before{background:var(--chill-bright)}
+@media(max-width:640px){
+  .cx .r{grid-template-columns:1fr 1fr; gap:6px 14px}
+  .cx .r.h{display:none}
+  .cx .r b{grid-column:1/-1}
+  .cx .r span[data-l]::before{content:attr(data-l); display:block; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted2); margin-bottom:1px}
+  .cx .r span.o[data-l]::before{width:auto; height:auto; border-radius:0; background:none; margin:0 0 1px}
+}
+
+/* reliability figure */
+.fig{margin:24px 0 10px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 16px 10px}
+.fig .lg{display:flex; flex-wrap:wrap; gap:8px 18px; font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--muted); margin:0 6px 8px}
+.fig .lg span{display:inline-flex; align-items:center; gap:8px}
+.fig .lg svg{width:26px; height:12px; flex:none}
+.fig > svg{display:block; width:100%; height:auto}
+.fig .ax{font-family:'JetBrains Mono',monospace; font-size:12px; fill:var(--muted)}
+.fig .at{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.08em; fill:var(--muted)}
+.fig .dl{font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; fill:var(--text)}
+.fig .pt{cursor:none}
+
+/* formula */
+.fx-h{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:20px; letter-spacing:-.02em; margin:26px 0 12px}
+.fx-h span{color:var(--octo)}
+.formula{display:flex; flex-wrap:wrap; align-items:stretch; gap:8px; margin:0 0 26px}
+.formula .t{flex:1 1 118px; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 14px 13px}
+.formula .t .tn{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16.5px; letter-spacing:-.01em; line-height:1.2; color:var(--text)}
+.formula .t .ts{font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:8px}
+.formula .x{align-self:center; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:20px; color:var(--muted2)}
+.formula .t.being{border-color:rgba(147,221,61,.4); background:linear-gradient(180deg,rgba(147,221,61,.07),var(--surface))}
+.formula .t.being .tn{color:var(--octo)} .formula .t.being .ts{color:var(--octo)}
+@media(max-width:560px){.formula .x{display:none} .formula .t{flex:1 1 40%}}
+
+
+/* ===== field-note additions: composers ===== */
+article{min-width:0}
+.p-hero h1 .g8{background:linear-gradient(105deg,var(--curious),var(--octo) 50%,var(--constructive)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.cp{color:var(--constructive)} .doc-eyebrow.cp::before{background:var(--constructive)}
+.gb1{background:var(--constructive)} .gb2{background:var(--chill)} .gb3{background:var(--curious)}
+.twin li svg{color:var(--octo)}
+.twin .box:not(.hi) li svg{color:var(--muted2)}
+.strip span.am{color:var(--curious); border-color:rgba(245,200,66,.45); background:var(--curious-dim)}
+.strip span.gr{color:var(--constructive); border-color:rgba(0,229,160,.45); background:var(--constructive-dim)}
+.strip span.rd{color:var(--caring); border-color:rgba(255,95,126,.45); background:var(--caring-dim)}
+.def dt.pu{color:var(--chill-bright)} .def dt.am{color:var(--curious)} .def dt.gr{color:var(--constructive)} .def dt.rd{color:var(--caring)}
+.ops span.ok{color:var(--constructive)} .ops span.no{color:var(--caring)} .ops span.ask{color:var(--curious)} .ops span.ai{color:var(--chill-bright)}
+article p code{font-family:'JetBrains Mono',monospace; font-size:.84em; padding:2px 7px; border-radius:6px; background:var(--surface2); border:1px solid var(--border); color:var(--text); white-space:nowrap}
+pre.dg .x{color:var(--caring)}
+pre.dg .k{color:var(--muted)}
+pre.dg em{color:var(--muted)}
+.ledger .v.last::after{display:none}
+
+/* verified / validated definition cards */
+.vx{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:24px 0}
+.vx .v{background:var(--surface); border:1px solid var(--border); border-top-width:3px; border-radius:16px; padding:22px 22px 20px}
+.vx .v.vf{border-top-color:var(--chill-bright)} .vx .v.vd{border-top-color:var(--constructive)}
+.vx .w{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:28px; letter-spacing:-.035em; line-height:1}
+.vx .vf .w{color:var(--chill-bright)} .vx .vd .w{color:var(--constructive)}
+.vx .q{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:17px; letter-spacing:-.01em; line-height:1.3; color:var(--text); margin:12px 0 14px}
+.vx ul{list-style:none; display:flex; flex-direction:column; gap:7px}
+.vx li{font-size:14.5px; color:var(--muted); padding-left:16px; position:relative; line-height:1.45}
+.vx li::before{content:''; position:absolute; left:0; top:.55em; width:6px; height:6px; border-radius:50%}
+.vx .vf li::before{background:var(--chill-bright)} .vx .vd li::before{background:var(--constructive)}
+@media(max-width:560px){.vx{grid-template-columns:1fr}}
+
+/* context / code x verified / validated matrix */
+.vv{margin:22px 0; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--surface)}
+.vv .r{display:grid; grid-template-columns:88px 1fr 1fr; gap:18px; padding:16px 20px; border-bottom:1px solid var(--border); align-items:start}
+.vv .r:last-child{border-bottom:none}
+.vv .r.h{padding:12px 20px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.vv .r.h .vf{color:var(--chill-bright); padding-left:14px} .vv .r.h .vd{color:var(--constructive); padding-left:14px}
+.vv .r b{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:18px; letter-spacing:-.02em; color:var(--text)}
+.vv .r ul{list-style:none; display:flex; flex-direction:column; gap:6px}
+.vv .r li{font-size:14px; color:#c3bfda; line-height:1.45}
+.vv .r .c{border-left:2px solid; padding-left:12px}
+.vv .r .c.vf{border-color:rgba(155,143,255,.5)} .vv .r .c.vd{border-color:rgba(0,229,160,.5)}
+@media(max-width:640px){
+  .vv .r{grid-template-columns:1fr; gap:12px}
+  .vv .r.h{display:none}
+  .vv .r .c::before{content:attr(data-l); display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:5px}
+  .vv .r .c.vf::before{color:var(--chill-bright)} .vv .r .c.vd::before{color:var(--constructive)}
+}
+
+/* gate qualifiers */
+.gate .g .gq.gen{color:var(--curious)} .gate .g .gq.vf{color:var(--chill-bright)} .gate .g .gq.vd{color:var(--constructive)} .gate .g .gq.hu{color:var(--caring)}
+
+/* four artefacts */
+.mem .m5{border-top-color:var(--chill)} .mem .m5 .mt{color:var(--chill-bright)}
+.mem .m .md{font-size:13px; color:#c3bfda; margin-top:10px; line-height:1.45}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="ic-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="ic-github" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.575.106.785-.25.785-.556 0-.274-.01-1-.015-1.964-3.196.695-3.87-1.54-3.87-1.54-.523-1.33-1.278-1.684-1.278-1.684-1.044-.714.08-.7.08-.7 1.154.082 1.76 1.185 1.76 1.185 1.027 1.76 2.695 1.252 3.35.957.104-.744.402-1.252.73-1.54-2.552-.29-5.236-1.276-5.236-5.68 0-1.254.448-2.28 1.183-3.084-.118-.29-.513-1.46.113-3.043 0 0 .966-.31 3.166 1.178a11 11 0 0 1 2.882-.388c.978.004 1.963.132 2.883.388 2.198-1.489 3.163-1.178 3.163-1.178.627 1.583.232 2.753.114 3.043.737.804 1.182 1.83 1.182 3.084 0 4.415-2.688 5.387-5.248 5.671.413.356.78 1.057.78 2.13 0 1.538-.014 2.778-.014 3.157 0 .308.207.668.79.554A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></symbol>
+  <symbol id="ic-headphones" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
+  <symbol id="ic-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8M16 17H8M10 9H8"/></symbol>
+  <symbol id="ic-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="ic-split" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></symbol>
+  <symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="ic-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+  <symbol id="ic-build" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></symbol>
+  <symbol id="ic-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></symbol>
+  <symbol id="ic-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="ic-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></symbol>
+  <symbol id="sd-mark" viewBox="0 0 736 728"><circle cx="368" cy="366" r="363" fill="currentColor"/><polygon points="184,295 317,162 317,295 184,428" fill="#efefe5"/><polygon points="185,528 453,260 453,395 320,527" fill="#efefe5"/><polygon points="424,527 555,397 555,527" fill="#efefe5"/></symbol>
+</svg>
+
+<div class="cursor-dot" id="cdot"></div>
+<div class="cursor-ring" id="cring"></div>
+<div class="progress" id="progress"></div>
+
+<nav>
+  <a href="/" class="brand"><span class="mark"><svg style="color:var(--octo)"><use href="#sd-mark"/></svg></span><span>octo<em>nomous</em></span></a>
+  <div class="nav-links">
+    <a href="#verified-validated">Verified vs validated</a>
+    <a href="#controllers">Controllers</a>
+    <a href="#composition">The score</a>
+    <a href="#runtime">In the runtime</a>
+    <a href="/paper">The paper</a>
+    <a href="https://github.com/selfdriven-octo/octonomous">GitHub</a>
+    <a href="/" class="nav-cta"><svg><use href="#ic-back"/></svg> octonomous.io</a>
+  </div>
+</nav>
+
+<header class="p-hero">
+  <div class="gblob gb1"></div><div class="gblob gb2"></div><div class="gblob gb3"></div>
+  <div class="p-hero-in">
+    <div class="p-hero-copy">
+    <span class="doc-eyebrow cp">Field note · Runtime pattern</span>
+    <h1>Agents as <span class="g8">composers</span>.</h1>
+    <p class="sub">The model writes the score; verified code plays it. How a Being can compose from a verified, validated context graph and a library of verified, validated code controllers — so the part that improvises is <em>never the part that touches the world</em>.</p>
+    <div class="doc-meta">
+      <span><b>Octonomous</b> · field note</span>
+      <span>~15 min read</span>
+      <span>Completes <b>Procedural Graphs</b> + <b>Verified Context</b></span>
+      <span>October 2026</span>
+    </div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#abstract" class="tl">Abstract</a></li>
+      <li><a href="#improvising" class="tl">Improvising in production</a></li>
+      <li><a href="#verified-validated" class="tl">Verified ≠ validated</a></li>
+      <li><a href="#context" class="tl">Verified context</a></li>
+      <li><a href="#controllers" class="tl">Code controllers</a></li>
+      <li><a href="#composition" class="tl">The score</a></li>
+      <li><a href="#checks" class="tl">Compose, check, play</a></li>
+      <li><a href="#uncertainty" class="tl">Where uncertainty lives</a></li>
+      <li><a href="#constitutional" class="tl">Constitutional composition</a></li>
+      <li><a href="#gaps" class="tl">When no controller fits</a></li>
+      <li><a href="#artefacts" class="tl">Four artefacts, one Being</a></li>
+      <li><a href="#runtime" class="tl">Inside the lab runtime</a></li>
+      <li><a href="#grounding" class="tl">Buildable now</a></li>
+      <li><a href="#honest" class="tl">What this doesn't claim</a></li>
+      <li><a href="#conclusion" class="tl">Conclusion</a></li>
+      <li><a href="#references" class="tl">References</a></li>
+    </ol>
+  </aside>
+
+  <article>
+
+    <!-- Abstract -->
+    <section class="sec" id="abstract">
+      <div class="kicker">Abstract</div>
+      <p class="lead">Most agents improvise. They choose a step, write its arguments — sometimes write the code itself — run it, and choose again. The plan only exists once it has been performed.</p>
+      <p>The <a href="/procedural-graphs">procedural graph</a> and <a href="/knowledge-graphs">verified context</a> field notes gave an Octonomous Being two explicit memories: how it has learned to act, and what it believes and why. This note adds the part that touches the world — and changes the Being's role in using it.</p>
+      <p>It proposes a library of <strong>code controllers</strong>: small, deterministic programs whose identity is verified and whose behaviour is validated. And it proposes a Being that works as a <strong>composer</strong>. Instead of performing each step, the Being writes a composition — a short, typed score that binds verified context to verified controllers. The score is checked before anything moves, signed when it passes, and played by code that cannot improvise.</p>
+
+      <div class="notbut">
+        <div class="box"><div class="bl">Not</div><div class="bt">LLM + tools + whatever code it writes this time</div></div>
+        <div class="box hi"><div class="bl">But</div><div class="bt">Identity + Purpose + Character + Verified Context + Procedural Graph + Composition + Verified Controllers + Accountability</div></div>
+      </div>
+
+      <div class="pull">The model writes the score. <span class="hl">Verified code plays it.</span></div>
+    </section>
+
+    <!-- 01 improvising -->
+    <section class="sec" id="improvising">
+      <div class="kicker">01 — The problem with today's agents</div>
+      <h2>Composing and performing in the same breath</h2>
+      <p>Most agent loops interleave deciding and doing.</p>
+
+      <div class="chain">
+        <div class="n">objective</div><div class="a"></div>
+        <div class="n am">model picks a tool</div><div class="a"></div>
+        <div class="n am">model writes the arguments<small>or writes the code</small></div><div class="a"></div>
+        <div class="n rd">it runs</div><div class="a"></div>
+        <div class="n">result appended to context</div><div class="a"></div>
+        <div class="n am">model picks again</div>
+        <div class="loop">↺ the plan is discovered by running it</div>
+      </div>
+
+      <p>Two patterns dominate. In <em>tool calling</em>, the model chooses a function and fills its arguments one step at a time, reacting to each result. In <em>code generation</em>, the model writes a program and a sandbox runs it. Both are capable, and both share a property that matters more the longer an agent lives: there is no moment between deciding and doing when the whole plan exists and can be checked. Each step is committed before the next one is known.</p>
+      <p>Three failures follow.</p>
+
+      <div class="defs">
+        <div class="def"><dt class="rd">Unchecked plans</dt><dd>The sequence is only visible as a whole after it has run. Mistakes surface as side-effects, not as review comments.</dd></div>
+        <div class="def"><dt class="am">Unknown code</dt><dd>Generated code is new on every run. A named tool can change behind its name. Nothing ties what ran to what was trusted.</dd></div>
+        <div class="def"><dt class="pu">Unweighted inputs</dt><dd>Arguments come from whatever was in the context window. A signed credential and a pasted email arrive as the same kind of text.</dd></div>
+      </div>
+
+      <p>None of these is fixed by a better model. A more capable improviser is still improvising — in production, where every wrong note is heard.</p>
+      <div class="pull">An improvising agent can be brilliant. <span class="hl">It just can't be checked before it plays.</span></div>
+    </section>
+
+    <!-- 02 verified vs validated -->
+    <section class="sec" id="verified-validated">
+      <div class="kicker">02 — Two words, not one</div>
+      <h2>Verified is not validated</h2>
+      <p>The two words are often used as if they were one. This note keeps them apart, because they answer different questions, fail in different ways and are checked by different means.</p>
+
+      <div class="vx">
+        <div class="v vf">
+          <div class="w">Verified</div>
+          <div class="q">Is it what it claims to be, from whom it claims?</div>
+          <ul>
+            <li>Identity, integrity, provenance</li>
+            <li>Checked against signatures and digests</li>
+            <li>Yes or no — checkable by anyone, any time</li>
+            <li>Holds until a key or release is revoked</li>
+          </ul>
+        </div>
+        <div class="v vd">
+          <div class="w">Validated</div>
+          <div class="q">Is it fit for this use, here and now?</div>
+          <ul>
+            <li>Correctness, consistency, currency, scope</li>
+            <li>Checked against evidence — tests, contracts, held beliefs</li>
+            <li>A judgement against a standard</li>
+            <li>True today, possibly not tomorrow</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>A signed controller with a bug is verified and not validated. A well-tested controller of unknown origin is validated and not verified. A credential from a trusted issuer that expired last month was verified, and is no longer valid. A Being needs both checks, on both sides of what it composes.</p>
+
+      <div class="vv" role="table" aria-label="Verified and validated, for context and for code">
+        <div class="r h" role="row"><span role="columnheader"></span><span class="vf" role="columnheader">Verified</span><span class="vd" role="columnheader">Validated</span></div>
+        <div class="r" role="row">
+          <b role="rowheader">Context</b>
+          <div class="c vf" data-l="Verified" role="cell"><ul><li>Claim signed by its source</li><li>Issuer's identifier known</li><li>Signature checks</li><li>Not revoked</li></ul></div>
+          <div class="c vd" data-l="Validated" role="cell"><ul><li>Consistent with what is already held</li><li>Inside its validity window</li><li>Confident enough for this condition</li><li>Held for a purpose</li></ul></div>
+        </div>
+        <div class="r" role="row">
+          <b role="rowheader">Code</b>
+          <div class="c vf" data-l="Verified" role="cell"><ul><li>Content digest matches the signed release</li><li>Author and reviewers known</li><li>Build reproducible</li><li>Not revoked</li></ul></div>
+          <div class="c vd" data-l="Validated" role="cell"><ul><li>Input and output contracts hold</li><li>Pre- and postconditions declared</li><li>Validation suite passes</li><li>Effects observed in a sandbox</li></ul></div>
+        </div>
+      </div>
+      <p class="cap">Verification answers who and what. Validation answers whether, and for what.</p>
+    </section>
+
+    <!-- 03 context -->
+    <section class="sec" id="context">
+      <div class="kicker">03 — Verified context</div>
+      <h2>The facts a score depends on</h2>
+      <p>The <a href="/knowledge-graphs">verified context field note</a> turned every edge of a Being's knowledge graph into a claim, with a source, evidence, a confidence, a signature and a validity window. That note asked how a Being should hold beliefs. Composition asks how it should use them.</p>
+      <p>In a composition, an input is never free text. It is bound to a context edge by that edge's identifier, and it carries the edge's provenance with it. A controller's preconditions are queries against the same graph. To continue the example from the companion notes — a member asks for money to repair the community hall's switchboard:</p>
+
+<pre class="dg"><b>step</b>      <s>Disburse</s><em>@9c41…</em>
+<b>payee</b>     ← <u>Vendor ─account_for→ Account</u>
+          <em>source</em> bank <em>· confidence</em> high <em>· verified_by</em> bank <b>✓</b>
+<b>amount</b>    ← <u>Quote ─total→ 1,840.00</u>
+          <em>source</em> vendor <em>· verified_by</em> vendor <b>✓</b>
+<b>approval</b>  ← <u>Request ─approved_by→ Treasurer</u>
+          <em>valid_until</em> 31 Oct <b>✓</b>
+<b>pre</b>       <u>Member ─in_good_standing→ Community</u>
+          <em>needs</em> ≥ high <b>✓</b></pre>
+      <p class="dg-cap">One step's bindings · illustrative identifiers and values</p>
+
+      <p>Binding is what defends against the commonest failure in agent systems: the right tool called with the wrong facts. An instruction hidden in an email can still put a claim into the graph — but it arrives as a self-asserted, low-confidence edge, and a precondition that requires a verified issuer won't bind to it. That doesn't make a Being immune to manipulation. It makes the origin of every argument visible, and lets a rule refuse the ones it can't trace.</p>
+    </section>
+
+    <!-- 04 controllers -->
+    <section class="sec" id="controllers">
+      <div class="kicker">04 — Code controllers</div>
+      <h2>Small programs that can't improvise</h2>
+      <p>A <strong>controller</strong> is a small piece of deterministic code with a declared contract: what it accepts, what it returns, what must be true before it runs, what must be true after, and what it changes in the world. It is published under a digest of its own content and signed by the identities that wrote, reviewed and tested it.</p>
+      <p>The name is deliberate. A controller controls an effect — a write, a message, a transfer, a schedule. Nothing in it is generated when it runs. The intelligence isn't in the controller; the controller is what the intelligence is permitted to use.</p>
+
+      <div class="schema">
+        <div class="sc">
+          <div class="bl">A tool, as most agents see it</div>
+          <code>name<br>description<br>input schema<br>handler</code>
+        </div>
+        <div class="sc hi">
+          <div class="bl">Octonomous controller</div>
+          <code>name · version<br><b>id</b> · content digest<br><b>author</b> · identifier<br><b>signed_by</b> · review, release<br>inputs · outputs · schemas<br><b>pre</b> · context queries<br><b>post</b> · checked every run<br><b>effects</b><br><b>compensates</b> · undo, if any<br><b>validation</b> · suite digest, results<br><b>capability</b> · authority needed<br><b>status</b> · active · revoked</code>
+        </div>
+      </div>
+
+      <p>Of these, <em>effects</em> matters most. Once every controller declares what it touches, a Being's authority can attach to the class of effect rather than to a list of tool names:</p>
+      <div class="ops">
+        <span class="ok">read</span><span class="ask">write</span><span class="ai">external</span><span class="no">irreversible</span>
+      </div>
+      <p>Read freely. Write within scope. Act externally with a record. Do anything irreversible only with a principal or a quorum. This is the <a href="/decision-ai#authority">decision AI note's</a> principle — authority proportional to justified confidence and to what happens if it's wrong — attached to something a runtime can actually check.</p>
+    </section>
+
+    <!-- 05 composition -->
+    <section class="sec" id="composition">
+      <div class="kicker">05 — The composition</div>
+      <h2>The score is the artefact</h2>
+      <p>With verified context and verified controllers in place, the Being's job changes. It doesn't call tools one at a time. It writes a <strong>composition</strong>: a short, declarative graph of controller steps, with every input bound to a context edge or to an earlier step's output, every condition written as a query, and every effect declared in advance.</p>
+
+<pre class="dg"><b>composition</b>  fund-hall-repair <em>· draft 1</em>
+<b>intent</b>       repair the community hall switchboard
+<b>procedure</b>    <i>OPG › Construct Proposal → Seek Approval → Execute</i>
+
+1  <s>VerifyQuote</s><em>@d41c</em>         quote    ← <u>Request ─has_evidence→ Quote</u>
+2  <s>CheckLicence</s><em>@77ae</em>        vendor   ← <u>Vendor ─certified_for→ Electrical</u>
+3  <s>ReserveFunds</s><em>@a90f</em>        amount   ← 1.total        <span class="k">write</span>
+4  <s>RequestApproval</s><em>@3b12</em>     reserve  ← 3.id           <span class="k">external</span>
+5  <s>Disburse</s><em>@9c41</em>            approval ← 4.decision     <span class="x">irreversible</span>
+                            payee    ← <u>Vendor ─account_for→ Account</u>
+   <em>on 4 = declined</em>  ↺ <s>ReleaseFunds</s><em>@51d0</em>  <em>compensates 3</em>
+6  <s>RecordContribution</s><em>@e0c8</em>  receipt  ← 5.receipt      <span class="k">write</span></pre>
+      <p class="dg-cap">Draft composition · illustrative · digests shortened</p>
+
+      <p>Three properties make this different from a plan written in prose. It is <em>small</em> — six steps, not six hundred lines of generated code. It is <em>typed</em> — every arrow either matches a contract or fails before anything runs. And it is <em>whole</em> — the irreversible step, the approval that gates it and the compensation if approval is refused are visible together, before any of them happen.</p>
+
+      <div class="defs">
+        <div class="def"><dt class="pu">Procedural graph</dt><dd>Which steps are admissible from here. Learned over a lifetime.</dd></div>
+        <div class="def"><dt>Composition</dt><dd>Which steps, with which controllers and which facts — this time. Written per intent.</dd></div>
+        <div class="def"><dt class="gr">Receipt</dt><dd>What actually ran, by digest, and with what result. Signed after.</dd></div>
+      </div>
+
+      <div class="pull">You can't replay a model's thought. <span class="hl">You can replay its score.</span></div>
+    </section>
+
+    <!-- 06 checks -->
+    <section class="sec" id="checks">
+      <div class="kicker">06 — Compose, check, then play</div>
+      <h2>Nothing moves until the score passes</h2>
+      <p>A composition passes through a sequence of checks before it's allowed to run. Each is cheap, and each can send the score back to the composer with a reason.</p>
+
+      <div class="gate">
+        <div class="g"><span class="gn">01</span><span class="gt">Compose a draft score</span><span class="gq gen">generative</span></div>
+        <div class="g"><span class="gn">02</span><span class="gt">Resolve each controller by digest</span><span class="gq vf">verified</span></div>
+        <div class="g"><span class="gn">03</span><span class="gt">Type-check every binding</span><span class="gq vd">validated</span></div>
+        <div class="g"><span class="gn">04</span><span class="gt">Ground every precondition in context</span><span class="gq vd">validated</span></div>
+        <div class="g"><span class="gn">05</span><span class="gt">Authorise each effect class</span><span class="gq">may I</span></div>
+        <div class="g c4"><span class="gn">06</span><span class="gt">Curious · Caring · Constructive · Chill</span><span class="gq">should I</span></div>
+        <div class="g"><span class="gn">07</span><span class="gt">Approve the irreversible steps</span><span class="gq hu">human</span></div>
+        <div class="g fin"><span class="gn">08</span><span class="gt">Sign the composition</span><span class="gq">commit</span></div>
+      </div>
+
+      <p>Then, and only then, it plays — one controller at a time:</p>
+      <div class="strip">
+        <span class="pu">load by digest</span><i>→</i><span class="gr">check pre</span><i>→</i><span>run</span><i>→</i><span class="gr">check post</span><i>→</i><span class="hi">receipt</span>
+      </div>
+
+      <p>In the funding example, draft 1 fails at step 04. The vendor's licence edge is self-asserted:</p>
+
+<pre class="dg"><b>04 ground</b>  <u>Vendor ─certified_for→ Electrical</u>
+           <em>source</em> vendor <em>(self-asserted) ·</em> confidence low
+           <span class="x">✗ needs ≥ high, from a verified issuer</span>
+           → returned to composer
+
+<b>draft 2</b>    <b>+</b> 0  <s>RequestEvidence</s><em>@c2f9</em>
+                <em>from</em> Vendor <em>· wants</em> licence credential
+           ‖ hold until the edge verifies</pre>
+
+      <p>Nothing was reserved, nobody was asked to approve anything, and no money moved. The composer revises the score to begin by asking for evidence, and the Being waits. It's the same outcome the context-graph note reached — reached at compose time, at no cost.</p>
+    </section>
+
+    <!-- 07 uncertainty -->
+    <section class="sec" id="uncertainty">
+      <div class="kicker">07 — Where the uncertainty lives</div>
+      <h2>Judgement in the model, execution in code</h2>
+
+      <div class="spec">
+        <div class="s">
+          <div class="st">Writes its own code</div>
+          <ul>
+            <li>New code every run</li>
+            <li>Maximum reach</li>
+            <li>Nothing to check in advance</li>
+            <li>The sandbox is the only line</li>
+          </ul>
+        </div>
+        <div class="s mid">
+          <div class="st">Composes verified controllers</div>
+          <ul>
+            <li>Judgement in the composition</li>
+            <li>Execution in verified code</li>
+            <li>Checked before it runs</li>
+            <li>A score that can be replayed</li>
+          </ul>
+        </div>
+        <div class="s">
+          <div class="st">Fixed workflow</div>
+          <ul>
+            <li>Every path decided in advance</li>
+            <li>Maximum predictability</li>
+            <li>No judgement at run time</li>
+            <li>Breaks on the unexpected</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>This is the middle ground the procedural note found between free-form agents and workflow engines, applied to execution. The model still decides — which controllers, in what order, bound to which beliefs, with what fallback. What it no longer does is perform. Non-determinism is concentrated in one artefact, small enough to read, at one moment, before anything moves.</p>
+      <p>Not every step needs a controller. Work whose output is read by a person, or checked by the next step, can stay generative. The line is drawn at effects:</p>
+
+      <div class="twin">
+        <div class="box">
+          <div class="bl">Can stay generative</div>
+          <ul>
+            <li><svg><use href="#ic-arrow"/></svg> Drafting a message</li>
+            <li><svg><use href="#ic-arrow"/></svg> Summarising the evidence</li>
+            <li><svg><use href="#ic-arrow"/></svg> Ranking the options</li>
+            <li><svg><use href="#ic-arrow"/></svg> Proposing the composition</li>
+          </ul>
+        </div>
+        <div class="box hi">
+          <div class="bl">Goes through a controller</div>
+          <ul>
+            <li><svg><use href="#ic-check"/></svg> Sending the message</li>
+            <li><svg><use href="#ic-check"/></svg> Writing to a record</li>
+            <li><svg><use href="#ic-check"/></svg> Moving value</li>
+            <li><svg><use href="#ic-check"/></svg> Changing who can do what</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 constitutional -->
+    <section class="sec" id="constitutional">
+      <div class="kicker">08 — Constitutional composition</div>
+      <h2>Character reads the whole score</h2>
+      <p>Policy can check each step. Only something with a view of the whole can ask whether this is the right composition at all — and because the whole exists before it runs, the 4Cs can be applied to it rather than reconstructed afterwards.</p>
+
+      <div class="cq">
+        <div class="q q1"><b>Curious</b><span>Do I hold every fact this score binds to, at the confidence it needs — or am I composing around a gap?</span></div>
+        <div class="q q2"><b>Caring</b><span>Every effect is declared. Who does each one touch, and who carries the cost if a postcondition fails?</span></div>
+        <div class="q q3"><b>Constructive</b><span>Is this built from what has been verified — and will it leave a score others can read, re-run and improve?</span></div>
+        <div class="q q4"><b>Chill</b><span>What's the smallest score that does the job? And if no verified controller fits, don't write one on the fly.</span></div>
+      </div>
+
+      <div class="pull">Policy checks the steps. <span class="hl">Character reads the whole score.</span></div>
+    </section>
+
+    <!-- 09 gaps -->
+    <section class="sec" id="gaps">
+      <div class="kicker">09 — When no controller fits</div>
+      <h2>Propose, don't improvise</h2>
+      <p>Sometimes the library has a gap. An improvising agent fills it on the spot: write some code, run it, see what happens. A Being treats a missing controller the way the procedural note treats a graph mutation — as a proposal, not an action.</p>
+
+      <div class="chain">
+        <div class="n rd">gap found</div><div class="a"></div>
+        <div class="n am">draft controller<small>by the Being, or by a person</small></div><div class="a"></div>
+        <div class="n pu">review<small>signed by other identities</small></div><div class="a"></div>
+        <div class="n gr">validate<small>suite · contracts · effects in a sandbox</small></div><div class="a"></div>
+        <div class="n pu">release<small>digest signed and published</small></div><div class="a"></div>
+        <div class="n">provisional authority<small>lower effect ceiling</small></div><div class="a"></div>
+        <div class="n hi">earned authority<small>through a record of use</small></div>
+        <div class="loop">↺ the library grows — it doesn't drift</div>
+      </div>
+
+      <p>Drafting is a good use of a model, and the Being may well write the first version. What it can't do is promote its own draft. Review and release are signed by other identities, so a controller's provenance always includes someone other than the Being that wanted it. A new controller starts under a lower effect ceiling and earns more through use — the same <a href="/decision-ai#reputation">provisional authority</a> a Being steps down to when it changes engine.</p>
+      <p>Controllers change too, and their history is part of the record:</p>
+
+      <div class="ledger">
+        <div class="v">v1.0.0</div><div class="h"><b>Disburse@71a2</b> · released · 2 reviewers · suite 48/48</div>
+        <div class="v">v1.1.0</div><div class="h"><b>Disburse@9c41</b> · adds an idempotency key · suite 52/52</div>
+        <div class="v rb last">v1.1.1</div><div class="h"><b>Disburse@b3e0</b> · revoked · postcondition failed in sandbox replay</div>
+      </div>
+
+      <p>A revoked digest fails at Resolve in every composition that names it, immediately and everywhere. Compositions signed against an earlier release still say exactly which code they ran.</p>
+    </section>
+
+    <!-- 10 artefacts -->
+    <section class="sec" id="artefacts">
+      <div class="kicker">10 — Four artefacts, one Being</div>
+      <h2>What each one answers</h2>
+      <p>The companion notes ended with two graphs. Composition adds two more artefacts, and each changes at its own pace.</p>
+
+      <div class="mem">
+        <div class="m m1"><div class="mt">Context graph</div><div class="mq">What do I believe?</div><div class="md">Changes constantly, claim by claim</div></div>
+        <div class="m m5"><div class="mt">Procedural graph</div><div class="mq">What can I do next?</div><div class="md">Changes with experience</div></div>
+        <div class="m m3"><div class="mt">Controller library</div><div class="mq">What can actually be done?</div><div class="md">Changes by signed release</div></div>
+        <div class="m m4"><div class="mt">Composition</div><div class="mq">What will happen this time?</div><div class="md">Written per intent, kept for good</div></div>
+      </div>
+
+      <div class="strip">
+        <span class="am">context graph</span><i>+</i><span class="pu">procedural graph</span><i>+</i><span class="gr">controllers</span><i>→</i><span class="hi">composition</span><i>→</i><span>receipt</span><i>→</i><span>reputation · learning</span>
+      </div>
+
+      <p>Each stays in its lane. A controller that embeds its own facts goes stale; one that embeds procedure becomes a workflow engine by another name. A context graph that encodes procedure becomes a brittle rules engine. Kept apart, the graphs can learn, the library can be reviewed, and the composition is the one place where they meet — and the one place a person needs to read to know what is about to happen.</p>
+    </section>
+
+    <!-- 11 runtime -->
+    <section class="sec" id="runtime">
+      <div class="kicker">11 — Inside the lab runtime</div>
+      <h2>From one tool call to one composition</h2>
+      <p>The <a href="https://github.com/selfdriven-octo/octonomous/tree/main/lab">Octonomous lab runtime</a> already has most of the shape. A Being handles each event through a fixed lifecycle:</p>
+
+      <div class="strip">
+        <span>wake</span><i>→</i><span>observe</span><i>→</i><span>consider</span><i>→</i><span class="am">decide</span><i>→</i><span class="pu">govern</span><i>→</i><span>commit</span><i>→</i><span class="gr">act</span><i>→</i><span>reflect</span><i>→</i><span>contribute</span><i>→</i><span class="hi">remember</span><i>→</i><span>sleep</span>
+      </div>
+
+      <p>In v1.0, <code>decide</code> asks cognition for a single action: a tool name and its input. <code>govern</code> checks whether this Being may call that tool — against its constitution, required approvals and delegated capabilities. <code>act</code> runs the handler registered under that name, and <code>remember</code> signs a receipt of what happened.</p>
+      <p>The governance is real and the receipts are signed. What isn't yet checked is the code. The tool registry is keyed by name, so a handler can change without anything noticing, and each tool's input schema is stored as metadata rather than checked when the handler runs. Composition fits the same lifecycle:</p>
+
+<pre class="dg"><em>step       v1.0 today                 </em><b>with composition</b>
+decide     { tool, input }            <b>{ steps, bindings, effects }</b>
+govern     may I call this tool?      <b>resolve · type · ground ·</b>
+                                      <b>authorise · 4Cs · approve</b>
+act        handler, by name           <b>controller, by digest</b>
+                                      <b>pre → run → post</b>
+remember   receipt of the event       <b>receipt naming every digest</b></pre>
+
+      <p>None of it needs a new runtime: a richer return type from <code>decide</code>, a stricter <code>govern</code>, a registry keyed by digest, and a receipt that names what actually ran.</p>
+    </section>
+
+    <!-- 12 grounding -->
+    <section class="sec" id="grounding">
+      <div class="kicker">12 — Grounding in existing infrastructure</div>
+      <h2>This is buildable now</h2>
+      <p>Like the context-graph note, this one doesn't depend on a new research result. Every part rests on infrastructure that already exists.</p>
+
+      <div class="defs">
+        <div class="def"><dt>KERI AIDs</dt><dd>Self-certifying identifiers for the Being, controller authors, reviewers and issuers — the <em>who</em> behind every signature.</dd></div>
+        <div class="def"><dt>ACDCs</dt><dd>Release and test-report credentials chained to a controller's digest; context claims as signed edges.</dd></div>
+        <div class="def"><dt>SAIDs</dt><dd>Self-addressing identifiers — a controller, an edge and a composition each named by the digest of its own content.</dd></div>
+        <div class="def"><dt class="pu">Supply chain</dt><dd>Signed builds and provenance attestations — SLSA, in-toto, Sigstore — already answer who built this, and from what.</dd></div>
+        <div class="def"><dt class="gr">JSON Schema</dt><dd>Input and output contracts a runtime can enforce, not just record.</dd></div>
+        <div class="def"><dt class="gr">Sandboxes</dt><dd>WebAssembly or containers to run controllers without ambient authority, and to observe their effects before release.</dd></div>
+        <div class="def"><dt class="am">MCP</dt><dd>A common way to describe and call tools. A transport for controllers — not proof of what they are.</dd></div>
+      </div>
+
+      <p>No new trust layer is required. Code already has digests and signatures; claims already have credentials. What's missing is a Being that composes from both, and declines to run anything it can't name.</p>
+    </section>
+
+    <!-- 13 honest -->
+    <section class="sec" id="honest">
+      <div class="kicker">13 — Honest framing</div>
+      <h2>What this note doesn't claim</h2>
+
+      <div class="twin">
+        <div class="box">
+          <div class="bl">This note does not</div>
+          <ul>
+            <li><svg><use href="#ic-arrow"/></svg> Claim verified code is correct code</li>
+            <li><svg><use href="#ic-arrow"/></svg> Make prompt injection impossible</li>
+            <li><svg><use href="#ic-arrow"/></svg> Remove the need for judgement</li>
+            <li><svg><use href="#ic-arrow"/></svg> Describe a shipped runtime feature</li>
+          </ul>
+        </div>
+        <div class="box hi">
+          <div class="bl">This note does</div>
+          <ul>
+            <li><svg><use href="#ic-check"/></svg> Separate verified from validated</li>
+            <li><svg><use href="#ic-check"/></svg> Put the plan before the effect</li>
+            <li><svg><use href="#ic-check"/></svg> Keep effects in signed, tested code</li>
+            <li><svg><use href="#ic-check"/></svg> Show where it lands in the runtime</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>A verified controller can still be wrong; tests catch what they test. A validated controller can still be misused. A well-formed composition can pursue the wrong intent, and a manipulated context graph can still bias which composition gets written. What this pattern changes is where errors can be caught, and who can see them — before the effect, by anyone who can read the score.</p>
+      <p>Octonomous is a framework for what a being <em>is</em>. Composition doesn't make code safe by itself, and none of this is a security appliance. Autonomy concentrates responsibility; composing makes it legible.</p>
+    </section>
+
+    <!-- 14 conclusion -->
+    <section class="sec" id="conclusion">
+      <div class="kicker">14 — Conclusion</div>
+      <h2>The composer answers for the score</h2>
+      <p>Today's agents are performers — often gifted ones, improvising live, where every wrong note is heard. Octonomous asks something else of a Being: to compose. To know what it believes, and why. To know what it can do, and that the code it uses is the code it trusted. To write down what it intends before anything moves, have it checked, sign it, and let code that cannot improvise play it.</p>
+
+      <div class="strip">
+        <span class="am">verified context</span><i>+</i><span class="gr">verified controllers</span><i>+</i><span>a Being that composes</span><i>=</i><span class="hi">an action you can read before it happens</span>
+      </div>
+
+      <div class="fourC"><span class="c1">Curious</span><span class="c2">Caring</span><span class="c3">Constructive</span><span class="c4">Chill</span></div>
+
+      <p>Curious checks every fact it binds to. Caring declares every effect. Constructive composes from what's been verified, and leaves the score behind. Chill writes the smallest score that works — and won't improvise a missing instrument.</p>
+      <div class="pull">Not agents that do everything. <span class="hl">Beings that compose what they can verify.</span></div>
+
+      <div class="endcta">
+        <h3>Read the notes this one completes</h3>
+        <div class="row">
+          <a href="/knowledge-graphs" class="btn btn-p">Field note: Verified Context <svg><use href="#ic-arrow"/></svg></a>
+          <a href="/procedural-graphs" class="btn btn-s">Field note: Procedural Graphs <svg><use href="#ic-arrow"/></svg></a>
+          <a href="/paper" class="btn btn-s">The Octonomous paper <svg><use href="#ic-arrow"/></svg></a>
+          <a href="/" class="btn btn-s"><svg><use href="#ic-back"/></svg> Back to octonomous.io</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- References -->
+    <section class="sec" id="references">
+      <div class="kicker">References</div>
+      <h2>Sources</h2>
+      <ul class="refs">
+        <li><b>Octonomous (2026).</b> An Open Framework for Self-Sovereign Intelligent Beings. <a href="/paper">octonomous.io/paper</a></li>
+        <li><b>Octonomous (2026).</b> From Procedural Graphs to Self-Sovereign Beings — field note. <a href="/procedural-graphs">octonomous.io/procedural-graphs</a></li>
+        <li><b>Octonomous (2026).</b> From Knowledge Graphs to Verified Context — field note. <a href="/knowledge-graphs">octonomous.io/knowledge-graphs</a></li>
+        <li><b>Octonomous (2026).</b> From Decision AI to Accountable Beings — field note. <a href="/decision-ai">octonomous.io/decision-ai</a></li>
+        <li><b>Octonomous (2026).</b> Lab runtime v1.0 — source. <a href="https://github.com/selfdriven-octo/octonomous/tree/main/lab">github.com/selfdriven-octo/octonomous</a></li>
+        <li><b>Lu, Y., Chen, Y., Wu, S. &amp; Arık, S. Ö. (2026).</b> Procedural Graphs: Self-Evolving Execution Structures for LLM Agents. <a href="https://arxiv.org/abs/2609.09153">arXiv:2609.09153</a></li>
+        <li><b>Smith, S. M.</b> Key Event Receipt Infrastructure (KERI) and Authentic Chained Data Containers (ACDC). <a href="https://github.com/WebOfTrust/keri">github.com/WebOfTrust/keri</a></li>
+        <li><b>OpenSSF.</b> SLSA — Supply-chain Levels for Software Artifacts. <a href="https://slsa.dev">slsa.dev</a></li>
+        <li><b>in-toto.</b> A framework to secure the integrity of software supply chains. <a href="https://in-toto.io">in-toto.io</a></li>
+        <li><b>Sigstore.</b> Software signing and transparency. <a href="https://www.sigstore.dev">sigstore.dev</a></li>
+        <li><b>JSON Schema.</b> <a href="https://json-schema.org">json-schema.org</a></li>
+        <li><b>WebAssembly.</b> <a href="https://webassembly.org">webassembly.org</a></li>
+        <li><b>Model Context Protocol.</b> <a href="https://modelcontextprotocol.io">modelcontextprotocol.io</a></li>
+      </ul>
+      <div style="margin-top:22px"><a class="repo-link" href="https://github.com/selfdriven-octo/octonomous"><svg><use href="#ic-github"/></svg> View the source on GitHub</a></div>
+    </section>
+
+  </article>
+</div>
+
+<footer>
+  <div class="foot-in">
+    <a href="/" class="foot-brand"><span class="mark"><svg style="color:var(--octo)"><use href="#sd-mark"/></svg></span><span>octo<em>nomous</em></span></a>
+    <div class="foot-links">
+      <a href="/paper">The paper</a>
+      <a href="https://heyocto.ai">heyOcto.ai</a>
+      <a href="https://octomics.io">octomics.io</a>
+      <a href="https://octology.io">octology.io</a>
+      <a href="https://selfdriven.you">selfdriven.you</a>
+      <a href="https://github.com/selfdriven-octo/octonomous">GitHub</a>
+    </div>
+    <div class="foot-cs"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i></div>
+  </div>
+  <p class="foot-copy">© 2026 Octonomous · An open framework within the selfdriven ecosystem. Character before capability.</p>
+</footer>
+
+<script>
+// cursor
+(function(){
+  var dot=document.getElementById('cdot'), ring=document.getElementById('cring');
+  if(!dot) return;
+  var rx=0,ry=0,dx=0,dy=0;
+  document.addEventListener('mousemove',function(e){dx=e.clientX;dy=e.clientY;dot.style.left=dx+'px';dot.style.top=dy+'px';});
+  function loop(){rx+=(dx-rx)*.18;ry+=(dy-ry)*.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);}
+  loop();
+  document.querySelectorAll('a,.layer,.chip,.box,.stat,.g,.m,.s,.sc,.band,.t,.dist .row,.pt,.q,.qcard,.v,.n,.def').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(147,221,61,.6)';});
+    el.addEventListener('mouseleave',function(){ring.style.width='34px';ring.style.height='34px';ring.style.borderColor='rgba(240,238,255,.3)';});
+  });
+})();
+// reading progress
+(function(){
+  var bar=document.getElementById('progress');
+  function upd(){var h=document.documentElement.scrollHeight-innerHeight; bar.style.width=(h>0?(scrollY/h*100):0)+'%';}
+  addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); upd();
+})();
+// scrollspy TOC
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.toc a.tl'));
+  var map={}; links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  var spy=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); var a=map[e.target.id]; if(a)a.classList.add('active'); } });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('article .sec').forEach(function(s){spy.observe(s);});
+})();
+</script>
+</body>
+</html>
+
