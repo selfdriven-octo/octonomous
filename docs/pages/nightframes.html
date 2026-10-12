@@ -1,0 +1,1069 @@
+---
+layout: null
+permalink: "/nightframes"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<link rel="shortcut icon" href="/assets/img/selfdriven-logo-round-green-transparent.png">
+<link rel="apple-touch-icon" href="/assets/img/selfdriven-logo-round-green-transparent.png" />
+<title>Nightframes: Octonomous Beings on Midnight — Octonomous field note</title>
+<meta name="description" content="Nightframes: how an Octonomous Being can seal each day of its signed record, anchor it on Cardano, keep the contents private, and answer specific questions about it in zero knowledge on Midnight — one declared disclosure at a time.">
+<meta property="og:title" content="Nightframes. Seal the day; prove it at midnight.">
+<meta property="og:description" content="A Being commits to its record in public, keeps it in private, and proves what is asked — to whom it is asked — on Midnight.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://octonomous.io/nightframes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#09090f; --surface:#111118; --surface2:#18181f;
+  --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.14);
+  --text:#f0eeff; --muted:#7e7a9a; --muted2:#3d3a55;
+
+  --curious:#f5c842; --caring:#ff5f7e; --constructive:#00e5a0;
+  --chill:#7b6cff; --chill-bright:#9b8fff;
+  --curious-dim:rgba(245,200,66,0.13); --caring-dim:rgba(255,95,126,0.13);
+  --constructive-dim:rgba(0,229,160,0.13); --chill-dim:rgba(123,108,255,0.13);
+
+  --octo:#93dd3d; --octo-dim:rgba(147,221,61,0.13); --octo-glow:rgba(147,221,61,0.30);
+  --pill:999px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth; background:#09090f !important; background-image:linear-gradient(#09090f,#09090f) !important; scroll-padding-top:90px}
+body{
+  background:#09090f !important; background-image:linear-gradient(#09090f,#09090f) !important; color:var(--text);
+  font-family:'DM Sans',sans-serif; line-height:1.6; overflow-x:hidden; cursor:none; -webkit-font-smoothing:antialiased;
+}
+a{cursor:none; color:inherit; text-decoration:none}
+::selection{background:var(--octo); color:#06150a}
+
+/* cursor */
+.cursor-dot{position:fixed;top:0;left:0;width:8px;height:8px;border-radius:50%;background:var(--octo);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .12s ease,background .2s}
+.cursor-ring{position:fixed;top:0;left:0;width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(240,238,255,.3);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .18s ease,width .2s,height .2s,border-color .2s}
+@media (hover:none){body{cursor:auto} a{cursor:auto} .cursor-dot,.cursor-ring{display:none}}
+
+/* reading progress */
+.progress{position:fixed; top:0; left:0; height:3px; width:0%; z-index:1100; background:linear-gradient(90deg,var(--curious),var(--caring),var(--constructive),var(--chill)); transition:width .1s linear}
+
+/* nav */
+nav{position:fixed; top:0; left:0; right:0; z-index:1000; display:flex; align-items:center; justify-content:space-between; padding:16px 30px; background:rgba(9,9,15,.72); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border-bottom:1px solid var(--border)}
+.brand{display:flex; align-items:center; gap:11px; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:19px; letter-spacing:-.03em}
+.brand .mark svg{width:26px;height:26px}
+.brand em{font-style:normal; color:var(--octo)}
+.nav-links{display:flex; align-items:center; gap:26px}
+.nav-links a{font-size:14px; color:var(--muted); font-weight:500; transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:14px; padding:9px 18px; border-radius:var(--pill); background:var(--octo-dim); color:var(--octo); border:1.5px solid rgba(147,221,61,.30); transition:transform .2s,box-shadow .2s}
+.nav-cta:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(147,221,61,.18)}
+.nav-cta svg{width:13px;height:13px;vertical-align:-1px}
+@media(max-width:860px){.nav-links a:not(.nav-cta){display:none}}
+
+/* hero */
+.p-hero{padding:150px 0 60px; position:relative; overflow:hidden}
+.gblob{position:absolute; border-radius:50%; filter:blur(100px); opacity:.4; z-index:0}
+.gb1{width:420px;height:420px;background:var(--curious);top:-140px;left:-120px}
+.gb2{width:360px;height:360px;background:var(--constructive);top:-80px;right:-100px}
+.gb3{width:300px;height:300px;background:var(--octo);top:60px;left:38%;opacity:.24}
+.p-hero-in{max-width:1120px; margin:0 auto; padding:0 30px; display:grid; grid-template-columns:220px 1fr; gap:56px; position:relative; z-index:2}
+.p-hero-copy{grid-column:2; min-width:0}
+.doc-eyebrow{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--octo); display:inline-flex; align-items:center; gap:9px; margin-bottom:26px}
+.doc-eyebrow::before{content:''; width:26px; height:1px; background:var(--octo); opacity:.7}
+.p-hero h1{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; letter-spacing:-.045em; line-height:1.02; font-size:clamp(34px,6vw,60px)}
+.p-hero h1 .g{background:linear-gradient(105deg,var(--octo),var(--constructive)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.p-hero .sub{color:var(--muted); font-size:clamp(17px,2.2vw,20px); margin-top:22px; max-width:640px}
+.doc-meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:30px}
+.doc-meta span{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.06em; color:var(--muted); padding:7px 14px; border:1px solid var(--border); border-radius:var(--pill); background:var(--surface)}
+.doc-meta span b{color:var(--text); font-weight:500}
+
+/* layout */
+.layout{max-width:1120px; margin:0 auto; padding:40px 30px 40px; display:grid; grid-template-columns:220px 1fr; gap:56px; position:relative; z-index:1}
+.toc{position:sticky; top:100px; align-self:start; height:max-content}
+.toc .toc-label{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted2); margin-bottom:16px}
+.toc ol{list-style:none; counter-reset:toc; display:flex; flex-direction:column; gap:2px}
+.toc li{counter-increment:toc}
+.toc a{display:flex; gap:11px; align-items:baseline; padding:7px 0; font-size:13.5px; color:var(--muted); border-left:2px solid transparent; padding-left:14px; margin-left:-16px; transition:color .2s,border-color .2s}
+.toc a::before{content:counter(toc,decimal-leading-zero); font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--muted2); flex:none}
+.toc a:hover{color:var(--text)}
+.toc a.active{color:var(--octo); border-color:var(--octo)}
+.toc a.active::before{color:var(--octo)}
+@media(max-width:900px){.layout{grid-template-columns:1fr; gap:0} .toc{display:none} .p-hero-in{grid-template-columns:1fr} .p-hero-copy{grid-column:1}}
+
+/* article / prose */
+article{max-width:680px}
+.sec{padding:44px 0; border-top:1px solid var(--border)}
+.sec:first-child{border-top:none; padding-top:8px}
+.sec .kicker{font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:14px}
+.sec h2{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; letter-spacing:-.035em; line-height:1.08; font-size:clamp(26px,4vw,38px); margin-bottom:22px}
+.sec h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; letter-spacing:-.02em; font-size:21px; margin:30px 0 10px}
+article p{color:#c9c5df; font-size:17.5px; line-height:1.72; margin-bottom:18px}
+article p.lead{font-size:20px; color:var(--text)}
+article strong{color:var(--text); font-weight:600}
+article em{font-style:italic; color:var(--text)}
+
+/* pull quote */
+.pull{margin:38px 0; padding:6px 0 6px 28px; border-left:3px solid var(--octo); font-family:'Bricolage Grotesque',sans-serif; font-weight:700; letter-spacing:-.02em; font-size:clamp(22px,3.4vw,30px); line-height:1.22; color:var(--text)}
+.pull .hl{color:var(--octo)}
+
+/* have/lack inline lists */
+.twin{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:24px 0 6px}
+.twin .box{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px 22px}
+.twin .box.hi{border-color:rgba(147,221,61,.28)}
+.twin .box .bl{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-bottom:14px}
+.twin .box.hi .bl{color:var(--octo)}
+.twin ul{list-style:none; display:flex; flex-direction:column; gap:9px}
+.twin li{font-size:15px; color:var(--muted); display:flex; gap:10px; align-items:center}
+.twin .box.hi li{color:var(--text); font-weight:500}
+.twin li svg{width:15px;height:15px;flex:none}
+@media(max-width:560px){.twin{grid-template-columns:1fr}}
+
+/* 4Cs blocks */
+.cc{border:1px solid var(--border); border-left-width:3px; border-radius:16px; background:var(--surface); padding:26px 26px; margin:16px 0}
+.cc .top{display:flex; align-items:center; gap:14px; margin-bottom:14px}
+.cc .ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex:none}
+.cc .ico svg{width:22px;height:22px}
+.cc h3{margin:0; font-size:24px}
+.cc .es{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.08em; margin-top:2px}
+.cc p{font-size:16px; margin-bottom:14px; color:#c3bfda}
+.cc .asks{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+.cc .asks span{font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:13.5px; padding:6px 13px; border-radius:var(--pill); background:var(--surface2); border:1px solid var(--border)}
+.cc-c{border-left-color:var(--curious)} .cc-c .ico{background:var(--curious-dim);color:var(--curious)} .cc-c h3,.cc-c .es{color:var(--curious)}
+.cc-k{border-left-color:var(--caring)} .cc-k .ico{background:var(--caring-dim);color:var(--caring)} .cc-k h3,.cc-k .es{color:var(--caring)}
+.cc-b{border-left-color:var(--constructive)} .cc-b .ico{background:var(--constructive-dim);color:var(--constructive)} .cc-b h3,.cc-b .es{color:var(--constructive)}
+.cc-l{border-left-color:var(--chill)} .cc-l .ico{background:var(--chill-dim);color:var(--chill-bright)} .cc-l h3,.cc-l .es{color:var(--chill-bright)}
+
+/* anatomy list */
+.defs{display:flex; flex-direction:column; gap:2px; margin:22px 0 6px}
+.def{display:grid; grid-template-columns:150px 1fr; gap:18px; padding:15px 0; border-bottom:1px solid var(--border); align-items:baseline}
+.def:last-child{border-bottom:none}
+.def dt{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; color:var(--octo); letter-spacing:-.01em}
+.def dd{color:#c3bfda; font-size:16px}
+@media(max-width:560px){.def{grid-template-columns:1fr; gap:3px}}
+
+/* chips */
+.chips{display:flex; flex-wrap:wrap; gap:10px; margin:22px 0}
+.chip{font-family:'JetBrains Mono',monospace; font-size:13px; padding:9px 15px; border-radius:var(--pill); background:var(--surface2); border:1px solid var(--border); color:var(--text)}
+
+/* stack mini */
+.stack{display:flex; flex-direction:column; gap:10px; margin:26px 0}
+.layer{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:18px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 22px}
+.layer .ln{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:19px; letter-spacing:-.02em}
+.layer .lq{color:var(--muted); font-size:14px}
+.layer .lt{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.08em; padding:5px 12px; border-radius:var(--pill); white-space:nowrap}
+.l1{border-color:rgba(245,200,66,.3)} .l1 .ln{color:var(--curious)} .l1 .lt{background:var(--curious-dim);color:var(--curious)}
+.l2{border-color:rgba(147,221,61,.32); background:linear-gradient(180deg,rgba(147,221,61,.06),var(--surface))} .l2 .ln{color:var(--octo)} .l2 .lt{background:var(--octo-dim);color:var(--octo)}
+.l3{border-color:rgba(0,229,160,.3)} .l3 .ln{color:var(--constructive)} .l3 .lt{background:var(--constructive-dim);color:var(--constructive)}
+.flow{text-align:center; font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:20px; letter-spacing:-.02em; margin-top:6px}
+.flow .a{color:var(--muted2); margin:0 8px} .flow .w{color:var(--curious)} .flow .h{color:var(--octo)} .flow .i{color:var(--constructive)}
+@media(max-width:560px){.layer{grid-template-columns:1fr; gap:8px} .layer .lt{justify-self:start}}
+
+/* closing 4C */
+.fourC{display:flex; flex-wrap:wrap; gap:16px; margin:26px 0 4px}
+.fourC span{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:clamp(20px,3vw,30px); letter-spacing:-.03em}
+.fourC .c1{color:var(--curious)} .fourC .c2{color:var(--caring)} .fourC .c3{color:var(--constructive)} .fourC .c4{color:var(--chill-bright)}
+
+/* end cta */
+.endcta{margin:20px 0 0; padding:34px 30px; border:1px solid rgba(147,221,61,.28); border-radius:22px; background:radial-gradient(120% 120% at 0% 0%,rgba(147,221,61,.10),transparent 55%),var(--surface); text-align:center}
+.endcta h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:24px; letter-spacing:-.02em; margin-bottom:18px}
+.endcta .row{display:flex; flex-wrap:wrap; gap:12px; justify-content:center}
+.btn{display:inline-flex; align-items:center; gap:8px; font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:15px; padding:12px 22px; border-radius:var(--pill); transition:transform .2s,box-shadow .2s}
+.btn svg{width:16px;height:16px}
+.btn-p{background:var(--octo); color:#06150a} .btn-p:hover{transform:translateY(-4px); box-shadow:0 16px 40px var(--octo-glow)}
+.btn-s{background:var(--surface2); color:var(--text); border:1px solid var(--border2)} .btn-s:hover{transform:translateY(-4px)}
+
+/* footer */
+footer{border-top:1px solid var(--border); padding:56px 30px 46px; margin-top:30px}
+.foot-in{max-width:1120px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap}
+.foot-brand{display:flex; align-items:center; gap:11px; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:19px; letter-spacing:-.03em}
+.foot-brand .mark svg{width:24px;height:24px}
+.foot-brand em{font-style:normal;color:var(--octo)}
+.foot-links{display:flex; gap:22px; flex-wrap:wrap}
+.foot-links a{color:var(--muted); font-size:14px; transition:color .2s}
+.foot-links a:hover{color:var(--octo)}
+.foot-cs{display:flex; gap:7px}
+.foot-cs i{width:11px;height:11px;border-radius:50%}
+.foot-cs .c1{background:var(--curious)} .foot-cs .c2{background:var(--caring)} .foot-cs .c3{background:var(--constructive)} .foot-cs .c4{background:var(--chill)}
+.foot-copy{max-width:1120px; margin:26px auto 0; color:var(--muted); font-size:13px}
+
+/* resources: podcasts + pdfs + repo */
+.pods{display:grid; gap:14px; margin:22px 0 16px}
+.pod{background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:20px 22px}
+.pod-top{display:flex; align-items:center; gap:13px; margin-bottom:14px}
+.pod-ic{width:44px; height:44px; border-radius:12px; flex:none; display:grid; place-items:center; background:var(--octo-dim); color:var(--octo)}
+.pod-ic svg{width:22px; height:22px}
+.pod-top h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; letter-spacing:-.02em; margin:0}
+.pod-meta{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.pod audio{width:100%; height:40px}
+.docs{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0 24px}
+.doc-card{display:flex; align-items:center; gap:13px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:17px 18px; transition:transform .2s,border-color .2s}
+.doc-card:hover{transform:translateY(-4px); border-color:rgba(147,221,61,.32)}
+.doc-ic{width:40px;height:40px;border-radius:11px;flex:none;display:grid;place-items:center;background:var(--octo-dim);color:var(--octo)}
+.doc-ic svg{width:20px;height:20px}
+.doc-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;letter-spacing:-.01em;margin:0 0 2px}
+.doc-card .sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.doc-card .ar{margin-left:auto;color:var(--muted);flex:none}
+.doc-card .ar svg{width:16px;height:16px}
+.doc-card:hover .ar{color:var(--octo)}
+.repo-link{display:inline-flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:15px;padding:12px 20px;border-radius:var(--pill);background:var(--surface2);border:1px solid var(--border2);color:var(--text);transition:transform .2s,border-color .2s,color .2s}
+.repo-link:hover{transform:translateY(-3px);border-color:var(--octo);color:var(--octo)}
+.repo-link svg{width:18px;height:18px}
+@media(max-width:560px){.docs{grid-template-columns:1fr}}
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .6s,transform .6s cubic-bezier(.34,1.56,.64,1)}
+.reveal.vis{opacity:1; transform:translateY(0)}
+
+/* ===== field-note additions: procedural graphs ===== */
+.p-hero h1 .g2{background:linear-gradient(105deg,var(--chill-bright),var(--octo)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.fn{color:var(--chill-bright)} .doc-eyebrow.fn::before{background:var(--chill-bright)}
+.gb1{background:var(--chill)} .gb2{background:var(--octo)} .gb3{background:var(--constructive)}
+
+/* source card */
+.srcbox{display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start; background:var(--surface); border:1px solid rgba(123,108,255,.32); border-radius:18px; padding:20px 22px; margin:6px 0 26px}
+.srcbox .si{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--chill-dim);color:var(--chill-bright);flex:none}
+.srcbox .si svg{width:21px;height:21px}
+.srcbox .sl{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--chill-bright); margin-bottom:6px}
+.srcbox h3{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:17px; letter-spacing:-.01em; margin:0 0 4px}
+.srcbox p{font-size:14px; color:var(--muted); margin:0}
+.srcbox a{color:var(--text); border-bottom:1px solid var(--border2)} .srcbox a:hover{color:var(--octo); border-color:var(--octo)}
+
+/* vertical flow chain */
+.chain{display:flex; flex-direction:column; align-items:center; gap:0; margin:26px 0}
+.chain .n{font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.04em; color:var(--text); background:var(--surface); border:1px solid var(--border2); border-radius:var(--pill); padding:9px 18px; text-align:center; min-width:180px}
+.chain .n.hi{border-color:rgba(147,221,61,.5); color:var(--octo); background:var(--octo-dim)}
+.chain .n.pu{border-color:rgba(123,108,255,.5); color:var(--chill-bright); background:var(--chill-dim)}
+.chain .n.am{border-color:rgba(245,200,66,.45); color:var(--curious); background:var(--curious-dim)}
+.chain .n.gr{border-color:rgba(0,229,160,.45); color:var(--constructive); background:var(--constructive-dim)}
+.chain .n.rd{border-color:rgba(255,95,126,.45); color:var(--caring); background:var(--caring-dim)}
+.chain .n small{display:block; font-family:'DM Sans',sans-serif; font-size:12px; color:var(--muted); letter-spacing:0; margin-top:2px}
+.chain .a{width:1px; height:18px; background:var(--muted2); position:relative}
+.chain .a::after{content:''; position:absolute; left:50%; bottom:-1px; width:6px; height:6px; border-right:1px solid var(--muted2); border-bottom:1px solid var(--muted2); transform:translateX(-50%) rotate(45deg)}
+.chain .loop{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted2); margin-top:12px}
+
+/* horizontal step strip */
+.strip{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:22px 0; font-family:'JetBrains Mono',monospace; font-size:12.5px}
+.strip span{padding:8px 14px; border-radius:var(--pill); background:var(--surface2); border:1px solid var(--border); color:var(--text)}
+.strip i{color:var(--muted2); font-style:normal}
+.strip span.hi{color:var(--octo); border-color:rgba(147,221,61,.45); background:var(--octo-dim)}
+.strip span.pu{color:var(--chill-bright); border-color:rgba(123,108,255,.45); background:var(--chill-dim)}
+
+/* mono diagram block (ascii-ish) */
+pre.dg{font-family:'JetBrains Mono',monospace; font-size:13px; line-height:1.55; color:#c9c5df; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:22px 24px; margin:22px 0; overflow-x:auto; white-space:pre}
+pre.dg b{color:var(--octo); font-weight:500} pre.dg i{color:var(--chill-bright); font-style:normal} pre.dg u{color:var(--curious); text-decoration:none} pre.dg s{color:var(--constructive); text-decoration:none} pre.dg em{color:var(--muted2); font-style:normal}
+.dg-cap{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin:-12px 0 24px}
+
+/* not / but */
+.notbut{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0}
+.notbut .box{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px 22px}
+.notbut .box.hi{border-color:rgba(147,221,61,.32); background:linear-gradient(180deg,rgba(147,221,61,.05),var(--surface))}
+.notbut .bl{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:10px}
+.notbut .box.hi .bl{color:var(--octo)}
+.notbut .bt{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; letter-spacing:-.01em; line-height:1.3}
+.notbut .box.hi .bt{color:var(--text)} .notbut .box:not(.hi) .bt{color:var(--muted)}
+@media(max-width:560px){.notbut{grid-template-columns:1fr}}
+
+/* memory grid */
+.mem{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:24px 0}
+.mem .m{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 16px; border-top-width:3px}
+.mem .m .mt{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:17px; letter-spacing:-.02em; margin-bottom:6px}
+.mem .m .mq{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted)}
+.mem .m1{border-top-color:var(--curious)} .mem .m1 .mt{color:var(--curious)}
+.mem .m2{border-top-color:var(--caring)} .mem .m2 .mt{color:var(--caring)}
+.mem .m3{border-top-color:var(--constructive)} .mem .m3 .mt{color:var(--constructive)}
+.mem .m4{border-top-color:var(--octo); background:linear-gradient(180deg,rgba(147,221,61,.06),var(--surface))} .mem .m4 .mt{color:var(--octo)}
+@media(max-width:700px){.mem{grid-template-columns:1fr 1fr}}
+
+/* three-way spectrum */
+.spec{display:grid; grid-template-columns:1fr 1.2fr 1fr; gap:12px; margin:24px 0; align-items:stretch}
+.spec .s{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px 18px}
+.spec .s.mid{border-color:rgba(147,221,61,.4); background:linear-gradient(180deg,rgba(147,221,61,.07),var(--surface))}
+.spec .st{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:12px}
+.spec .s.mid .st{color:var(--octo)}
+.spec ul{list-style:none; display:flex; flex-direction:column; gap:7px}
+.spec li{font-size:14px; color:var(--muted)}
+.spec .s.mid li{color:var(--text); font-weight:500}
+.spec li::before{content:'– '; color:var(--muted2)} .spec .s.mid li::before{content:'+ '; color:var(--octo)}
+@media(max-width:640px){.spec{grid-template-columns:1fr}}
+
+/* mutation ops */
+.ops{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 24px}
+.ops span{font-family:'JetBrains Mono',monospace; font-size:12.5px; padding:7px 13px; border-radius:8px; background:var(--surface2); border:1px solid var(--border); color:var(--text)}
+.ops span.add{color:var(--constructive)} .ops span.rm{color:var(--caring)} .ops span.ch{color:var(--curious)}
+
+/* gate pipeline */
+.gate{display:flex; flex-direction:column; gap:8px; margin:24px 0}
+.gate .g{display:grid; grid-template-columns:34px 1fr auto; align-items:center; gap:14px; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 18px}
+.gate .g .gn{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted2)}
+.gate .g .gt{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px; letter-spacing:-.01em}
+.gate .g .gq{font-size:13px; color:var(--muted); font-family:'JetBrains Mono',monospace; white-space:nowrap}
+.gate .g.c4{border-color:rgba(255,255,255,.18); background:linear-gradient(90deg,var(--curious-dim),var(--caring-dim),var(--constructive-dim),var(--chill-dim))}
+.gate .g.c4 .gt{color:var(--text)}
+.gate .g.fin{border-color:rgba(147,221,61,.45)} .gate .g.fin .gt{color:var(--octo)}
+@media(max-width:560px){.gate .g{grid-template-columns:34px 1fr} .gate .g .gq{display:none}}
+
+/* 4C questions */
+.cq{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:22px 0}
+.cq .q{border:1px solid var(--border); border-left-width:3px; border-radius:14px; background:var(--surface); padding:16px 18px}
+.cq .q b{display:block; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:18px; letter-spacing:-.02em; margin-bottom:4px}
+.cq .q span{font-size:15px; color:#c3bfda}
+.cq .q1{border-left-color:var(--curious)} .cq .q1 b{color:var(--curious)}
+.cq .q2{border-left-color:var(--caring)} .cq .q2 b{color:var(--caring)}
+.cq .q3{border-left-color:var(--constructive)} .cq .q3 b{color:var(--constructive)}
+.cq .q4{border-left-color:var(--chill)} .cq .q4 b{color:var(--chill-bright)}
+@media(max-width:560px){.cq{grid-template-columns:1fr}}
+
+/* version ledger */
+.ledger{display:grid; grid-template-columns:auto 1fr; gap:0 18px; margin:22px 0; align-items:stretch}
+.ledger .v{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--octo); padding:12px 0; position:relative; padding-left:22px}
+.ledger .v::before{content:''; position:absolute; left:0; top:18px; width:9px; height:9px; border-radius:50%; background:var(--octo); box-shadow:0 0 0 4px var(--octo-dim)}
+.ledger .v::after{content:''; position:absolute; left:4px; top:30px; bottom:-12px; width:1px; background:var(--muted2)}
+.ledger .v:last-of-type::after{display:none}
+.ledger .h{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); padding:12px 0}
+.ledger .h b{color:var(--text); font-weight:500}
+.ledger .v.rb{color:var(--caring)} .ledger .v.rb::before{background:var(--caring); box-shadow:0 0 0 4px var(--caring-dim)}
+
+/* rates of change */
+.rates{display:flex; flex-direction:column; gap:6px; margin:24px 0}
+.rate{display:grid; grid-template-columns:130px 1fr auto; align-items:center; gap:14px; font-size:14px}
+.rate .rl{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15px; letter-spacing:-.01em}
+.rate .rb{height:10px; border-radius:999px; background:var(--surface2); border:1px solid var(--border); overflow:hidden}
+.rate .rb i{display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--chill),var(--octo))}
+.rate .rt{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); white-space:nowrap}
+.rate.pg .rl{color:var(--octo)}
+@media(max-width:560px){.rate{grid-template-columns:100px 1fr} .rate .rt{display:none}}
+
+/* stats */
+.stats{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:24px 0}
+.stat{background:var(--surface); border:1px solid var(--border); border-radius:18px; padding:22px 20px}
+.stat .sn{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:clamp(30px,5vw,44px); letter-spacing:-.04em; line-height:1; color:var(--octo)}
+.stat .sn small{font-size:.45em; color:var(--muted); letter-spacing:0; margin-left:4px}
+.stat .sd{font-size:13.5px; color:var(--muted); margin-top:10px}
+.stat.neg .sn{color:var(--caring)}
+@media(max-width:640px){.stats{grid-template-columns:1fr}}
+
+/* responsibilities */
+.resp{display:grid; grid-template-columns:1fr; gap:0; margin:22px 0; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--surface)}
+.resp .r{display:grid; grid-template-columns:170px 1fr; gap:16px; padding:12px 20px; border-bottom:1px solid var(--border); align-items:baseline}
+.resp .r:last-child{border-bottom:none}
+.resp .r b{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:-.01em; color:var(--text)}
+.resp .r span{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--muted)}
+.resp .r.hi{background:rgba(147,221,61,.06)} .resp .r.hi b{color:var(--octo)}
+@media(max-width:560px){.resp .r{grid-template-columns:1fr; gap:2px}}
+
+/* OPG schema */
+.schema{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0}
+.schema .sc{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:20px 22px}
+.schema .sc.hi{border-color:rgba(147,221,61,.36)}
+.schema .bl{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:12px}
+.schema .sc.hi .bl{color:var(--octo)}
+.schema code{display:block; font-family:'JetBrains Mono',monospace; font-size:13px; line-height:1.8; color:#c9c5df}
+.schema .sc.hi code b{color:var(--octo); font-weight:500}
+@media(max-width:560px){.schema{grid-template-columns:1fr}}
+
+/* references */
+.refs{list-style:none; display:flex; flex-direction:column; gap:12px; margin:18px 0 6px}
+.refs li{font-size:14.5px; color:var(--muted); padding-left:18px; position:relative; line-height:1.55}
+.refs li::before{content:'—'; position:absolute; left:0; color:var(--muted2)}
+.refs li b{color:var(--text); font-weight:600}
+.refs li a{color:var(--octo); border-bottom:1px solid rgba(147,221,61,.3)}
+
+/* ===== field-note additions: physical reality ===== */
+.p-hero h1 .g3{background:linear-gradient(105deg,var(--octo),var(--constructive)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.pr{color:var(--octo)} .doc-eyebrow.pr::before{background:var(--octo)}
+.gb1{background:var(--constructive)} .gb2{background:var(--curious)} .gb3{background:var(--octo)}
+.twin li svg{color:var(--octo)}
+
+/* ===== field-note additions: decision ai ===== */
+article{min-width:0} /* stop pre.dg min-content widening the 1fr grid column on mobile */
+.srcbox a{overflow-wrap:anywhere}
+.p-hero h1 .g4{background:linear-gradient(105deg,var(--curious),var(--octo)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.da{color:var(--curious)} .doc-eyebrow.da::before{background:var(--curious)}
+.gb1{background:var(--curious)} .gb2{background:var(--chill)} .gb3{background:var(--octo)}
+.srcbox.da{border-color:rgba(245,200,66,.32)} .srcbox.da .si{background:var(--curious-dim);color:var(--curious)} .srcbox.da .sl{color:var(--curious)}
+.sec h2 a, article p a{color:var(--text); border-bottom:1px solid rgba(147,221,61,.35); transition:color .2s,border-color .2s}
+article p a:hover{color:var(--octo); border-color:var(--octo)}
+.l4{border-color:rgba(123,108,255,.34)} .l4 .ln{color:var(--chill-bright)} .l4 .lt{background:var(--chill-dim);color:var(--chill-bright)}
+.cap{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin:-8px 0 24px; line-height:1.6}
+
+/* decision state distribution */
+.dist{background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 22px 20px; margin:22px 0; display:flex; flex-direction:column; gap:11px}
+.dist .dh{display:flex; justify-content:space-between; gap:12px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:2px}
+.dist .row{display:grid; grid-template-columns:96px 1fr 56px; align-items:center; gap:14px}
+.dist .ol{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--muted)}
+.dist .bar{height:12px; border-radius:999px; background:var(--surface2); border:1px solid var(--border); overflow:hidden}
+.dist .bar i{display:block; height:100%; border-radius:999px; background:var(--muted2)}
+.dist .pv{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--muted); text-align:right}
+.dist .row.top .ol,.dist .row.top .pv{color:var(--text)}
+.dist .row.top .bar i{background:linear-gradient(90deg,var(--curious),var(--octo))}
+.dist .row.dis .bar i{background:var(--caring)}
+.dist .row.dis .ol,.dist .row.dis .pv{color:var(--text)}
+.dist .tag{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; padding:3px 8px; border-radius:var(--pill); background:var(--caring-dim); color:var(--caring); margin-left:8px; vertical-align:1px}
+@media(max-width:560px){.dist .row{grid-template-columns:78px 1fr 46px; gap:10px} .dist .tag{display:none}}
+
+/* authority bands */
+.bands{margin:22px 0; background:var(--surface); border:1px solid var(--border); border-radius:16px; overflow:hidden}
+.band{display:grid; grid-template-columns:104px 1fr 1.05fr; gap:18px; align-items:center; padding:14px 20px; border-bottom:1px solid var(--border)}
+.band:last-child{border-bottom:none}
+.band.bh{padding:12px 20px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.band.bh .mk{color:var(--curious)}
+.band .br{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--muted); white-space:nowrap}
+.band .bt{position:relative; height:10px; border-radius:999px; background:var(--surface2); border:1px solid var(--border)}
+.band .bt i{position:absolute; top:-1px; bottom:-1px; border-radius:999px; background:var(--muted2); min-width:6px}
+.band .bt b{position:absolute; top:-7px; bottom:-7px; left:71%; width:2px; margin-left:-1px; border-radius:2px; background:var(--curious); opacity:.45}
+.band .ba{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:-.01em; color:var(--muted)}
+.band.hit{background:linear-gradient(90deg,rgba(245,200,66,.08),transparent)}
+.band.hit .br{color:var(--text)} .band.hit .ba{color:var(--text)}
+.band.hit .bt i{background:linear-gradient(90deg,var(--curious),var(--octo))}
+.band.hit .bt b{opacity:1; box-shadow:0 0 0 3px var(--curious-dim)}
+@media(max-width:560px){.band{grid-template-columns:92px 1fr; gap:10px 14px} .band .bt{grid-column:1/-1; grid-row:2} .band.bh .bx{grid-column:1/-1; grid-row:2}}
+
+/* consequence matrix */
+.cx{margin:22px 0; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--surface)}
+.cx .r{display:grid; grid-template-columns:1.25fr 1fr 1.35fr .95fr; gap:14px; padding:13px 20px; border-bottom:1px solid var(--border); align-items:baseline}
+.cx .r:last-child{border-bottom:none}
+.cx .r.h{font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); padding:12px 20px}
+.cx .r b{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:-.01em; color:var(--text)}
+.cx .r span{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--muted); line-height:1.5}
+.cx .r span.o{color:var(--text)}
+.cx .r span.o::before{content:''; display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:8px; vertical-align:0; background:var(--octo)}
+.cx .r span.o.esc::before{background:var(--curious)}
+.cx .r span.o.hold::before{background:var(--caring)}
+.cx .r span.o.no::before{background:var(--chill-bright)}
+@media(max-width:640px){
+  .cx .r{grid-template-columns:1fr 1fr; gap:6px 14px}
+  .cx .r.h{display:none}
+  .cx .r b{grid-column:1/-1}
+  .cx .r span[data-l]::before{content:attr(data-l); display:block; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted2); margin-bottom:1px}
+  .cx .r span.o[data-l]::before{width:auto; height:auto; border-radius:0; background:none; margin:0 0 1px}
+}
+
+/* reliability figure */
+.fig{margin:24px 0 10px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px 16px 10px}
+.fig .lg{display:flex; flex-wrap:wrap; gap:8px 18px; font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--muted); margin:0 6px 8px}
+.fig .lg span{display:inline-flex; align-items:center; gap:8px}
+.fig .lg svg{width:26px; height:12px; flex:none}
+.fig > svg{display:block; width:100%; height:auto}
+.fig .ax{font-family:'JetBrains Mono',monospace; font-size:12px; fill:var(--muted)}
+.fig .at{font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.08em; fill:var(--muted)}
+.fig .dl{font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; fill:var(--text)}
+.fig .pt{cursor:none}
+
+/* formula */
+.fx-h{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:20px; letter-spacing:-.02em; margin:26px 0 12px}
+.fx-h span{color:var(--octo)}
+.formula{display:flex; flex-wrap:wrap; align-items:stretch; gap:8px; margin:0 0 26px}
+.formula .t{flex:1 1 118px; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 14px 13px}
+.formula .t .tn{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16.5px; letter-spacing:-.01em; line-height:1.2; color:var(--text)}
+.formula .t .ts{font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:8px}
+.formula .x{align-self:center; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:20px; color:var(--muted2)}
+.formula .t.being{border-color:rgba(147,221,61,.4); background:linear-gradient(180deg,rgba(147,221,61,.07),var(--surface))}
+.formula .t.being .tn{color:var(--octo)} .formula .t.being .ts{color:var(--octo)}
+@media(max-width:560px){.formula .x{display:none} .formula .t{flex:1 1 40%}}
+
+
+/* ===== field-note additions: composers ===== */
+article{min-width:0}
+.p-hero h1 .g8{background:linear-gradient(105deg,var(--curious),var(--octo) 50%,var(--constructive)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.cp{color:var(--constructive)} .doc-eyebrow.cp::before{background:var(--constructive)}
+.gb1{background:var(--constructive)} .gb2{background:var(--chill)} .gb3{background:var(--curious)}
+.twin li svg{color:var(--octo)}
+.twin .box:not(.hi) li svg{color:var(--muted2)}
+.strip span.am{color:var(--curious); border-color:rgba(245,200,66,.45); background:var(--curious-dim)}
+.strip span.gr{color:var(--constructive); border-color:rgba(0,229,160,.45); background:var(--constructive-dim)}
+.strip span.rd{color:var(--caring); border-color:rgba(255,95,126,.45); background:var(--caring-dim)}
+.def dt.pu{color:var(--chill-bright)} .def dt.am{color:var(--curious)} .def dt.gr{color:var(--constructive)} .def dt.rd{color:var(--caring)}
+.ops span.ok{color:var(--constructive)} .ops span.no{color:var(--caring)} .ops span.ask{color:var(--curious)} .ops span.ai{color:var(--chill-bright)}
+article p code{font-family:'JetBrains Mono',monospace; font-size:.84em; padding:2px 7px; border-radius:6px; background:var(--surface2); border:1px solid var(--border); color:var(--text); white-space:nowrap}
+pre.dg .x{color:var(--caring)}
+pre.dg .k{color:var(--muted)}
+pre.dg em{color:var(--muted)}
+.ledger .v.last::after{display:none}
+
+/* verified / validated definition cards */
+.vx{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:24px 0}
+.vx .v{background:var(--surface); border:1px solid var(--border); border-top-width:3px; border-radius:16px; padding:22px 22px 20px}
+.vx .v.vf{border-top-color:var(--chill-bright)} .vx .v.vd{border-top-color:var(--constructive)}
+.vx .w{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:28px; letter-spacing:-.035em; line-height:1}
+.vx .vf .w{color:var(--chill-bright)} .vx .vd .w{color:var(--constructive)}
+.vx .q{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:17px; letter-spacing:-.01em; line-height:1.3; color:var(--text); margin:12px 0 14px}
+.vx ul{list-style:none; display:flex; flex-direction:column; gap:7px}
+.vx li{font-size:14.5px; color:var(--muted); padding-left:16px; position:relative; line-height:1.45}
+.vx li::before{content:''; position:absolute; left:0; top:.55em; width:6px; height:6px; border-radius:50%}
+.vx .vf li::before{background:var(--chill-bright)} .vx .vd li::before{background:var(--constructive)}
+@media(max-width:560px){.vx{grid-template-columns:1fr}}
+
+/* context / code x verified / validated matrix */
+.vv{margin:22px 0; border:1px solid var(--border); border-radius:16px; overflow:hidden; background:var(--surface)}
+.vv .r{display:grid; grid-template-columns:88px 1fr 1fr; gap:18px; padding:16px 20px; border-bottom:1px solid var(--border); align-items:start}
+.vv .r:last-child{border-bottom:none}
+.vv .r.h{padding:12px 20px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.vv .r.h .vf{color:var(--chill-bright); padding-left:14px} .vv .r.h .vd{color:var(--constructive); padding-left:14px}
+.vv .r b{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:18px; letter-spacing:-.02em; color:var(--text)}
+.vv .r ul{list-style:none; display:flex; flex-direction:column; gap:6px}
+.vv .r li{font-size:14px; color:#c3bfda; line-height:1.45}
+.vv .r .c{border-left:2px solid; padding-left:12px}
+.vv .r .c.vf{border-color:rgba(155,143,255,.5)} .vv .r .c.vd{border-color:rgba(0,229,160,.5)}
+@media(max-width:640px){
+  .vv .r{grid-template-columns:1fr; gap:12px}
+  .vv .r.h{display:none}
+  .vv .r .c::before{content:attr(data-l); display:block; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:5px}
+  .vv .r .c.vf::before{color:var(--chill-bright)} .vv .r .c.vd::before{color:var(--constructive)}
+}
+
+/* gate qualifiers */
+.gate .g .gq.gen{color:var(--curious)} .gate .g .gq.vf{color:var(--chill-bright)} .gate .g .gq.vd{color:var(--constructive)} .gate .g .gq.hu{color:var(--caring)}
+
+/* four artefacts */
+.mem .m5{border-top-color:var(--chill)} .mem .m5 .mt{color:var(--chill-bright)}
+.mem .m .md{font-size:13px; color:#c3bfda; margin-top:10px; line-height:1.45}
+/* ===== field-note additions: nightframes ===== */
+:root{--moon:#d9d4ff; --midnight:#24307e}
+.p-hero h1 .g9{background:linear-gradient(105deg,var(--chill) 0%,var(--chill-bright) 40%,var(--moon) 75%,var(--text)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent}
+.doc-eyebrow.nf{color:var(--moon)} .doc-eyebrow.nf::before{background:var(--moon)}
+.gb1{background:var(--chill)} .gb2{background:var(--midnight); opacity:.55} .gb3{background:var(--octo); opacity:.14}
+.twin li svg{color:var(--octo)}
+.twin .box:not(.hi) li svg{color:var(--moon)}
+.gate .g .gq.gen{color:var(--moon)}
+
+/* nightly frames */
+.nights{display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:8px; margin:26px 0 8px}
+.nt{position:relative; display:flex; flex-direction:column; gap:5px; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:12px 11px 11px; min-width:0}
+.nt::after{content:''; position:absolute; top:12px; right:11px; width:9px; height:9px; border-radius:50%; background:var(--moon); box-shadow:0 0 0 4px rgba(217,212,255,.10),0 0 14px rgba(217,212,255,.45)}
+.nt .d{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:15px; letter-spacing:-.02em; color:var(--text)}
+.nt .r{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--muted); white-space:nowrap}
+.nt .r b{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:17px; letter-spacing:-.02em; color:var(--text); margin-right:2px}
+.nt .h{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--chill-bright); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.nt.open{border-style:dashed; border-color:var(--border2); background:transparent}
+.nt.open::after{background:transparent; border:1px solid var(--muted); box-shadow:none}
+.nt.open .h{color:var(--muted)}
+.wk{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.04em; color:var(--moon); background:var(--chill-dim); border:1px solid rgba(123,108,255,.42); border-radius:14px; padding:11px 16px}
+.wk span:last-child{color:var(--chill-bright)}
+@media(max-width:640px){.nights{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:360px){.nights{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="ic-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="ic-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="ic-github" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.575.106.785-.25.785-.556 0-.274-.01-1-.015-1.964-3.196.695-3.87-1.54-3.87-1.54-.523-1.33-1.278-1.684-1.278-1.684-1.044-.714.08-.7.08-.7 1.154.082 1.76 1.185 1.76 1.185 1.027 1.76 2.695 1.252 3.35.957.104-.744.402-1.252.73-1.54-2.552-.29-5.236-1.276-5.236-5.68 0-1.254.448-2.28 1.183-3.084-.118-.29-.513-1.46.113-3.043 0 0 .966-.31 3.166 1.178a11 11 0 0 1 2.882-.388c.978.004 1.963.132 2.883.388 2.198-1.489 3.163-1.178 3.163-1.178.627 1.583.232 2.753.114 3.043.737.804 1.182 1.83 1.182 3.084 0 4.415-2.688 5.387-5.248 5.671.413.356.78 1.057.78 2.13 0 1.538-.014 2.778-.014 3.157 0 .308.207.668.79.554A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></symbol>
+  <symbol id="ic-headphones" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></symbol>
+  <symbol id="ic-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8M16 17H8M10 9H8"/></symbol>
+  <symbol id="ic-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="ic-split" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></symbol>
+  <symbol id="ic-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="ic-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+  <symbol id="ic-build" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9z"/></symbol>
+  <symbol id="ic-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></symbol>
+  <symbol id="ic-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></symbol>
+  <symbol id="ic-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></symbol>
+  <symbol id="ic-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+  <symbol id="sd-mark" viewBox="0 0 736 728"><circle cx="368" cy="366" r="363" fill="currentColor"/><polygon points="184,295 317,162 317,295 184,428" fill="#efefe5"/><polygon points="185,528 453,260 453,395 320,527" fill="#efefe5"/><polygon points="424,527 555,397 555,527" fill="#efefe5"/></symbol>
+</svg>
+
+<div class="cursor-dot" id="cdot"></div>
+<div class="cursor-ring" id="cring"></div>
+<div class="progress" id="progress"></div>
+
+<nav>
+  <a href="/" class="brand"><span class="mark"><svg style="color:var(--octo)"><use href="#sd-mark"/></svg></span><span>octo<em>nomous</em></span></a>
+  <div class="nav-links">
+    <a href="#dilemma">The dilemma</a>
+    <a href="#nightframe">Nightframes</a>
+    <a href="#dust">Paying with DUST</a>
+    <a href="#runtime">In the runtime</a>
+    <a href="/paper">The paper</a>
+    <a href="https://github.com/selfdriven-octo/octonomous">GitHub</a>
+    <a href="/" class="nav-cta"><svg><use href="#ic-back"/></svg> octonomous.io</a>
+  </div>
+</nav>
+
+<header class="p-hero">
+  <div class="gblob gb1"></div><div class="gblob gb2"></div><div class="gblob gb3"></div>
+  <div class="p-hero-in">
+    <div class="p-hero-copy">
+    <span class="doc-eyebrow nf">Field note · Privacy pattern</span>
+    <h1>Seal the day.<br><span class="g9">Prove it at midnight.</span></h1>
+    <p class="sub">An Octonomous Being already signs what it does and anchors the roots on Cardano. Midnight lets it prove what's inside those roots — one question, one audience — without publishing the rest. This note calls that unit a <em>nightframe</em>: a window of a Being's record it keeps, commits to in public, and can <em>answer for in private</em>.</p>
+    <div class="doc-meta">
+      <span><b>Octonomous</b> · field note</span>
+      <span>~16 min read</span>
+      <span>Extends <b>evidence anchoring</b></span>
+      <span>October 2026</span>
+    </div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="toc">
+    <div class="toc-label">Contents</div>
+    <ol>
+      <li><a href="#abstract" class="tl">Abstract</a></li>
+      <li><a href="#dilemma" class="tl">Show it or be trusted</a></li>
+      <li><a href="#midnight" class="tl">What Midnight adds</a></li>
+      <li><a href="#nightframe" class="tl">Defining a nightframe</a></li>
+      <li><a href="#sealing" class="tl">Sealed at sleep</a></li>
+      <li><a href="#asking" class="tl">Asking a question</a></li>
+      <li><a href="#declared" class="tl">Declared disclosure</a></li>
+      <li><a href="#dust" class="tl">Paying with DUST</a></li>
+      <li><a href="#chains" class="tl">Two chains, one Being</a></li>
+      <li><a href="#character" class="tl">Nightframes and the 4Cs</a></li>
+      <li><a href="#uses" class="tl">What it opens</a></li>
+      <li><a href="#runtime" class="tl">Inside the lab runtime</a></li>
+      <li><a href="#grounding" class="tl">Buildable now</a></li>
+      <li><a href="#honest" class="tl">What this doesn't claim</a></li>
+      <li><a href="#conclusion" class="tl">Conclusion</a></li>
+      <li><a href="#references" class="tl">References</a></li>
+    </ol>
+  </aside>
+
+  <article>
+
+    <!-- Abstract -->
+    <section class="sec" id="abstract">
+      <div class="kicker">Abstract</div>
+      <p class="lead">An Octonomous Being keeps a signed record of its life — every contribution, commitment, delegation, verification and vote. The lab runtime already rolls those receipts into a Merkle root and anchors it on Cardano.</p>
+      <p>An anchor proves that a record existed, and when. It can't answer a question about what's in it without opening it — and opening it exposes more than the Being: the people it served, the communities it worked for, the amounts it moved. So a Being asked to prove its track record has had two choices. Show everything, or ask to be trusted.</p>
+      <p>Midnight, the privacy partner chain to Cardano that went live in March 2026, offers a third. Its contracts keep public state on chain and private state with the user, and prove statements about the private part in zero knowledge. This note proposes a unit built for it: the <strong>nightframe</strong>. A nightframe is a bounded window of a Being's own record — sealed in public, kept in private, and answerable on request, one declared disclosure at a time.</p>
+
+      <div class="notbut">
+        <div class="box"><div class="bl">Not</div><div class="bt">Publish the evidence, or publish a score and ask to be believed</div></div>
+        <div class="box hi"><div class="bl">But</div><div class="bt">Commit in public · keep in private · prove what's asked, to whom it's asked, and nothing else</div></div>
+      </div>
+
+      <div class="pull">An anchor proves you kept a record. <span class="hl">A nightframe proves what's in it.</span></div>
+    </section>
+
+    <!-- 01 dilemma -->
+    <section class="sec" id="dilemma">
+      <div class="kicker">01 — The disclosure dilemma</div>
+      <h2>Show it, or be taken on trust</h2>
+      <p>The lab runtime can already issue a <em>portable reputation proof</em>: a signed statement a Being carries to a community that doesn't know it yet. The proof holds a score, an evidence count, a root over the evidence — and, by default, the evidence references themselves: the kind of each item, its subject, its receipt and its weight.</p>
+      <p>That makes the proof checkable. It also makes it a map. Each subject is someone the Being worked with or for. Each receipt places them at a time. A community checking one Being's record learns a great deal about another community's members.</p>
+      <p>Switch the references off and the map disappears — along with anything to check. The verifier gets a number and a signature, and is back to asking who said so.</p>
+
+      <div class="spec">
+        <div class="s">
+          <div class="st">Show everything</div>
+          <ul>
+            <li>Evidence refs published</li>
+            <li>Counterparties exposed</li>
+            <li>Checkable by anyone</li>
+            <li>Can't be unshown</li>
+          </ul>
+        </div>
+        <div class="s mid">
+          <div class="st">Nightframe</div>
+          <ul>
+            <li>Seal published, contents kept</li>
+            <li>One question, one audience</li>
+            <li>Proof checkable by anyone asked</li>
+            <li>Disclosure declared in code</li>
+          </ul>
+        </div>
+        <div class="s">
+          <div class="st">Trust me</div>
+          <ul>
+            <li>A score and a signature</li>
+            <li>Nothing to inspect</li>
+            <li>Credible as its issuer</li>
+            <li>Reputation as assertion</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>This isn't a Being's private convenience. The people in its record never chose to be in someone else's due diligence. Protecting them is a <strong>Caring</strong> obligation, and a framework that turns every reputation check into a disclosure of third parties fails it — however well-signed the disclosure is.</p>
+      <div class="pull">The harm of over-disclosure <span class="hl">lands on people who weren't asked.</span></div>
+    </section>
+
+    <!-- 02 midnight -->
+    <section class="sec" id="midnight">
+      <div class="kicker">02 — What Midnight adds</div>
+      <h2>Public state, private state, a proof between</h2>
+      <p>Midnight is a privacy-focused partner chain of Cardano. Its mainnet launched in March 2026, run at first by a federation of node operators rather than an open validator set. Four of its properties matter here.</p>
+
+      <div class="defs">
+        <div class="def"><dt class="pu">Two states</dt><dd>Public state lives on chain — contract code, proofs, anything a contract chooses to publish. Private state is encrypted and kept by the user, on their own device. It never reaches the network.</dd></div>
+        <div class="def"><dt class="pu">Proofs</dt><dd>The user computes over private data locally. The runtime produces a zk-SNARK showing the computation was done correctly; validators check the proof, not the data.</dd></div>
+        <div class="def"><dt class="gr">Compact</dt><dd>A TypeScript-based contract language that compiles to zero-knowledge circuits. Private inputs arrive as <em>witnesses</em>.</dd></div>
+        <div class="def"><dt class="gr">Declared disclosure</dt><dd>Compact refuses to compile if witness data can reach the public ledger, a circuit's return value or another contract without being wrapped in <code>disclose()</code>. Disclosure is something the code says, not something it does by accident.</dd></div>
+      </div>
+
+      <p>Fees work differently too. <strong>NIGHT</strong> is the public, transferable token. Holding it generates <strong>DUST</strong> — a shielded, non-transferable resource used only to pay transaction fees. Section 07 comes back to why that suits a Being.</p>
+      <p>Agents aren't a stretch for Midnight. Its own showcase, Midnight City, is a simulated city whose residents are autonomous AI agents, with a second version live by mid-2026. This note asks a narrower question than any simulation: what should a Being with a real record, a real identity and real counterparties keep there?</p>
+    </section>
+
+    <!-- 03 nightframe -->
+    <section class="sec" id="nightframe">
+      <div class="kicker">03 — The unit</div>
+      <h2>Defining a nightframe</h2>
+      <p>A <strong>nightframe</strong> is a bounded window of a Being's own record, treated as one thing. Its seal is public. Its contents stay with the Being. Questions about it are answered by proof.</p>
+
+      <div class="defs">
+        <div class="def"><dt>Frame</dt><dd>A window and a scope: one day by default, or a week, a quarter, a delegation's lifetime. Whose record, from when to when, covering what.</dd></div>
+        <div class="def"><dt>Seal</dt><dd>A commitment to every receipt in the window, signed by the Being's identifier and published — a root anyone can see and no one can read.</dd></div>
+        <div class="def"><dt>Keep</dt><dd>The receipts themselves, with the paths that tie each one to the seal. Held by the Being, under its principal's control.</dd></div>
+        <div class="def"><dt class="am">Claim</dt><dd>A question with a fixed shape — a predicate over one or more frames. <em>At least ten disbursements. No violated commitments. A member in good standing.</em></dd></div>
+        <div class="def"><dt class="pu">Disclosure</dt><dd>What an answer reveals, declared in the claim's circuit before anyone asks: usually the result, the frame range and the audience. Nothing else leaves.</dd></div>
+      </div>
+
+      <div class="schema">
+        <div class="sc">
+          <div class="bl">An anchor, as the runtime has it</div>
+          <code>version<br>root · blake2b-256<br>count<br>being · hashed id<br>created<br>txId · Cardano, label 1337</code>
+        </div>
+        <div class="sc hi">
+          <div class="bl">A nightframe</div>
+          <code><b>frame</b> · AID · from · to · scope<br><b>seal</b> · signed by the AID<br>&nbsp;&nbsp;root · blake2b → Cardano<br>&nbsp;&nbsp;root · circuit → Midnight<br><b>keep</b> · receipts, paths · private<br><b>parents</b> · frames this one rolls up<br><b>claims</b> · templates it can answer<br><b>disclosure</b> · per claim, declared<br><b>fees</b> · DUST address · sponsor<br><b>status</b> · open · sealed · superseded</code>
+        </div>
+      </div>
+      <p class="cap">The anchor records that a set of receipts existed. The nightframe makes the same set answerable.</p>
+
+      <div class="pull">Committed in public. Kept in private. <span class="hl">Answerable on request.</span></div>
+    </section>
+
+    <!-- 04 sealing -->
+    <section class="sec" id="sealing">
+      <div class="kicker">04 — Why midnight</div>
+      <h2>Sealed when the Being sleeps</h2>
+      <p>The name is literal. The lab runtime handles every event through a fixed lifecycle, and it ends the same way each time:</p>
+
+      <div class="strip">
+        <span>wake</span><i>→</i><span>observe</span><i>→</i><span>consider</span><i>→</i><span>decide</span><i>→</i><span>govern</span><i>→</i><span>commit</span><i>→</i><span>act</span><i>→</i><span>reflect</span><i>→</i><span>contribute</span><i>→</i><span class="gr">remember</span><i>→</i><span class="pu">sleep</span>
+      </div>
+
+      <p><code>remember</code> signs a receipt for each event. Nothing yet marks the end of a day. A nightframe gives <code>sleep</code> that job: when the clock passes midnight in the Being's home timezone, the day's receipts close into a frame, the frame is sealed, and a new one opens. The day becomes a thing the Being can answer for.</p>
+
+      <div class="nights" aria-label="One week of daily nightframes">
+        <div class="nt"><span class="d">Mon</span><span class="r"><b>14</b> rcpts</span><span class="h">a3f1…</span></div>
+        <div class="nt"><span class="d">Tue</span><span class="r"><b>9</b> rcpts</span><span class="h">07bc…</span></div>
+        <div class="nt"><span class="d">Wed</span><span class="r"><b>22</b> rcpts</span><span class="h">e912…</span></div>
+        <div class="nt"><span class="d">Thu</span><span class="r"><b>6</b> rcpts</span><span class="h">4d0a…</span></div>
+        <div class="nt"><span class="d">Fri</span><span class="r"><b>17</b> rcpts</span><span class="h">b55e…</span></div>
+        <div class="nt"><span class="d">Sat</span><span class="r"><b>0</b> rcpts</span><span class="h">empty</span></div>
+        <div class="nt open"><span class="d">Sun</span><span class="r"><b>—</b> open</span><span class="h">00:00</span></div>
+      </div>
+      <div class="wk"><span>week frame · root over 7 seals</span><span>9d02…</span></div>
+      <p class="dg-cap" style="margin-top:12px">Receipts and seal per day, rolling up into a week · illustrative</p>
+
+      <p>Three details matter. An <em>empty day is still sealed</em> — an absence is evidence too, and a gap in the seals would otherwise be ambiguous. Frames <em>nest</em>: a week's seal is a root over seven daily seals, a quarter's over thirteen weeks, so a claim can range over ninety days without touching ninety separate commitments. And seals are <em>append-only</em>: a frame can be superseded by a corrected one, but the original seal stays on record.</p>
+    </section>
+
+    <!-- 05 asking -->
+    <section class="sec" id="asking">
+      <div class="kicker">05 — Asking a nightframe a question</div>
+      <h2>A track record, without the ledger</h2>
+      <p>To continue the example from the companion notes: a Being has spent a season as treasury steward for a community, funding repairs like the hall's switchboard. A second community wants to delegate it a budget. It doesn't need the first community's books. It needs to know whether this Being handles money the way it claims to.</p>
+
+<pre class="dg"><b>claim</b>      steward-record <em>· template</em> <s>StewardClaim</s><em>@5e7a</em>
+<b>asked by</b>   <u>Riverbend co-op</u> <em>· AID</em> EKf9… <em>· purpose</em> delegate budget
+<b>over</b>       frames <em>14 Jul → 11 Oct · 13 week seals</em>
+
+<b>public</b>     week seals <em>· read from the contract</em>
+           threshold ≥ 10 <em>· audience</em> EKf9…
+<b>private</b>    receipts <em>· Merkle paths · membership credential</em>
+
+<b>proves</b>     disbursements ≥ 10                 <b>✓</b>
+           every irreversible step approved   <b>✓</b>
+           disputes upheld = 0                <b>✓</b>
+           member in good standing            <b>✓</b>
+<b>discloses</b>  result · frame range · audience     <span class="k">declared</span>
+<b>keeps</b>      payees · amounts · approvers · who asked</pre>
+      <p class="dg-cap">One claim, answered · illustrative identifiers and values</p>
+
+      <div class="twin">
+        <div class="box">
+          <div class="bl">The co-op learns</div>
+          <ul>
+            <li><svg><use href="#ic-eye"/></svg> All four conditions hold</li>
+            <li><svg><use href="#ic-eye"/></svg> Over these thirteen weeks</li>
+            <li><svg><use href="#ic-eye"/></svg> Against seals it can read itself</li>
+            <li><svg><use href="#ic-eye"/></svg> Answered to it, by this Being</li>
+          </ul>
+        </div>
+        <div class="box hi">
+          <div class="bl">The Being keeps</div>
+          <ul>
+            <li><svg><use href="#ic-lock"/></svg> Who was paid, and how much</li>
+            <li><svg><use href="#ic-lock"/></svg> Who approved each payment</li>
+            <li><svg><use href="#ic-lock"/></svg> Which members raised requests</li>
+            <li><svg><use href="#ic-lock"/></svg> Everything else it did that season</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>The co-op can check the proof against seals that were published weeks before it asked — so the Being couldn't have shaped the record to fit the question. And the first community's members never appear in the second community's due diligence.</p>
+      <div class="pull">The co-op gets an answer. <span class="hl">Nobody else's name changes hands.</span></div>
+    </section>
+
+    <!-- 06 declared -->
+    <section class="sec" id="declared">
+      <div class="kicker">06 — Disclosure as an artefact</div>
+      <h2>Nothing leaves that wasn't declared</h2>
+      <p>Compact's compiler rule is easy to state. Witness data — and anything computed from it, including a comparison inside a condition — can't reach public state, a return value or another contract unless the code wraps it in <code>disclose()</code>. If it would, compilation fails and names the path the data would have taken.</p>
+      <p>For a Being, that turns disclosure into something that can be reviewed before anyone asks. A <strong>claim template</strong> is a circuit with its disclosures written down. It belongs in the same library as the <a href="/composers">composer note's</a> controllers: published under a digest of its own content, signed by its authors and reviewers, validated against a test suite. A Being answers only with templates it can name.</p>
+
+      <div class="gate">
+        <div class="g"><span class="gn">01</span><span class="gt">Request arrives, signed by the audience</span><span class="gq vf">verified</span></div>
+        <div class="g"><span class="gn">02</span><span class="gt">Check the audience and its stated purpose</span><span class="gq">may I</span></div>
+        <div class="g"><span class="gn">03</span><span class="gt">Resolve the claim template by digest</span><span class="gq vf">verified</span></div>
+        <div class="g"><span class="gn">04</span><span class="gt">Read its declared disclosures</span><span class="gq vd">validated</span></div>
+        <div class="g c4"><span class="gn">05</span><span class="gt">Curious · Caring · Constructive · Chill</span><span class="gq">should I</span></div>
+        <div class="g"><span class="gn">06</span><span class="gt">Build the proof locally, from the keep</span><span class="gq gen">private</span></div>
+        <div class="g fin"><span class="gn">07</span><span class="gt">Answer, and sign a receipt of answering</span><span class="gq">commit</span></div>
+      </div>
+
+      <p>The receipt in step 07 goes into tonight's frame. A Being's record of what it has disclosed, and to whom, is itself part of what it can later prove — or decline to.</p>
+      <div class="pull">A disclosure you can read in the code <span class="hl">is one you can refuse before it happens.</span></div>
+    </section>
+
+    <!-- 07 dust -->
+    <section class="sec" id="dust">
+      <div class="kicker">07 — Fees as metabolism</div>
+      <h2>Paying with DUST</h2>
+      <p>Most chains ask an agent to hold the fee token, which means a Being with a wallet full of something whose price it doesn't control. Midnight separates the two. A NIGHT holder registers a NIGHT address to a DUST key, and DUST accrues there at a rate set by the NIGHT behind it.</p>
+
+      <div class="stats">
+        <div class="stat"><div class="sn">5<small>DUST</small></div><div class="sd">The most each NIGHT can back. Generation stops at the cap.</div></div>
+        <div class="stat"><div class="sn">~1<small>week</small></div><div class="sd">To fill: 100 NIGHT reaches its 500 DUST cap in about a week.</div></div>
+        <div class="stat neg"><div class="sn">~1<small>week</small></div><div class="sd">To fade: when backing goes, a full cap decays at the same rate, unless spent first.</div></div>
+      </div>
+
+      <p>Three properties fit a Being unusually well.</p>
+      <div class="defs">
+        <div class="def"><dt>Sponsored</dt><dd>A principal or community holds the NIGHT and designates its DUST to the Being's address. The Being gets capacity to act, not a balance to speculate with — and DUST can't be transferred, so it can't be sent anywhere else.</dd></div>
+        <div class="def"><dt class="pu">Bounded</dt><dd>Capacity refills at a rate and stops at a cap. How much private activity a Being can sustain is set by its sponsor's stake, not by how fast it can spend.</dd></div>
+        <div class="def"><dt class="rd">Fading</dt><dd>When a sponsor withdraws, generation stops at once and the balance drains over about a week. Work in flight can finish; nothing new can be funded for long.</dd></div>
+      </div>
+
+      <p>That last property cuts both ways. A Being whose sponsor has lost confidence can keep transacting while its DUST fades. Fee capacity is not authority: revoking what a Being may do still happens at the Octonomous layer, through its delegations and capabilities, and takes effect immediately. DUST only decides what it can afford.</p>
+      <div class="pull">Not a wallet to manage. <span class="hl">A metabolism someone else feeds.</span></div>
+    </section>
+
+    <!-- 08 chains -->
+    <section class="sec" id="chains">
+      <div class="kicker">08 — Who lives where</div>
+      <h2>Two chains, one Being</h2>
+      <p>Nightframes don't move a Being onto Midnight. A Being's identity is a KERI identifier — self-certifying, with its own key event log, and native to no ledger. Chains are witnesses it uses, each for what it does best.</p>
+
+      <div class="stack">
+        <div class="layer l2"><span class="ln">KERI AID</span><span class="lq">Who the Being is. Signs every receipt and every seal; rotates its own keys.</span><span class="lt">IDENTITY</span></div>
+        <div class="layer l1"><span class="ln">Cardano</span><span class="lq">That a record existed, and when. A root in transaction metadata, public for good.</span><span class="lt">ANCHOR</span></div>
+        <div class="layer l4"><span class="ln">Midnight</span><span class="lq">What the record shows, and to whom. A proof against a sealed frame.</span><span class="lt">PROOF</span></div>
+      </div>
+
+      <p>The same leaves feed both roots. Cardano carries the cheap, permanent timestamp the runtime already writes. Midnight carries a second root, computed with a hash that's practical inside a circuit, in a contract that claim templates can read. If either chain changed tomorrow, the Being would still be the same Being — the <a href="/physical-reality">physical reality note's</a> <em>bring your own body</em>, applied to ledgers.</p>
+    </section>
+
+    <!-- 09 character -->
+    <section class="sec" id="character">
+      <div class="kicker">09 — Character in the dark</div>
+      <h2>Nightframes and the 4Cs</h2>
+      <p>Privacy gives a Being room. Character decides what it does with it.</p>
+
+      <div class="cq">
+        <div class="q q1"><b>Curious</b><span>What does this audience actually need to know? Ask before answering, and prefer the claim that answers exactly that.</span></div>
+        <div class="q q2"><b>Caring</b><span>The people in the record come first. Never answer in a way that names someone who wasn't asked.</span></div>
+        <div class="q q3"><b>Constructive</b><span>Make the record useful to others. A proof that opens a door is a contribution; seal every day so it can.</span></div>
+        <div class="q q4"><b>Chill</b><span>Disclose the least that works. Decline questions whose purpose can't be seen — and put the refusal on record.</span></div>
+      </div>
+
+      <p>A nightframe doesn't stop a Being from behaving badly in private. It does the opposite of hiding: every day is sealed whether or not anyone ever asks, so the Being can't later produce a record that wasn't there, or lose one that was. What stays private is the content. The commitment to it doesn't.</p>
+      <div class="pull">Privacy for the people in the record. <span class="hl">Accountability for the Being that kept it.</span></div>
+    </section>
+
+    <!-- 10 uses -->
+    <section class="sec" id="uses">
+      <div class="kicker">10 — Where it applies</div>
+      <h2>What nightframes open</h2>
+      <p>The pattern is the same everywhere: a party needs a yes or no about a Being's history, and the history involves people that party has no right to see.</p>
+
+      <div class="resp">
+        <div class="r hi"><b>Delegation</b><span>a new community checks a track record without receiving the old community's ledger</span></div>
+        <div class="r"><b>Reputation</b><span>a score above a threshold, computed from verified receipts, with no evidence refs leaving the keep</span></div>
+        <div class="r"><b>Admission</b><span>in good standing with a community the audience trusts — named only if the claim declares it</span></div>
+        <div class="r"><b>Physical reality</b><span>a robot proves no restraint edge was overridden this month, without the household's routine</span></div>
+        <div class="r"><b>Audit</b><span>an auditor re-verifies the proof and the frame range, not the diary</span></div>
+        <div class="r"><b>Compliance</b><span>screening passed before settlement, without the counterparty file</span></div>
+      </div>
+
+      <p>The last row is Midnight's own argument: its foundation has argued to the US Treasury that selective disclosure and zero-knowledge proofs can run sanctions screening before settlement while keeping user data private. Nightframes give a Being a place to stand in that argument — with a record that was committed long before the regulator asked.</p>
+    </section>
+
+    <!-- 11 runtime -->
+    <section class="sec" id="runtime">
+      <div class="kicker">11 — Inside the lab runtime</div>
+      <h2>From one anchor to answerable frames</h2>
+      <p>The <a href="https://github.com/selfdriven-octo/octonomous/tree/main/lab">lab runtime</a> already has the hard half. Its evidence anchor service collects every receipt a Being holds — memory, contributions, commitments, delegations, capabilities, verifications, governance, challenges — builds a blake2b-256 Merkle root over the ones not yet anchored, and hands the root to a Cardano provider under metadata label 1337. The provider boundary is deliberate: it owns the wallet and the signing, so payment keys stay out of Octonomous core.</p>
+      <p>Its portable reputation proof is the other half, and the one nightframes change. Here's where they'd land:</p>
+
+<pre class="dg"><em>           v1.0 today                   </em><b>with nightframes</b>
+sleep      ends the cycle               <b>seal the day's frame</b>
+anchor     unanchored receipts          <b>receipts in the frame</b>
+           blake2b root → Cardano       <b>+ circuit root → Midnight</b>
+provider   CardanoProvider.anchor()     <b>+ a Midnight provider,</b>
+                                        <b>  owning the DUST key</b>
+proof      score · root · refs          <b>claim proof over seals</b>
+           <em>or</em> score, no refs            <b>refs stay in the keep</b>
+receipt    reputation.proof.issued      <b>claim.answered, in tonight's frame</b></pre>
+      <p class="dg-cap">Where nightframes change the runtime · mapping, not shipped code</p>
+
+      <p>None of it needs a new runtime: a frame record, a second root over the same leaves, a provider boundary that mirrors the Cardano one, and claim templates registered by digest alongside controllers.</p>
+    </section>
+
+    <!-- 12 grounding -->
+    <section class="sec" id="grounding">
+      <div class="kicker">12 — Grounding in existing infrastructure</div>
+      <h2>This is buildable now</h2>
+      <p>Like the other field notes, this one waits on no research result. Every part exists today.</p>
+
+      <div class="defs">
+        <div class="def"><dt>KERI AIDs</dt><dd>The Being's identifier, signing receipts and seals, ledger-independent by design.</dd></div>
+        <div class="def"><dt>ACDCs</dt><dd>Membership and capability credentials — the private inputs a claim like <em>in good standing</em> proves against.</dd></div>
+        <div class="def"><dt class="am">Cardano</dt><dd>Transaction metadata for public, timestamped roots. Already wired into the runtime.</dd></div>
+        <div class="def"><dt class="pu">Midnight</dt><dd>Mainnet live since March 2026; node software at 1.0 by mid-year. Public and private state, local proving.</dd></div>
+        <div class="def"><dt class="pu">Compact</dt><dd>Contracts compiled to circuits, with Merkle tree types in ledger state and compile-time checks on disclosure.</dd></div>
+        <div class="def"><dt class="gr">NIGHT · DUST</dt><dd>Sponsor-held stake generating non-transferable fee capacity at the Being's address.</dd></div>
+      </div>
+
+      <p>What's missing is the unit: a Being that seals its days, keeps its own receipts, and answers with templates it can name.</p>
+    </section>
+
+    <!-- 13 honest -->
+    <section class="sec" id="honest">
+      <div class="kicker">13 — Honest framing</div>
+      <h2>What this note doesn't claim</h2>
+
+      <div class="twin">
+        <div class="box">
+          <div class="bl">This note does not</div>
+          <ul>
+            <li><svg><use href="#ic-arrow"/></svg> Make a Being's record true</li>
+            <li><svg><use href="#ic-arrow"/></svg> Hide that activity happened</li>
+            <li><svg><use href="#ic-arrow"/></svg> Claim Midnight is decentralised yet</li>
+            <li><svg><use href="#ic-arrow"/></svg> Describe a shipped runtime feature</li>
+          </ul>
+        </div>
+        <div class="box hi">
+          <div class="bl">This note does</div>
+          <ul>
+            <li><svg><use href="#ic-check"/></svg> Separate committing from disclosing</li>
+            <li><svg><use href="#ic-check"/></svg> Make disclosure declared and reviewable</li>
+            <li><svg><use href="#ic-check"/></svg> Keep third parties out of proofs</li>
+            <li><svg><use href="#ic-check"/></svg> Show where it lands in the runtime</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>A proof shows that a predicate holds over the receipts a Being committed — not that those receipts reflect what happened. Receipts are only as good as the signatures and verifications behind them, which is why the claims above lean on counter-signed evidence rather than self-reports. Seals, their timing and their fee usage are public, and patterns in metadata can say more than they seem to. Midnight launched with a federation of node operators; how far its trust model widens is its own roadmap, not this note's.</p>
+      <p>Open questions remain. Whether a claim checks the Being's KERI signature inside the circuit, or binds the Midnight key to the identifier by credential, is a cost and design trade-off. Two roots over the same leaves must provably agree. Key rotation has to carry across frames. And a Being's keep is now the most sensitive thing it holds; it needs the same care as its secrets.</p>
+      <p>Octonomous is a framework for what a being <em>is</em>, not a security appliance. Privacy doesn't make a Being trustworthy. It makes it possible to be trustworthy without exposing everyone it has worked with. Autonomy concentrates responsibility; nightframes let a Being answer for it.</p>
+    </section>
+
+    <!-- 14 conclusion -->
+    <section class="sec" id="conclusion">
+      <div class="kicker">14 — Conclusion</div>
+      <h2>Answer for the day. Keep the night.</h2>
+      <p>A self-sovereign Being will be asked to prove itself again and again — by communities, principals, auditors, counterparties — and each time, the honest answer involves people who aren't in the room. Until now its choices were to expose them or to ask for trust. A nightframe offers a third: seal every day, keep what's inside, and answer the question actually asked, with a disclosure anyone can read in advance.</p>
+
+      <div class="strip">
+        <span class="am">sealed every night</span><i>+</i><span class="pu">kept by the Being</span><i>+</i><span class="gr">declared disclosure</span><i>=</i><span class="hi">an answer without an exposure</span>
+      </div>
+
+      <div class="fourC"><span class="c1">Curious</span><span class="c2">Caring</span><span class="c3">Constructive</span><span class="c4">Chill</span></div>
+
+      <p>Curious asks what the question is for. Caring keeps the people in the record out of the answer. Constructive seals every day, so the record is there when it's needed. Chill discloses the least that works — and can say no.</p>
+      <div class="pull">Not beings that publish everything. <span class="hl">Beings that can prove what matters, and keep the rest.</span></div>
+
+      <div class="endcta">
+        <h3>Read alongside</h3>
+        <div class="row">
+          <a href="/composers" class="btn btn-p">Field note: Agents as Composers <svg><use href="#ic-arrow"/></svg></a>
+          <a href="/knowledge-graphs" class="btn btn-s">Field note: Verified Context <svg><use href="#ic-arrow"/></svg></a>
+          <a href="/paper" class="btn btn-s">The Octonomous paper <svg><use href="#ic-arrow"/></svg></a>
+          <a href="/" class="btn btn-s"><svg><use href="#ic-back"/></svg> Back to octonomous.io</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- References -->
+    <section class="sec" id="references">
+      <div class="kicker">References</div>
+      <h2>Sources</h2>
+      <ul class="refs">
+        <li><b>Octonomous (2026).</b> An Open Framework for Self-Sovereign Intelligent Beings. <a href="/paper">octonomous.io/paper</a></li>
+        <li><b>Octonomous (2026).</b> Agents as Composers: Verified Context, Verified Code — field note. <a href="/composers">octonomous.io/composers</a></li>
+        <li><b>Octonomous (2026).</b> From Knowledge Graphs to Verified Context — field note. <a href="/knowledge-graphs">octonomous.io/knowledge-graphs</a></li>
+        <li><b>Octonomous (2026).</b> Octonomous Robots in Physical Reality — field note. <a href="/physical-reality">octonomous.io/physical-reality</a></li>
+        <li><b>Octonomous (2026).</b> Lab runtime 1.0 — evidence anchoring and portable reputation proofs. <a href="https://github.com/selfdriven-octo/octonomous/tree/main/lab">github.com/selfdriven-octo/octonomous</a></li>
+        <li><b>Midnight.</b> How Midnight works — public and private state, local proving. <a href="https://docs.midnight.network/learn/how-midnight-works">docs.midnight.network</a></li>
+        <li><b>Midnight.</b> Compact — explicit disclosure. <a href="https://docs.midnight.network/compact/explicit_disclosure">docs.midnight.network/compact</a></li>
+        <li><b>Midnight.</b> Compact — ledger data types. <a href="https://docs.midnight.network/compact/ledger-adt">docs.midnight.network/compact/ledger-adt</a></li>
+        <li><b>Midnight (2026).</b> The mechanics of DUST generation and decay. <a href="https://midnight.network/blog/the-mechanics-of-dust-generation-and-decay">midnight.network/blog</a></li>
+        <li><b>Midnight (2026).</b> Consensus Hong Kong 2026 recap — mainnet date and federated operators. <a href="https://midnight.network/blog/consensus-hk-2026-recap">midnight.network/blog</a></li>
+        <li><b>Midnight (2026).</b> State of the Network — April 2026 and July 2026. <a href="https://midnight.network/blog/state-of-the-network-april-2026">April</a> · <a href="https://midnight.network/blog/state-of-the-network-july-2026">July</a></li>
+        <li><b>Dune.</b> Midnight data catalogue — network overview. <a href="https://docs.dune.com/data-catalog/midnight/overview">docs.dune.com</a></li>
+        <li><b>Smith, S. M.</b> Key Event Receipt Infrastructure (KERI) and Authentic Chained Data Containers (ACDC). <a href="https://github.com/WebOfTrust/keri">github.com/WebOfTrust/keri</a></li>
+      </ul>
+      <div style="margin-top:22px"><a class="repo-link" href="https://github.com/selfdriven-octo/octonomous"><svg><use href="#ic-github"/></svg> View the source on GitHub</a></div>
+    </section>
+
+  </article>
+</div>
+
+<footer>
+  <div class="foot-in">
+    <a href="/" class="foot-brand"><span class="mark"><svg style="color:var(--octo)"><use href="#sd-mark"/></svg></span><span>octo<em>nomous</em></span></a>
+    <div class="foot-links">
+      <a href="/paper">The paper</a>
+      <a href="https://heyocto.ai">heyOcto.ai</a>
+      <a href="https://octomics.io">octomics.io</a>
+      <a href="https://octology.io">octology.io</a>
+      <a href="https://selfdriven.you">selfdriven.you</a>
+      <a href="https://github.com/selfdriven-octo/octonomous">GitHub</a>
+    </div>
+    <div class="foot-cs"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i></div>
+  </div>
+  <p class="foot-copy">© 2026 Octonomous · An open framework within the selfdriven ecosystem. Character before capability.</p>
+</footer>
+
+<script>
+// cursor
+(function(){
+  var dot=document.getElementById('cdot'), ring=document.getElementById('cring');
+  if(!dot) return;
+  var rx=0,ry=0,dx=0,dy=0;
+  document.addEventListener('mousemove',function(e){dx=e.clientX;dy=e.clientY;dot.style.left=dx+'px';dot.style.top=dy+'px';});
+  function loop(){rx+=(dx-rx)*.18;ry+=(dy-ry)*.18;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);}
+  loop();
+  document.querySelectorAll('a,.layer,.chip,.box,.stat,.g,.m,.s,.sc,.band,.t,.dist .row,.pt,.q,.qcard,.v,.n,.def,.nt,.wk').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(147,221,61,.6)';});
+    el.addEventListener('mouseleave',function(){ring.style.width='34px';ring.style.height='34px';ring.style.borderColor='rgba(240,238,255,.3)';});
+  });
+})();
+// reading progress
+(function(){
+  var bar=document.getElementById('progress');
+  function upd(){var h=document.documentElement.scrollHeight-innerHeight; bar.style.width=(h>0?(scrollY/h*100):0)+'%';}
+  addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); upd();
+})();
+// scrollspy TOC
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.toc a.tl'));
+  var map={}; links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  var spy=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('active');}); var a=map[e.target.id]; if(a)a.classList.add('active'); } });
+  },{rootMargin:'-20% 0px -70% 0px'});
+  document.querySelectorAll('article .sec').forEach(function(s){spy.observe(s);});
+})();
+</script>
+</body>
+</html>
+
